@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LayoutView from '../views/layout/LayoutView.vue'
+import LayoutView from '../views/BaseLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
