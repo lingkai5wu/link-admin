@@ -13,5 +13,15 @@ export default [
     name: 'layout',
     component: BaseLayout,
     children: Object.values(modules)
+  },
+  {
+    component: () => import('@/views/auth/AuthLayout.vue'),
+    children: [
+      {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/auth/LoginView.vue')
+      }
+    ]
   }
 ] as RouteRecordRaw[]
