@@ -1,15 +1,9 @@
+import routes from '@/router/routes'
 import { createRouter, createWebHistory } from 'vue-router'
-import LayoutView from '../views/BaseLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'layout',
-      component: LayoutView
-    }
-  ]
+  routes: routes
 })
 
 export default router
