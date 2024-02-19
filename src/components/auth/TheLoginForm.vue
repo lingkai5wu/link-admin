@@ -1,3 +1,14 @@
+<script lang="ts" setup>
+import LoadingButton from '@/components/LoadingButton.vue'
+import { sleep } from '@/utils/common'
+
+async function handleLogin() {
+  window.$message.info('模拟登录')
+  await sleep(1000)
+  window.$message.success('登录成功')
+}
+</script>
+
 <template>
   <n-form ref="formRef">
     <n-form-item label="手机号" path="phoneNumber">
@@ -10,7 +21,7 @@
       <n-input />
     </n-form-item>
     <n-flex>
-      <n-button type="primary" style="width: 100%;">登录</n-button>
+      <LoadingButton :func="handleLogin" style="width: 100%" type="primary">登录</LoadingButton>
     </n-flex>
   </n-form>
 </template>
