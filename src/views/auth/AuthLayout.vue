@@ -14,6 +14,6 @@
 }
 
 .main {
-  width: 300px;
+  width: 320px;
 }
 </style>

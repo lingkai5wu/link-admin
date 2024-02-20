@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import InputSmsCode from '@/components/auth/InputSmsCode.vue'
 import LoadingButton from '@/components/LoadingButton.vue'
 import { sleep } from '@/utils/common'
 
@@ -18,7 +19,7 @@ async function handleLogin() {
       <n-input />
     </n-form-item>
     <n-form-item label="短信验证码" path="smsCode">
-      <n-input />
+      <InputSmsCode :func="() => sleep(1000)" :interval="10" />
     </n-form-item>
     <n-flex>
       <LoadingButton :func="handleLogin" style="width: 100%" type="primary">登录</LoadingButton>
