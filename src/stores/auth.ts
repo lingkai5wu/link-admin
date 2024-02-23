@@ -1,4 +1,4 @@
-import type { TokenInfoVO } from '@/types/api'
+import type { TokenInfoVO } from '@/types/vo'
 import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore(

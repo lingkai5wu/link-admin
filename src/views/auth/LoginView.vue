@@ -4,7 +4,7 @@ import InputSmsCode from '@/components/auth/InputSmsCode.vue'
 import LoadingButton from '@/components/LoadingButton.vue'
 import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
-import type { AuthLoginQuery } from '@/types/api'
+import type { AuthLoginQuery } from '@/types/query'
 import { sleep } from '@/utils/common'
 import type { FormItemRule } from 'naive-ui'
 
