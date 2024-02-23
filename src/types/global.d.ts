@@ -5,9 +5,9 @@ import type { NotificationApiInjection } from 'naive-ui/es/notification/src/Noti
 
 declare global {
   interface Window {
-    $dialog: DialogApiInjection,
+    $dialog: DialogApiInjection
     $loadingBar: LoadingBarInst
-    $message: MessageApiInjection,
-    $notification: NotificationApiInjection,
+    $message: MessageApiInjection
+    $notification: NotificationApiInjection
   }
 }
