@@ -1,10 +1,13 @@
+import type { TokenInfoVO } from '@/types/api'
 import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore(
   'auth',
   () => {
-    const lastSentSmsCodeTimestamp = ref()
+    const token = ref<TokenInfoVO | null>()
+    const lastSentSmsCodeTimestamp = ref<number>()
     return {
+      token,
       lastSentSmsCodeTimestamp
     }
   },

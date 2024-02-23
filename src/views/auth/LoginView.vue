@@ -1,10 +1,14 @@
 <script lang="ts" setup>
+import { login } from '@/api/auth'
 import InputSmsCode from '@/components/auth/InputSmsCode.vue'
 import LoadingButton from '@/components/LoadingButton.vue'
+import router from '@/router'
+import { useAuthStore } from '@/stores/auth'
+import type { AuthLoginQuery } from '@/types/api'
 import { sleep } from '@/utils/common'
 import type { FormItemRule } from 'naive-ui'
 
-const formData = ref({
+const formData = ref<AuthLoginQuery>({
   phone: '18888888888',
   smsCode: '888888'
 })
@@ -41,9 +45,11 @@ const formRules = {
 }
 
 async function handleLogin() {
-  window.$message.info('模拟登录')
-  await sleep(1000)
+  const tokenInfoVO = await login(formData.value)
+  const authStore = useAuthStore()
+  authStore.token = tokenInfoVO
   window.$message.success('登录成功')
+  await router.push('/')
 }
 </script>
 
@@ -56,6 +62,8 @@ async function handleLogin() {
     <n-form-item label="验证码" path="smsCode">
       <InputSmsCode v-model:value="formData.smsCode" :func="() => sleep(1000)" :interval="10" />
     </n-form-item>
-    <LoadingButton :func="handleLogin" style="width: 100%; margin-top: 4px;" type="primary">登录</LoadingButton>
+    <LoadingButton :func="handleLogin" style="width: 100%; margin-top: 4px" type="primary"
+      >登录
+    </LoadingButton>
   </n-form>
 </template>
