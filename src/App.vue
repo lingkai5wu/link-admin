@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { darkTheme, dateZhCN, useOsTheme, zhCN } from 'naive-ui'
 import { computed } from 'vue'
 
@@ -7,7 +7,7 @@ const theme = computed(() => (osTheme.value === 'dark' ? darkTheme : null))
 </script>
 
 <template>
-  <n-config-provider :locale="zhCN" :date-locale="dateZhCN" :theme="theme">
+  <n-config-provider :date-locale="dateZhCN" :locale="zhCN" :theme="theme">
     <n-layout>
       <router-view />
     </n-layout>
