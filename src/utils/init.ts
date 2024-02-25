@@ -1,5 +1,6 @@
 import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
+import { useMenuStore } from '@/stores/menu'
 import { useUserStore } from '@/stores/user'
 import { createDiscreteApi } from 'naive-ui'
 
@@ -25,5 +26,6 @@ export async function initRuntimeData() {
     return
   }
 
+  await useMenuStore().initMenuOptions()
   await useUserStore().initUserVO()
 }

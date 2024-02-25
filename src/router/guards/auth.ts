@@ -10,7 +10,7 @@ export function createAuthGuard(router: Router) {
       return '/'
     }
 
-    if (ROUTE_NAME_WHITE_LIST.includes(<string>to.name)) {
+    if (ROUTE_NAME_WHITE_LIST.includes(to.name as string)) {
       return true
     }
     if (!authStore.token) {
