@@ -1,20 +1,20 @@
 import { useAuthStore } from '@/stores/auth.js'
 import type { Router } from 'vue-router'
 
-const PATH_WHITE_LIST = ['/login']
+const ROUTE_NAME_WHITE_LIST = ['login']
 
 export function createAuthGuard(router: Router) {
   router.beforeEach((to) => {
     const authStore = useAuthStore()
-    if (authStore.token && to.path === '/login') {
+    if (authStore.token && to.name === 'login') {
       return '/'
     }
 
-    if (PATH_WHITE_LIST.includes(to.path)) {
+    if (ROUTE_NAME_WHITE_LIST.includes(<string>to.name)) {
       return true
     }
     if (!authStore.token) {
-      return '/login'
+      return { name: 'login' }
     }
   })
 }

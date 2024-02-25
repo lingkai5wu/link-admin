@@ -5,7 +5,6 @@ const modules: Record<string, RouteRecordRaw> = import.meta.glob('./modules/*.ts
   eager: true,
   import: 'default'
 })
-console.log(modules)
 
 export default [
   {
@@ -15,10 +14,13 @@ export default [
     children: Object.values(modules)
   },
   {
+    path: '/auth',
+    name: 'auth',
+    redirect: { name: 'login' },
     component: () => import('@/views/auth/AuthLayout.vue'),
     children: [
       {
-        path: '/login',
+        path: 'login',
         name: 'login',
         meta: {
           title: '登录'
