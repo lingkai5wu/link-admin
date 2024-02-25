@@ -10,10 +10,7 @@ export interface MenuVO {
   id: number
   pid: number
   type: MenuTypeEnum
-  label: string
-  icon: string | null
   path: string | null
-  component: string | null
 }
 
 export interface OssDirectPostObjectInfoVO {

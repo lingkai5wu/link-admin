@@ -1,6 +1,6 @@
 import router from '@/router/index.js'
 import { useAuthStore } from '@/stores/auth.js'
-import type { Result } from '@/types/vo'
+import type { Result } from '@/types/api/vo'
 import type { AxiosResponse } from 'axios'
 import axios from 'axios'
 

@@ -1,5 +1,5 @@
-import type { AuthLoginQuery } from '@/types/query'
-import type { TokenInfoVO } from '@/types/vo'
+import type { AuthLoginQuery } from '@/types/api/query'
+import type { TokenInfoVO } from '@/types/api/vo'
 import request from '@/utils/request'
 
 export async function login(data: AuthLoginQuery): Promise<TokenInfoVO> {
