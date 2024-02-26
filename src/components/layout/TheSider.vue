@@ -1,45 +1,23 @@
 <script lang="ts" setup>
-import { useMenuStore } from '@/stores/menu.js'
-import type { MenuOptionWithRouteMeta } from '@/types/menu'
-import { OpenOutline } from '@vicons/ionicons5'
-import { NIcon } from 'naive-ui'
-import type { VNodeChild } from 'vue'
-import { RouterLink } from 'vue-router'
+import { logout } from '@/api/auth'
+import TheMenu from '@/components/layout/TheMenu.vue'
+import router from '@/router'
+import { useAuthStore } from '@/stores/auth'
 
-const menuStore = useMenuStore()
-
-function renderMenuLabel(menuOption: MenuOptionWithRouteMeta): VNodeChild {
-  switch (menuOption.type) {
-    case 'ROUTE':
-      return h(
-        RouterLink,
-        { to: menuOption.path as string },
-        { default: () => (menuOption.label || menuOption.meta?.title) }
-      )
-    case 'LINK':
-      return h('a', { href: menuOption.path, target: '_blank' }, menuOption.label as string)
-    default:
-      return menuOption.label as string
-  }
-}
-
-function renderMenuExtra(menuOption: MenuOptionWithRouteMeta): VNodeChild {
-  if (menuOption.type === 'LINK') {
-    return h(NIcon, null, { default: () => h(OpenOutline) })
-  }
+async function handleLogout() {
+  await logout()
+  const authStore = useAuthStore()
+  authStore.token = null
+  window.$message.success('登出成功')
+  await router.push({ name: 'login' })
 }
 </script>
 
 <template>
-  <n-scrollbar style="max-height: 100vh">
-    <n-menu
-      :default-value="$route.name as string"
-      :options="menuStore.menuOptions"
-      :render-extra="renderMenuExtra"
-      :render-label="renderMenuLabel"
-      key-field="id"
-    />
-  </n-scrollbar>
+  <n-flex justify="space-between" style="height: 100%" vertical>
+    <TheMenu />
+    <n-flex justify="right" style="padding: 20px">
+      <LoadingButton :func="handleLogout" secondary type="warning">登出</LoadingButton>
+    </n-flex>
+  </n-flex>
 </template>
-
-<style scoped></style>
