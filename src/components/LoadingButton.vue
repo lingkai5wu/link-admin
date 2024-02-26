@@ -1,7 +1,9 @@
 <script lang="ts" setup>
+import type { PropType } from 'vue'
+
 const props = defineProps({
   func: {
-    type: Function,
+    type: Function as PropType<() => Promise<void>>,
     required: true
   },
   delay: {
@@ -25,6 +27,9 @@ async function handleClick() {
 
 <template>
   <n-button :loading @click="handleClick">
+    <template #icon>
+      <slot name="icon" />
+    </template>
     <slot />
   </n-button>
 </template>

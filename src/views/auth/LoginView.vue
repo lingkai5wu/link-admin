@@ -7,6 +7,7 @@ import { useAuthStore } from '@/stores/auth'
 import type { AuthLoginQuery } from '@/types/api/query'
 import { sleep } from '@/utils/common'
 import { initRuntimeData } from '@/utils/init'
+import { LogInOutline } from '@vicons/ionicons5'
 import type { FormItemRule } from 'naive-ui'
 
 const formData = ref<AuthLoginQuery>({
@@ -64,8 +65,11 @@ async function handleLogin() {
     <n-form-item label="验证码" path="smsCode">
       <InputSmsCode v-model:value="formData.smsCode" :func="() => sleep(1000)" :interval="10" />
     </n-form-item>
-    <LoadingButton :func="handleLogin" style="width: 100%; margin-top: 4px" type="primary"
-      >登录
+    <LoadingButton :func="handleLogin" style="width: 100%; margin-top: 4px" type="primary">
+      <template #icon>
+        <LogInOutline />
+      </template>
+      登录
     </LoadingButton>
   </n-form>
 </template>
