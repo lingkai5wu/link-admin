@@ -6,6 +6,7 @@ import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
 import type { AuthLoginQuery } from '@/types/api/query'
 import { sleep } from '@/utils/common'
+import { initRuntimeData } from '@/utils/init'
 import type { FormItemRule } from 'naive-ui'
 
 const formData = ref<AuthLoginQuery>({
@@ -48,6 +49,7 @@ async function handleLogin() {
   const tokenInfoVO = await login(formData.value)
   const authStore = useAuthStore()
   authStore.token = tokenInfoVO
+  await initRuntimeData()
   window.$message.success('登录成功')
   await router.push('/')
 }
