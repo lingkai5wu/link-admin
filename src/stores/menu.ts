@@ -1,12 +1,12 @@
 import { listCurrentUserMenus } from '@/api/menu'
+import type { MenuOptionWithRouteMeta } from '@/types/menu'
 import { generateMenuOptions } from '@/utils/menu'
-import type { MenuOption } from 'naive-ui'
 import { defineStore } from 'pinia'
 
 export const useMenuStore = defineStore(
   'menu',
   () => {
-    const menuOptions = ref<MenuOption[]>()
+    const menuOptions = ref<MenuOptionWithRouteMeta[]>()
 
     async function initMenuOptions() {
       const currentUserMenus = await listCurrentUserMenus()

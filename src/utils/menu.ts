@@ -1,18 +1,18 @@
 import router from '@/router'
 import type { MenuVO } from '@/types/api/vo'
-import type { MenuOption } from 'naive-ui'
+import type { MenuOptionWithRouteMeta } from '@/types/menu'
 
 export function generateMenuOptions(menus: MenuVO[]) {
   const routes = router.getRoutes()
 
   function buildMenuOptions(menus: MenuVO[], pid: number) {
-    const menuOptions: MenuOption[] = []
+    const menuOptions: MenuOptionWithRouteMeta[] = []
     for (const menu of menus) {
       if (menu.pid === pid) {
-        const menuOption: MenuOption = { ...menu }
+        const menuOption: MenuOptionWithRouteMeta = { ...menu }
         const route = routes.find((route) => route.path === menu.path)
-        if (route) {
-          menuOption.label = route.meta.title
+        if (route && route.meta) {
+          menuOption.meta = route.meta
         }
         const children = buildMenuOptions(menus, menu.id)
         if (children.length > 0) {

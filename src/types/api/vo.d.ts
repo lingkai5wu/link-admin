@@ -10,6 +10,7 @@ export interface MenuVO {
   id: number
   pid: number
   type: MenuTypeEnum
+  label: string | null
   path: string | null
 }
 

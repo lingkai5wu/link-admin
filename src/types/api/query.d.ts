@@ -8,6 +8,7 @@ export interface AuthLoginQuery {
 export interface MenuSaveQuery {
   pid: number
   type: MenuTypeEnum
+  label?: string | null
   path?: string | null
 }
 
@@ -15,6 +16,7 @@ export interface MenuUpdateQuery {
   id: number
   pid?: number | null
   type?: MenuTypeEnum | null
+  label?: string | null
   path?: string | null
 }
 
