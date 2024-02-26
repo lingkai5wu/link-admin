@@ -26,7 +26,7 @@ instance.interceptors.response.use(
     if (response.data.code === 401) {
       const authStore = useAuthStore()
       authStore.token = null
-      await router.replace('/login')
+      await router.replace({ name: 'login' })
     }
     return Promise.reject(response.data)
   },
