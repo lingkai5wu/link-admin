@@ -1,4 +1,5 @@
-import { initNaiveUIDiscreteApi, initRuntimeData } from '@/utils/init'
+import { initRuntimeData } from '@/utils/common'
+import { initNaiveUIDiscreteApi } from '@/utils/naive-ui'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { createApp } from 'vue'

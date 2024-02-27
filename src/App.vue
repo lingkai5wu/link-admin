@@ -1,9 +1,6 @@
 <script lang="ts" setup>
-import { darkTheme, dateZhCN, useOsTheme, zhCN } from 'naive-ui'
-import { computed } from 'vue'
-
-const osTheme = useOsTheme()
-const theme = computed(() => (osTheme.value === 'dark' ? darkTheme : null))
+import { theme } from '@/utils/naive-ui'
+import { dateZhCN, NThemeEditor, zhCN } from 'naive-ui'
 </script>
 
 <template>
