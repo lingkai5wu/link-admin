@@ -1,11 +1,13 @@
 <script lang="ts" setup></script>
 
 <template>
-  <n-flex align="center" class="container" justify="center">
-    <n-card class="main">
-      <router-view />
-    </n-card>
-  </n-flex>
+  <n-layout>
+    <n-flex align="center" class="container" justify="center">
+      <n-card class="main">
+        <router-view />
+      </n-card>
+    </n-flex>
+  </n-layout>
 </template>
 
 <style scoped>

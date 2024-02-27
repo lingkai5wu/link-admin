@@ -8,8 +8,8 @@ const theme = computed(() => (osTheme.value === 'dark' ? darkTheme : null))
 
 <template>
   <n-config-provider :date-locale="dateZhCN" :locale="zhCN" :theme="theme">
-    <n-layout>
+    <n-theme-editor>
       <router-view />
-    </n-layout>
+    </n-theme-editor>
   </n-config-provider>
 </template>
