@@ -13,6 +13,5 @@ export async function initRuntimeData() {
     }
     return
   }
-  await useMenuStore().initMenuOptions()
-  await useUserStore().initUserVO()
+  await Promise.all([useMenuStore().initMenuOptions(), useUserStore().initUserVO()])
 }
