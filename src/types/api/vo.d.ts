@@ -39,6 +39,26 @@ export interface UserVO {
   groupList: string[] | null
 }
 
+export interface RuntimeDataVO {
+  userVO: UserVO
+  menuVOList: MenuVO[]
+}
+
+export interface DisableServiceExceptionVO {
+  service: string
+  level: number
+  disableTime: number
+}
+
+export interface ExceptionVO {
+  className: string
+  message: string
+}
+
+export interface MethodArgumentNotValidExceptionVO {
+  invalidArgument: { [index: string]: string }
+}
+
 export type MenuTypeEnum = 'PARENT' | 'ROUTE' | 'LINK'
 
 export type UserSexEnum = 'MALE' | 'FEMALE' | 'OTHER' | 'PREFER_NOT_TO_SAY' | 'NEUTRAL'

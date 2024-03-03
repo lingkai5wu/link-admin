@@ -1,3 +1,4 @@
+import { getRuntimeDataVO } from '@/api/aggregate'
 import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
 import { useMenuStore } from '@/stores/menu'
@@ -13,5 +14,7 @@ export async function initRuntimeData() {
     }
     return
   }
-  await Promise.all([useMenuStore().initMenuOptions(), useUserStore().initUserVO()])
+  const runtimeDataVO = await getRuntimeDataVO()
+  useUserStore().userVO = runtimeDataVO.userVO
+  useMenuStore().initMenu(runtimeDataVO.menuVOList)
 }

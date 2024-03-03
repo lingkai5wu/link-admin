@@ -1,4 +1,4 @@
-import { listCurrentUserMenus } from '@/api/menu'
+import type { MenuVO } from '@/types/api/vo'
 import type { MenuOptionWithRouteMeta } from '@/types/menu'
 import { generateMenuOptions } from '@/utils/menu'
 import { defineStore } from 'pinia'
@@ -6,16 +6,18 @@ import { defineStore } from 'pinia'
 export const useMenuStore = defineStore(
   'menu',
   () => {
+    const menuVOs = ref<MenuVO[]>()
     const menuOptions = ref<MenuOptionWithRouteMeta[]>()
 
-    async function initMenuOptions() {
-      const currentUserMenus = await listCurrentUserMenus()
-      menuOptions.value = generateMenuOptions(currentUserMenus)
+    function initMenu(menuVOList: MenuVO[]) {
+      menuVOs.value = menuVOList
+      menuOptions.value = generateMenuOptions(menuVOList)
     }
 
     return {
+      menuVOs,
       menuOptions,
-      initMenuOptions
+      initMenu
     }
   },
   {}
