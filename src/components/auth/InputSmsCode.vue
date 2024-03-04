@@ -1,14 +1,19 @@
 <script lang="ts" setup>
 import { useAuthStore } from '@/stores/auth'
 
-const props = defineProps({
-  func: { type: Function, required: true },
-  interval: { type: Number, default: 60 }
-})
-const inputModel = defineModel('value', { type: String })
+const props = withDefaults(
+  defineProps<{
+    func: () => Promise<void>
+    interval?: number
+  }>(),
+  {
+    interval: 60
+  }
+)
+const inputModel = defineModel<string>('value')
 
 const isCountdownActive = ref(false)
-const countdownDuration = ref(0)
+let countdownDuration = 0
 
 const authStore = useAuthStore()
 
@@ -19,7 +24,7 @@ onMounted(() => {
   if (!last || last + interval <= current) {
     return
   }
-  countdownDuration.value = interval - (current - last)
+  countdownDuration = interval - (current - last)
   isCountdownActive.value = true
 })
 
@@ -37,7 +42,7 @@ function countdownRender({
 }
 
 async function handleSent() {
-  countdownDuration.value = props.interval * 1000
+  countdownDuration = props.interval * 1000
   await props.func()
   authStore.lastSentSmsCodeTimestamp = Date.now()
   setTimeout(() => (isCountdownActive.value = true), 200)

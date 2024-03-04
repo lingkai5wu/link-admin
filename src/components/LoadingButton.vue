@@ -1,16 +1,13 @@
 <script lang="ts" setup>
-import type { PropType } from 'vue'
-
-const props = defineProps({
-  func: {
-    type: Function as PropType<() => Promise<void>>,
-    required: true
-  },
-  delay: {
-    type: Number,
-    default: 100
+const props = withDefaults(
+  defineProps<{
+    func: () => Promise<void>
+    delay?: number
+  }>(),
+  {
+    delay: 100
   }
-})
+)
 
 const loading = ref(false)
 
