@@ -4,7 +4,8 @@ import { useAuthStore } from '@/stores/auth'
 import { useMenuStore } from '@/stores/menu'
 import { useUserStore } from '@/stores/user'
 
-export const sleep = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay))
+export const sleep = (delay: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, delay))
 
 export async function initRuntimeData() {
   if (!useAuthStore().token) {
