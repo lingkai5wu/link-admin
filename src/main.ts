@@ -11,10 +11,10 @@ async function init() {
   const pinia = createPinia()
   pinia.use(piniaPluginPersistedstate)
   app.use(pinia)
-  initNaiveUIDiscreteApi()
-  await initRuntimeData()
   app.use(router)
   app.mount('#app')
+  initNaiveUIDiscreteApi()
+  await initRuntimeData()
 }
 
 init().then()
