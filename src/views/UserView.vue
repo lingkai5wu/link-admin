@@ -39,6 +39,5 @@ const actions = ref<DataTableActions>({
 </script>
 
 <template>
-  <h1>用户管理</h1>
   <DataTable :actions="actions" :columns="columns" :func="listUserVOs" />
 </template>
