@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { listMenus } from '@/api/menu'
-import type { MenuOptionWithRouteMeta } from '@/types/menu'
+import type { MenuOptionWithEx } from '@/types/menu'
 import { generateMenuOptions } from '@/utils/menu'
 import type { DataTableColumns } from 'naive-ui'
 
@@ -8,7 +8,6 @@ const tableData = ref<MenuOptionWithRouteMeta[]>()
 listMenus().then((data) => {
   tableData.value = generateMenuOptions(data)
 })
-const columns = ref<DataTableColumns<MenuOptionWithRouteMeta>>([
   {
     title: '标签',
     key: 'label'

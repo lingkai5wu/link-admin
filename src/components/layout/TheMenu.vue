@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useMenuStore } from '@/stores/menu.js'
-import type { MenuOptionWithRouteMeta } from '@/types/menu'
+import type { MenuOptionWithEx } from '@/types/menu'
 import { OpenOutline } from '@vicons/ionicons5'
 import { NIcon } from 'naive-ui'
 import type { VNodeChild } from 'vue'
@@ -8,7 +8,7 @@ import { RouterLink } from 'vue-router'
 
 const menuStore = useMenuStore()
 
-function renderMenuLabel(menuOption: MenuOptionWithRouteMeta): VNodeChild {
+function renderMenuLabel(menuOption: MenuOptionWithEx): VNodeChild {
   switch (menuOption.type) {
     case 'ROUTE':
       return h(
@@ -23,7 +23,7 @@ function renderMenuLabel(menuOption: MenuOptionWithRouteMeta): VNodeChild {
   }
 }
 
-function renderMenuExtra(menuOption: MenuOptionWithRouteMeta): VNodeChild {
+function renderMenuExtra(menuOption: MenuOptionWithEx): VNodeChild {
   if (menuOption.type === 'LINK') {
     return h(NIcon, null, { default: () => h(OpenOutline) })
   }
