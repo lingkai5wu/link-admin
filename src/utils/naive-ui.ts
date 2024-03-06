@@ -1,7 +1,10 @@
 import { createDiscreteApi, darkTheme, useOsTheme } from 'naive-ui'
 import { computed } from 'vue'
 
-export const theme = computed(() => (useOsTheme().value === 'dark' ? darkTheme : null))
+const osTheme = useOsTheme()
+export const theme = computed(() => {
+  return osTheme.value === 'dark' ? darkTheme : null
+})
 
 export function initNaiveUIDiscreteApi() {
   const { message, dialog, notification, loadingBar } = createDiscreteApi(
