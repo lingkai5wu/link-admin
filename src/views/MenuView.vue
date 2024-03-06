@@ -4,10 +4,7 @@ import type { MenuOptionWithEx } from '@/types/menu'
 import { generateMenuOptions } from '@/utils/menu'
 import type { DataTableColumns } from 'naive-ui'
 
-const tableData = ref<MenuOptionWithRouteMeta[]>()
-listMenus().then((data) => {
-  tableData.value = generateMenuOptions(data)
-})
+const columns = ref<DataTableColumns<MenuOptionWithEx>>([
   {
     title: '标签',
     key: 'label'
@@ -18,14 +15,16 @@ listMenus().then((data) => {
   },
   {
     title: '路径',
-    key: 'path'
+    key: 'path',
+    ellipsis: true
   }
 ])
 </script>
 
 <template>
   <h1>菜单管理</h1>
-  <n-data-table :columns="columns" :data="tableData" />
+  <DataTable
+    :data-table-props="{ columns: columns }"
+    :func="async () => generateMenuOptions(await listMenus())"
+  />
 </template>
-
-<style scoped></style>

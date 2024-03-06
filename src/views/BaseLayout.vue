@@ -6,7 +6,7 @@ import TheSider from '@/components/layout/TheSider.vue'
     <n-layout-sider style="height: 100vh">
       <TheSider />
     </n-layout-sider>
-    <n-layout-content>
+    <n-layout-content style="margin: 20px">
       <router-view />
     </n-layout-content>
   </n-layout>
