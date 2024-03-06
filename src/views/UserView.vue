@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { listUserVOs } from '@/api/user'
+import type { DataTableActions } from '@/components/data-table/types'
 import type { UserVO } from '@/types/api/vo'
 import type { DataTableColumns } from 'naive-ui'
 
@@ -21,9 +22,23 @@ const columns = ref<DataTableColumns<UserVO>>([
     key: 'createTime'
   }
 ])
+const actions = ref<DataTableActions>({
+  view: {
+    title: '查看'
+  },
+  add: {
+    title: '新增'
+  },
+  edit: {
+    title: '修改'
+  },
+  delete: {
+    title: '删除'
+  }
+})
 </script>
 
 <template>
   <h1>用户管理</h1>
-  <DataTable :data-table-props="{ columns: columns }" :func="listUserVOs" />
+  <DataTable :actions="actions" :columns="columns" :func="listUserVOs" />
 </template>

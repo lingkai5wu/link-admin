@@ -23,8 +23,5 @@ const columns = ref<DataTableColumns<MenuOptionWithEx>>([
 
 <template>
   <h1>菜单管理</h1>
-  <DataTable
-    :data-table-props="{ columns: columns }"
-    :func="async () => generateMenuOptions(await listMenus())"
-  />
+  <DataTable :columns="columns" :func="async () => generateMenuOptions(await listMenus())" />
 </template>
