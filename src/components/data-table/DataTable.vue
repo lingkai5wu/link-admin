@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import ActionButtonGroup from '@/components/data-table/ActionButtonGroup.vue'
+import DataTableActionButtonGroup from '@/components/data-table/DataTableActionButtonGroup.vue'
 import type { DataTableActions, DataTablePropsEx } from '@/components/data-table/types'
 import type { DataTableColumns } from 'naive-ui'
 
@@ -31,7 +31,11 @@ function setActionColumn() {
     title: '操作',
     key: 'action',
     render(rowData: Data) {
-      return h(ActionButtonGroup, { actions: actions, row: rowData })
+      return h(DataTableActionButtonGroup, {
+        actions: actions,
+        row: rowData,
+        onRefreshTableData: getTableData
+      })
     }
   })
 }

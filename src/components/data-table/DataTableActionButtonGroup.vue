@@ -1,24 +1,23 @@
 <script lang="ts" setup>
 import type { DataTableActions } from '@/components/data-table/types'
 
-const props = defineProps<{
+defineProps<{
   actions: DataTableActions
   row: Data
 }>()
-
-function handleAction(actionKey: string) {
-  window.$message.info(`action ${actionKey} is trigger in row id: ${props.row.id}`)
-}
+const emits = defineEmits<{
+  refreshTableData: [void]
+}>()
 </script>
 
 <template>
   <n-button-group>
-    <ActionButton
+    <DataTableActionButton
       v-for="(action, key) in actions"
       :key="key"
       :action="action"
-      :action-key="key as string"
-      @action-trigger="handleAction"
+      :row="row"
+      @refresh-table-data="emits('refreshTableData')"
     />
   </n-button-group>
 </template>
