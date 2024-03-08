@@ -5,9 +5,14 @@ interface DataTablePropsEx extends DataTableProps {
   columns: never
 }
 
+type DataTableActionComponentProps = {
+  row: Data
+}
+
 interface DataTableAction {
   title: string
-  component?: Component
+  func?: () => Promise<void>
+  component?: Component<DataTableActionComponentProps>
 }
 
 interface DataTableActions {

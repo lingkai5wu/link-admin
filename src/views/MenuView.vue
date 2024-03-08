@@ -3,6 +3,7 @@ import { listMenus } from '@/api/menu'
 import MenuEdit from '@/components/data-table/menu/MenuEdit.vue'
 import type { DataTableActions } from '@/components/data-table/types'
 import type { MenuVO } from '@/types/api/vo'
+import { sleep } from '@/utils/common'
 import { generateMenuOptions } from '@/utils/menu'
 import type { DataTableColumns } from 'naive-ui'
 
@@ -33,7 +34,11 @@ const actions: DataTableActions = {
     component: MenuEdit
   },
   delete: {
-    title: '删除'
+    title: '删除',
+    func: async () => {
+      await sleep(1000)
+      window.$message.warning('模拟删除')
+    }
   }
 }
 </script>

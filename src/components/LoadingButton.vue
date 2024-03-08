@@ -8,22 +8,25 @@ const props = withDefaults(
     delay: 100
   }
 )
+const isLoading = ref(false)
 
-const loading = ref(false)
+defineExpose({
+  isLoading
+})
 
 async function handleClick() {
-  const timeout = setTimeout(() => (loading.value = true), props.delay)
+  const timeout = setTimeout(() => (isLoading.value = true), props.delay)
   try {
     await props.func()
   } finally {
     clearTimeout(timeout)
-    loading.value = false
+    isLoading.value = false
   }
 }
 </script>
 
 <template>
-  <n-button :loading @click="handleClick">
+  <n-button :loading="isLoading" @click="handleClick">
     <template #icon>
       <slot name="icon" />
     </template>

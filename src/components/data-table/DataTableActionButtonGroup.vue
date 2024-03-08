@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import DataTableActionButton from '@/components/data-table/DataTableActionButton.vue'
-import type { DataTableActions } from '@/components/data-table/types'
+import type { DataTableAction, DataTableActions } from '@/components/data-table/types'
 
 defineProps<{
   actions: DataTableActions
   row: Data
 }>()
 const emits = defineEmits<{
-  refreshTableData: [void]
+  actionTrigger: [DataTableAction, Data]
 }>()
 </script>
 
@@ -18,7 +18,7 @@ const emits = defineEmits<{
       :key="key"
       :action="action"
       :row="row"
-      @refresh-table-data="emits('refreshTableData')"
+      @action-trigger="emits('actionTrigger', action, row)"
     />
   </n-button-group>
 </template>
