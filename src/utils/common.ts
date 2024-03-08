@@ -35,7 +35,7 @@ export function getDifferences(source: Data, target: Data): Data | null {
   let isDifferent = false
 
   for (const key in target) {
-    if (source[key] !== target[key]) {
+    if (source[key] !== target[key] && target[key] !== null) {
       result[key] = target[key]
       isDifferent = true
     }

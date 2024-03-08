@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import DataTableActionButton from '@/components/data-table/DataTableActionButton.vue'
 import type { DataTableActions } from '@/components/data-table/types'
 
 defineProps<{
