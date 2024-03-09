@@ -1,4 +1,5 @@
 import type { DataTableProps } from 'naive-ui'
+import type { Type } from 'naive-ui/es/button/src/interface'
 import type { Component } from 'vue'
 
 interface DataTablePropsEx extends DataTableProps {
@@ -7,11 +8,13 @@ interface DataTablePropsEx extends DataTableProps {
 
 type DataTableActionComponentProps = {
   row: Data
+  func: (data: Data) => Promise<void | null>
 }
 
 interface DataTableAction {
   title: string
-  func?: () => Promise<void>
+  type?: Type
+  func: (data?: any) => Promise<void | null>
   component?: Component<DataTableActionComponentProps>
 }
 

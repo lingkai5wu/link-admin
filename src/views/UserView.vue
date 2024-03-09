@@ -23,18 +23,18 @@ const columns = ref<DataTableColumns<UserVO>>([
   }
 ])
 const actions = ref<DataTableActions>({
-  view: {
-    title: '查看'
-  },
-  add: {
-    title: '新增'
-  },
-  edit: {
-    title: '修改'
-  },
-  delete: {
-    title: '删除'
-  }
+  // view: {
+  //   title: '查看'
+  // },
+  // add: {
+  //   title: '新增'
+  // },
+  // edit: {
+  //   title: '修改'
+  // },
+  // delete: {
+  //   title: '删除'
+  // }
 })
 </script>
 

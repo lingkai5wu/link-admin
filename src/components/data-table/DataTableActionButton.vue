@@ -23,7 +23,7 @@ async function handleActionPositive() {
     isWaitConfirm.value = true
     return
   }
-  await props.action.func!()
+  await props.action.func()
   isWaitConfirm.value = false
   window.$message.success(props.action.title + '成功')
 }
@@ -36,7 +36,7 @@ function handleActionNegative() {
 </script>
 
 <template>
-  <n-button v-if="!action.func" secondary @click="emits('actionTrigger')">
+  <n-button v-if="action.component" :type="action.type" secondary @click="emits('actionTrigger')">
     {{ buttonText }}
   </n-button>
   <LoadingButton
@@ -44,6 +44,7 @@ function handleActionNegative() {
     ref="loadingButtonRef"
     :func="handleActionPositive"
     :secondary="!isWaitConfirm"
+    :type="action.type"
     @blur="handleActionNegative"
   >
     {{ buttonText }}

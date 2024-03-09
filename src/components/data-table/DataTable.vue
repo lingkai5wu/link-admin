@@ -35,7 +35,7 @@ async function getTableData() {
 
 function setActionColumn() {
   const actions = props.actions
-  if (!actions) {
+  if (!actions || Object.keys(actions).length === 0) {
     return
   }
   columnsWithActions.value.push({
@@ -54,7 +54,7 @@ function setActionColumn() {
 function handleActionTrigger(action: DataTableAction, row: Data) {
   component.value = markRaw(action.component!)
   componentId.value = row.id
-  componentProps.value = { row }
+  componentProps.value = { row, func: action.func }
   drawerTitle.value = action.title
   isDrawerShow.value = true
 }
