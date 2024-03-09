@@ -22,6 +22,7 @@ getTableData()
 const columnsWithActions = ref(props.columns)
 setActionColumn()
 const isDrawerShow = ref(false)
+const isDrawerMaskClosable = ref(true)
 const drawerTitle = ref<string>()
 const component = ref<Component>()
 const componentId = ref<number>()
@@ -45,7 +46,8 @@ function setActionColumn() {
       return h(DataTableActionButtonGroup, {
         actions: actions,
         row: rowData,
-        onActionTrigger: handleActionTrigger
+        onActionTrigger: handleActionTrigger,
+        onActionSubmit: handleActionSubmit
       })
     }
   })
@@ -76,7 +78,11 @@ function handleActionSubmit(isNeedRefresh: boolean) {
     :row-key="(data: Data) => data.id"
     v-bind="dataTableProps"
   />
-  <n-drawer v-model:show="isDrawerShow" display-directive="show">
+  <n-drawer
+    v-model:show="isDrawerShow"
+    :mask-closable="isDrawerMaskClosable"
+    display-directive="show"
+  >
     <n-drawer-content :title="drawerTitle">
       <keep-alive :max="3">
         <component
@@ -84,6 +90,7 @@ function handleActionSubmit(isNeedRefresh: boolean) {
           :key="componentId"
           v-bind="componentProps"
           @action-submit="handleActionSubmit"
+          @action-func-exec="(isFuncExec: boolean) => (isDrawerMaskClosable = !isFuncExec)"
         />
       </keep-alive>
     </n-drawer-content>

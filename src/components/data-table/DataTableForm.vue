@@ -6,17 +6,25 @@ const props = defineProps<{
 }>()
 const emits = defineEmits<{
   actionSubmit: [boolean]
+  actionFuncExec: [boolean]
 }>()
 const formData = defineModel<Data>('value', { required: true })
-const originData = { ...formData.value }
+let originData = { ...formData.value }
+const currentData = computed(() => getDifferences(originData, formData.value))
+const isDisabled = computed(() => currentData.value === null)
 
 async function handleClick() {
-  const data = getDifferences(originData, formData.value)
-  if (data === null) {
+  if (currentData.value === null) {
     emits('actionSubmit', false)
     return
   }
-  await props.func(data)
+  emits('actionFuncExec', true)
+  try {
+    await props.func(currentData.value)
+  } finally {
+    emits('actionFuncExec', false)
+  }
+  originData = { ...formData.value }
   emits('actionSubmit', true)
 }
 </script>
@@ -26,7 +34,15 @@ async function handleClick() {
     <slot />
   </n-form>
   <n-flex size="large" vertical>
-    <n-button style="width: 100%" @click="formData = { ...originData }">重置</n-button>
+    <n-button
+      :disabled="isDisabled"
+      secondary
+      style="width: 100%"
+      type="warning"
+      @click="formData = { ...originData }"
+    >
+      重置
+    </n-button>
     <LoadingButton :func="handleClick" style="width: 100%" type="primary">提交</LoadingButton>
   </n-flex>
 </template>

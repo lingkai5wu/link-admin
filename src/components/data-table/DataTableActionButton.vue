@@ -1,15 +1,17 @@
 <script lang="ts" setup>
 import type { DataTableAction } from '@/components/data-table/types'
-import type LoadingButton from '@/components/LoadingButton.vue'
 
 const props = defineProps<{
   action: DataTableAction
+  isGroupLoading: boolean
 }>()
 const emits = defineEmits<{
   actionTrigger: [void]
 }>()
+
 const isWaitConfirm = ref(false)
-const loadingButtonRef = ref<InstanceType<typeof LoadingButton> | null>(null)
+const isLoading = ref(false)
+let changeLoadingTimeout: number
 
 const buttonText = computed(() => {
   if (isWaitConfirm.value) {
@@ -17,36 +19,51 @@ const buttonText = computed(() => {
   }
   return props.action.title
 })
+const isDisabled = computed(() => !isLoading.value && props.isGroupLoading)
 
-async function handleActionPositive() {
+watchEffect(() => {
+  if (!props.isGroupLoading) {
+    clearTimeout(changeLoadingTimeout)
+    isLoading.value = false
+  }
+})
+
+function handleActionPositive() {
   if (!isWaitConfirm.value) {
     isWaitConfirm.value = true
     return
   }
-  await props.action.func()
   isWaitConfirm.value = false
-  window.$message.success(props.action.title + '成功')
+  emits('actionTrigger')
+  changeLoadingTimeout = setTimeout(() => (isLoading.value = true), 100)
 }
 
 function handleActionNegative() {
-  if (!loadingButtonRef.value?.isLoading) {
+  if (!isLoading.value) {
     isWaitConfirm.value = false
   }
 }
 </script>
 
 <template>
-  <n-button v-if="action.component" :type="action.type" secondary @click="emits('actionTrigger')">
+  <n-button
+    v-if="action.component"
+    :disabled="isDisabled"
+    :type="action.type"
+    secondary
+    @click="emits('actionTrigger')"
+  >
     {{ buttonText }}
   </n-button>
-  <LoadingButton
+  <n-button
     v-else
-    ref="loadingButtonRef"
-    :func="handleActionPositive"
+    :disabled="isDisabled"
+    :loading="isLoading"
     :secondary="!isWaitConfirm"
     :type="action.type"
     @blur="handleActionNegative"
+    @click="handleActionPositive"
   >
     {{ buttonText }}
-  </LoadingButton>
+  </n-button>
 </template>
