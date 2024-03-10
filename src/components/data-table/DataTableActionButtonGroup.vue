@@ -1,13 +1,18 @@
 <script lang="ts" setup>
 import DataTableActionButton from '@/components/data-table/DataTableActionButton.vue'
-import type { DataTableAction, DataTableActions } from '@/components/data-table/types'
+import type {
+  DataTableAction,
+  DataTableActions,
+  DataTableActionWithComponent,
+  RowDataWithId
+} from '@/components/data-table/types'
 
 const props = defineProps<{
   actions: DataTableActions
-  row: Data
+  row: RowDataWithId
 }>()
 const emits = defineEmits<{
-  actionTrigger: [DataTableAction, Data]
+  actionTrigger: [DataTableActionWithComponent, RowDataWithId]
   actionSubmit: [boolean]
 }>()
 

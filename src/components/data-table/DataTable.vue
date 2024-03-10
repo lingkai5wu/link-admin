@@ -1,23 +1,24 @@
 <script lang="ts" setup>
 import DataTableActionButtonGroup from '@/components/data-table/DataTableActionButtonGroup.vue'
 import type {
-  DataTableAction,
   DataTableActionComponentProps,
   DataTableActions,
-  DataTablePropsEx
+  DataTableActionWithComponent,
+  DataTablePropsEx,
+  RowDataWithId
 } from '@/components/data-table/types'
 import type { DataTableColumns } from 'naive-ui'
 import type { Component } from 'vue'
 
 const props = defineProps<{
-  func: () => Promise<Data[]>
+  func: () => Promise<RowDataWithId[]>
   columns: DataTableColumns<any>
   actions?: DataTableActions
   dataTableProps?: DataTablePropsEx
 }>()
 
 const loading = ref(false)
-const tableData = ref<Data[]>()
+const tableData = ref<RowDataWithId[]>()
 getTableData()
 const columnsWithActions = ref(props.columns)
 setActionColumn()
@@ -42,10 +43,10 @@ function setActionColumn() {
   columnsWithActions.value.push({
     title: '操作',
     key: 'action',
-    render(rowData: Data) {
+    render(row: RowDataWithId) {
       return h(DataTableActionButtonGroup, {
-        actions: actions,
-        row: rowData,
+        actions,
+        row,
         onActionTrigger: handleActionTrigger,
         onActionSubmit: handleActionSubmit
       })
@@ -53,8 +54,8 @@ function setActionColumn() {
   })
 }
 
-function handleActionTrigger(action: DataTableAction, row: Data) {
-  component.value = markRaw(action.component!)
+function handleActionTrigger(action: DataTableActionWithComponent, row: RowDataWithId) {
+  component.value = markRaw(action.component)
   componentId.value = row.id
   componentProps.value = { row, func: action.func }
   drawerTitle.value = action.title

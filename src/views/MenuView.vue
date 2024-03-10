@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { listMenus, removeMenu, updateMenu } from '@/api/menu'
-import MenuUpdate from '@/components/data-table/curd/MenuUpdate.vue'
-import type { DataTableActions } from '@/components/data-table/types'
+import MenuEdit from '@/components/data-table/curd/MenuEdit.vue'
+import type { DataTableActions, RowDataWithId } from '@/components/data-table/types'
 import type { MenuVO } from '@/types/api/vo'
 import { generateMenuOptions } from '@/utils/menu'
 import type { DataTableColumns } from 'naive-ui'
@@ -24,13 +24,13 @@ const columns: DataTableColumns<MenuVO> = [
 const actions: DataTableActions = {
   edit: {
     title: '修改',
-    component: MenuUpdate,
+    component: MenuEdit,
     func: updateMenu
   },
   delete: {
     title: '删除',
     type: 'error',
-    func: (row) => removeMenu(row.id)
+    func: (row: RowDataWithId) => removeMenu(row.id)
   }
 }
 </script>

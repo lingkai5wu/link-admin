@@ -6,19 +6,27 @@ interface DataTablePropsEx extends DataTableProps {
   columns: never
 }
 
-type DataTableActionFunc = (data: Data) => Promise<void | null>
+type RowDataWithId = Data & { id: number }
+
+type DataTableActionFunc = (RowDataWithId) => Promise<void | null>
 
 type DataTableActionComponentProps = {
   row: Data
   func: DataTableActionFunc
 }
 
-interface DataTableAction {
+interface DataTableActionWithComponent {
   title: string
   type?: Type
   func: DataTableActionFunc
-  component?: Component<DataTableActionComponentProps>
+  component: Component<DataTableActionComponentProps>
 }
+
+interface DataTableActionWithoutComponent extends DataTableActionWithComponent {
+  component?: never
+}
+
+type DataTableAction = DataTableActionWithComponent | DataTableActionWithoutComponent
 
 interface DataTableActions {
   [key: string]: DataTableAction

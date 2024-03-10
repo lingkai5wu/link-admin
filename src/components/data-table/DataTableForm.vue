@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+import type { DataTableActionFunc } from '@/components/data-table/types'
 import { getDifferences } from '@/utils/common'
 
 const props = defineProps<{
-  func: (data: Data) => Promise<void>
+  func: DataTableActionFunc
 }>()
 const emits = defineEmits<{
   actionSubmit: [boolean]
