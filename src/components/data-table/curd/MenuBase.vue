@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { MenuUpdateQuery } from '@/types/api/query'
-import type { MenuOptionWithEx } from '@/types/menu'
+import type { MenuVOTree } from '@/types/menu'
+import type { CascaderOption } from 'naive-ui/es/cascader/src/interface'
 
-defineProps<{
-  tableData: MenuOptionWithEx[]
+const props = defineProps<{
+  tableData: MenuVOTree[]
 }>()
 const formData = defineModel<Nullable<MenuUpdateQuery>>({ required: true })
 </script>

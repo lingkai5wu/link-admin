@@ -1,22 +1,22 @@
 import type { MenuVO } from '@/types/api/vo'
-import type { MenuOptionWithEx } from '@/types/menu'
-import { generateMenuOptions } from '@/utils/menu'
+import type { MenuVOTree } from '@/types/menu'
+import { generateMenuVOTrees } from '@/utils/menu'
 import { defineStore } from 'pinia'
 
 export const useMenuStore = defineStore(
   'menu',
   () => {
     const menuVOs = ref<MenuVO[]>()
-    const menuOptions = ref<MenuOptionWithEx[]>()
+    const menuVOTrees = ref<MenuVOTree[]>()
 
     function initMenu(menuVOList: MenuVO[]) {
       menuVOs.value = menuVOList
-      menuOptions.value = generateMenuOptions(menuVOList)
+      menuVOTrees.value = generateMenuVOTrees(menuVOList)
     }
 
     return {
       menuVOs,
-      menuOptions,
+      menuVOTrees,
       initMenu
     }
   },

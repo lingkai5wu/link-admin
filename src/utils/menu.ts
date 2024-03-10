@@ -1,28 +1,26 @@
 import router from '@/router'
 import type { MenuVO } from '@/types/api/vo'
-import type { MenuOptionWithEx } from '@/types/menu'
+import type { MenuVOTree } from '@/types/menu'
 
-export function generateMenuOptions(menus: MenuVO[]) {
+export function generateMenuVOTrees(menuVOs: MenuVO[]) {
   const routes = router.getRoutes()
 
-  function buildMenuOptions(menus: MenuVO[], pid: number) {
-    const menuOptions: MenuOptionWithEx[] = []
-    for (const menu of menus) {
-      if (menu.pid === pid) {
-        const menuOption: MenuOptionWithEx = { ...menu }
-        const route = routes.find((route) => route.path === menu.path)
+  function build(menuVOs: MenuVO[], pid: number) {
+    return menuVOs
+      .filter((menuVO) => menuVO.pid === pid)
+      .map((menuVO) => {
+        const current: MenuVOTree = { ...menuVO }
+        const route = routes.find((route) => route.path === menuVO.path)
         if (route && route.meta) {
-          menuOption.meta = route.meta
+          current.meta = route.meta
         }
-        const children = buildMenuOptions(menus, menu.id)
+        const children = build(menuVOs, menuVO.id)
         if (children.length > 0) {
-          menuOption.children = children
+          current.children = children
         }
-        menuOptions.push(menuOption)
-      }
-    }
-    return menuOptions
+        return current
+      })
   }
 
-  return buildMenuOptions(menus, 0)
+  return build(menuVOs, 0)
 }
