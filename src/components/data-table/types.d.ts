@@ -20,6 +20,7 @@ interface DataTableActionWithComponent {
   title: string
   type?: Type
   func: DataTableActionFunc
+  disabled?: ((row: RowDataWithId) => boolean) | boolean
   component: Component<DataTableActionComponentProps>
 }
 

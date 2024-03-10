@@ -23,6 +23,15 @@ const columns: DataTableColumns<MenuVOTree> = [
   }
 ]
 const actions: DataTableActions = {
+  add: {
+    title: '新增',
+    type: 'primary',
+    disabled(row: MenuVOTree) {
+      return row.type !== 'PARENT'
+    },
+    component: MenuAdd,
+    func: saveMenu
+  },
   edit: {
     title: '修改',
     component: MenuEdit,
@@ -31,7 +40,10 @@ const actions: DataTableActions = {
   delete: {
     title: '删除',
     type: 'error',
-    func: (row: RowDataWithId) => removeMenu(row.id)
+    disabled(row: MenuVOTree) {
+      return row.children !== undefined
+    },
+    func: (row: MenuVOTree) => removeMenu(row.id)
   }
 }
 </script>

@@ -54,7 +54,11 @@ function setActionColumn() {
   })
 }
 
-function handleActionTrigger(row: RowDataWithId, action: DataTableActionWithComponent, actionKey: string) {
+function handleActionTrigger(
+  row: RowDataWithId,
+  action: DataTableActionWithComponent,
+  actionKey: string
+) {
   component.value = markRaw(action.component)
   componentKey.value = actionKey + row.id
   componentProps.value = { row, tableData: tableData.value!, func: action.func }
@@ -79,21 +83,15 @@ function handleActionSubmit(isNeedRefresh: boolean) {
     :row-key="(data: Data) => data.id"
     v-bind="dataTableProps"
   />
-  <n-drawer
-    v-model:show="isDrawerShow"
-    :mask-closable="isDrawerMaskClosable"
-    display-directive="show"
-  >
+  <n-drawer v-model:show="isDrawerShow" :mask-closable="isDrawerMaskClosable">
     <n-drawer-content :title="drawerTitle">
-      <keep-alive :max="3">
-        <component
-          :is="component"
-          :key="componentKey"
-          v-bind="componentProps"
-          @action-submit="handleActionSubmit"
-          @action-func-exec="(isFuncExec: boolean) => (isDrawerMaskClosable = !isFuncExec)"
-        />
-      </keep-alive>
+      <component
+        :is="component"
+        :key="componentKey"
+        v-bind="componentProps"
+        @action-submit="handleActionSubmit"
+        @action-func-exec="(isFuncExec: boolean) => (isDrawerMaskClosable = !isFuncExec)"
+      />
     </n-drawer-content>
   </n-drawer>
 </template>
