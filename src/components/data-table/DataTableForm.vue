@@ -3,12 +3,15 @@ import type { DataTableActionFunc } from '@/components/data-table/types'
 import { getDifferences } from '@/utils/common'
 
 const props = defineProps<{
-  func: DataTableActionFunc
+  func?: DataTableActionFunc
 }>()
 const emits = defineEmits<{
   actionSubmit: [boolean]
   actionFuncExec: [boolean]
 }>()
+defineOptions({
+  inheritAttrs: false
+})
 const formData = defineModel<Data>('value', { required: true })
 let originData = { ...formData.value }
 const currentData = computed(() => getDifferences(originData, formData.value))
@@ -21,7 +24,7 @@ async function handleClick() {
   }
   emits('actionFuncExec', true)
   try {
-    await props.func(currentData.value)
+    await props.func!(currentData.value)
   } finally {
     emits('actionFuncExec', false)
   }

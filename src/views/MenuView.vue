@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { listMenus, removeMenu, updateMenu } from '@/api/menu'
+import { listMenus, removeMenu, saveMenu, updateMenu } from '@/api/menu'
+import MenuAdd from '@/components/data-table/curd/MenuAdd.vue'
 import MenuEdit from '@/components/data-table/curd/MenuEdit.vue'
 import type { DataTableActions, RowDataWithId } from '@/components/data-table/types'
 import type { MenuVO } from '@/types/api/vo'

@@ -12,13 +12,13 @@ const props = defineProps<{
   row: RowDataWithId
 }>()
 const emits = defineEmits<{
-  actionTrigger: [DataTableActionWithComponent, RowDataWithId]
+  actionTrigger: [RowDataWithId, DataTableActionWithComponent, string]
   actionSubmit: [boolean]
 }>()
 
 const isLoading = ref(false)
 
-async function handleActionTrigger(action: DataTableAction) {
+async function handleActionTrigger(action: DataTableAction, actionKey: string) {
   if (!action.component) {
     isLoading.value = true
     await action.func(props.row)
@@ -26,7 +26,7 @@ async function handleActionTrigger(action: DataTableAction) {
     isLoading.value = false
     return
   }
-  emits('actionTrigger', action, props.row)
+  emits('actionTrigger', props.row, action, actionKey)
 }
 </script>
 
@@ -38,7 +38,7 @@ async function handleActionTrigger(action: DataTableAction) {
       :action="action"
       :is-group-loading="isLoading"
       :row="row"
-      @action-trigger="handleActionTrigger(action)"
+      @action-trigger="handleActionTrigger(action, key as string)"
     />
   </n-button-group>
 </template>

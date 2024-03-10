@@ -26,7 +26,7 @@ const isDrawerShow = ref(false)
 const isDrawerMaskClosable = ref(true)
 const drawerTitle = ref<string>()
 const component = ref<Component>()
-const componentId = ref<number>()
+const componentKey = ref<string>()
 const componentProps = ref<DataTableActionComponentProps>()
 
 async function getTableData() {
@@ -54,10 +54,10 @@ function setActionColumn() {
   })
 }
 
-function handleActionTrigger(action: DataTableActionWithComponent, row: RowDataWithId) {
+function handleActionTrigger(row: RowDataWithId, action: DataTableActionWithComponent, actionKey: string) {
   component.value = markRaw(action.component)
-  componentId.value = row.id
-  componentProps.value = { row, func: action.func }
+  componentKey.value = actionKey + row.id
+  componentProps.value = { row, tableData: tableData.value!, func: action.func }
   drawerTitle.value = action.title
   isDrawerShow.value = true
 }
@@ -88,7 +88,7 @@ function handleActionSubmit(isNeedRefresh: boolean) {
       <keep-alive :max="3">
         <component
           :is="component"
-          :key="componentId"
+          :key="componentKey"
           v-bind="componentProps"
           @action-submit="handleActionSubmit"
           @action-func-exec="(isFuncExec: boolean) => (isDrawerMaskClosable = !isFuncExec)"

@@ -12,6 +12,7 @@ type DataTableActionFunc = (RowDataWithId) => Promise<void | null>
 
 type DataTableActionComponentProps = {
   row: Data
+  tableData: Data[]
   func: DataTableActionFunc
 }
 
