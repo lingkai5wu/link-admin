@@ -10,7 +10,7 @@ const props = withDefaults(
     interval: 60
   }
 )
-const inputModel = defineModel<string>('value')
+const inputModel = defineModel<string | null>()
 
 const isCountdownActive = ref(false)
 let countdownDuration = 0

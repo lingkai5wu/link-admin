@@ -1,62 +1,62 @@
 /* tslint:disable */
 
 export interface Result<T> {
-  code: number
-  msg: string
-  data: T
+  readonly code: number
+  readonly msg: string
+  readonly data: T
 }
 
 export interface MenuVO {
-  id: number
-  pid: number
-  type: MenuTypeEnum
-  label: string
-  path: string | null
+  readonly id: number
+  readonly pid: number
+  readonly type: MenuTypeEnum
+  readonly label: string
+  readonly path: string | null
 }
 
 export interface OssDirectPostObjectInfoVO {
-  host: string
-  expire: number
-  ossAccessKeyId: string
-  policy: string
-  signature: string
+  readonly host: string
+  readonly expire: number
+  readonly ossAccessKeyId: string
+  readonly policy: string
+  readonly signature: string
 }
 
 export interface TokenInfoVO {
-  tokenName: string
-  tokenValue: string
+  readonly tokenName: string
+  readonly tokenValue: string
 }
 
 export interface UserVO {
-  id: number
-  phone: string
-  status: number
-  nickname: string | null
-  realname: string | null
-  avatar: string | null
-  sex: UserSexEnum | null
-  createTime: Date
-  groupList: string[] | null
+  readonly id: number
+  readonly phone: string
+  readonly status: number
+  readonly nickname: string | null
+  readonly realname: string | null
+  readonly avatar: string | null
+  readonly sex: UserSexEnum | null
+  readonly createTime: Date
+  readonly groupList: string[] | null
 }
 
 export interface RuntimeDataVO {
-  userVO: UserVO
-  menuVOList: MenuVO[]
+  readonly userVO: UserVO
+  readonly menuVOList: MenuVO[]
 }
 
 export interface DisableServiceExceptionVO {
-  service: string
-  level: number
-  disableTime: number
+  readonly service: string
+  readonly level: number
+  readonly disableTime: number
 }
 
 export interface ExceptionVO {
-  className: string
-  message: string
+  readonly className: string
+  readonly message: string
 }
 
 export interface MethodArgumentNotValidExceptionVO {
-  invalidArgument: { [index: string]: string }
+  readonly invalidArgument: { [index: string]: string }
 }
 
 export type MenuTypeEnum = 'PARENT' | 'ROUTE' | 'LINK'

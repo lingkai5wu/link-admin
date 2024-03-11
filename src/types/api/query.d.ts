@@ -1,19 +1,19 @@
 /* tslint:disable */
 
 export interface AuthLoginQuery {
-  phone: string
-  smsCode: string
+  phone?: string | null
+  smsCode?: string | null
 }
 
 export interface MenuSaveQuery {
-  pid: number
-  type: MenuTypeEnum
-  label: string
+  pid?: number | null
+  type?: MenuTypeEnum | null
+  label?: string | null
   path?: string | null
 }
 
 export interface MenuUpdateQuery {
-  id: number
+  id?: number | null
   pid?: number | null
   type?: MenuTypeEnum | null
   label?: string | null
