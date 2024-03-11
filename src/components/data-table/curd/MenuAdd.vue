@@ -14,6 +14,6 @@ const formData = ref<Nullable<MenuSaveQuery>>({
 
 <template>
   <DataTableForm v-model:value="formData">
-    <MenuBase v-model="formData" :table-data="tableData" />
+    <MenuBase v-model="formData" :table-data="tableData" is-add />
   </DataTableForm>
 </template>
