@@ -62,7 +62,7 @@ async function handleLogin() {
       <n-input v-model:value="formData.phone" />
     </n-form-item>
     <n-form-item label="验证码" path="smsCode">
-      <InputSmsCode v-model:value="formData.smsCode" :func="() => sleep(1000)" :interval="10" />
+      <InputSmsCode v-model="formData.smsCode" :func="() => sleep(1000)" :interval="10" />
     </n-form-item>
     <LoadingButton :func="handleLogin" style="width: 100%; margin-top: 4px" type="primary">
       <template #icon>

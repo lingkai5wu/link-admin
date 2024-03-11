@@ -29,17 +29,3 @@ export function pick<T extends Data, K extends keyof T>(obj: T, keys: K[]): Pick
   })
   return result
 }
-
-export function getDifferences(source: Data, target: Data): Data | null {
-  const result: Data = { id: target.id }
-  let isDifferent = false
-
-  for (const key in target) {
-    if (source[key] !== target[key] && target[key] !== null) {
-      result[key] = target[key]
-      isDifferent = true
-    }
-  }
-
-  return isDifferent ? result : null
-}

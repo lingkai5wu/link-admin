@@ -7,7 +7,7 @@ const props = defineProps<{
   tableData: MenuVOTree[]
   isAdd?: boolean
 }>()
-const formData = defineModel<Nullable<MenuUpdateQuery>>({ required: true })
+const formData = defineModel<MenuUpdateQuery>({ required: true })
 
 const cascaderOptions: CascaderOption[] = [
   {
@@ -48,7 +48,7 @@ function generateCascaderOptions(menuVOTrees: MenuVOTree[]): CascaderOption[] {
   </n-form-item>
   <n-form-item label="类型" path="type">
     <n-radio-group v-model:value="formData.type" name="type">
-      <n-radio-button label="父菜单" value="PARENT" :disabled="!isAdd" />
+      <n-radio-button :disabled="!isAdd" label="父菜单" value="PARENT" />
       <n-radio-button label="路由" value="ROUTE" />
       <n-radio-button label="链接" value="LINK" />
     </n-radio-group>

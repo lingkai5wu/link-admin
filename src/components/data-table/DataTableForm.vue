@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { DataTableActionFunc } from '@/components/data-table/types'
+import { NForm } from 'naive-ui'
 
 const props = defineProps<{
   func?: DataTableActionFunc
@@ -8,12 +9,11 @@ const emits = defineEmits<{
   actionSubmit: [boolean]
   actionFuncExec: [boolean]
 }>()
-defineOptions({
-  inheritAttrs: false
-})
 const formData = defineModel<Data>('value', { required: true })
+const formRef = ref<InstanceType<typeof NForm> | null>(null)
 
 async function handleClick() {
+  await formRef.value?.validate()
   emits('actionFuncExec', true)
   try {
     await props.func!(formData.value)
@@ -25,7 +25,7 @@ async function handleClick() {
 </script>
 
 <template>
-  <n-form v-model="formData">
+  <n-form ref="formRef" :model="formData" v-bind="$attrs">
     <slot />
   </n-form>
   <n-flex size="large" vertical>
