@@ -13,7 +13,7 @@ import type { Component } from 'vue'
 const props = defineProps<{
   func: () => Promise<RowDataWithId[]>
   columns: DataTableColumns<any>
-  actions?: DataTableActions
+  actions?: DataTableActions<any>
   dataTableProps?: DataTablePropsEx
 }>()
 

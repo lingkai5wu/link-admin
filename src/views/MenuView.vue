@@ -22,7 +22,7 @@ const columns: DataTableColumns<MenuVOTree> = [
     ellipsis: true
   }
 ]
-const actions: DataTableActions = {
+const actions: DataTableActions<MenuVOTree> = {
   add: {
     title: '新增',
     type: 'primary',
@@ -40,10 +40,10 @@ const actions: DataTableActions = {
   delete: {
     title: '删除',
     type: 'error',
-    disabled(row: MenuVOTree) {
+    disabled(row) {
       return row.children !== undefined
     },
-    func: (row: MenuVOTree) => removeMenu(row.id)
+    func: (row) => removeMenu(row.id)
   }
 }
 </script>

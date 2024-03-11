@@ -8,28 +8,31 @@ interface DataTablePropsEx extends DataTableProps {
 
 type RowDataWithId = Data & { id: number }
 
-type DataTableActionFunc = (RowDataWithId) => Promise<void | null>
+type DataTableActionFunc<T = Data> = (row: T) => Promise<void | null>
 
-type DataTableActionComponentProps = {
-  row: Data
-  tableData: Data[]
-  func: DataTableActionFunc
+type DataTableActionComponentProps<T = Data> = {
+  row: T
+  tableData: T[]
+  func?: DataTableActionFunc<T>
 }
 
-interface DataTableActionWithComponent {
+interface DataTableActionWithComponent<T = Data> {
   title: string
   type?: Type
-  func: DataTableActionFunc
-  disabled?: ((row: RowDataWithId) => boolean) | boolean
-  component: Component<DataTableActionComponentProps>
+  func: DataTableActionFunc<T>
+  disabled?: ((row: T) => boolean) | boolean
+  component: Component<DataTableActionComponentProps<T>>
 }
 
-interface DataTableActionWithoutComponent extends DataTableActionWithComponent {
+interface DataTableActionWithoutComponent<T = RowDataWithId>
+  extends DataTableActionWithComponent<T> {
   component?: never
 }
 
-type DataTableAction = DataTableActionWithComponent | DataTableActionWithoutComponent
+type DataTableAction<T = Data> =
+  | DataTableActionWithComponent<T>
+  | DataTableActionWithoutComponent<T>
 
-interface DataTableActions {
-  [key: string]: DataTableAction
+interface DataTableActions<T = Data> {
+  [key: string]: DataTableAction<T>
 }

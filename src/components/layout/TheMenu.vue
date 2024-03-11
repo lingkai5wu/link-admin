@@ -3,7 +3,7 @@ import router from '@/router'
 import { useMenuStore } from '@/stores/menu.js'
 import type { MenuVOTree } from '@/types/menu'
 import { OpenOutline } from '@vicons/ionicons5'
-import { NIcon } from 'naive-ui'
+import { type MenuOption, NIcon } from 'naive-ui'
 import type { VNodeChild } from 'vue'
 import { RouterLink } from 'vue-router'
 
@@ -16,23 +16,25 @@ const menuValue = computed(() => {
   }
 })
 
-function renderMenuLabel(menuOption: MenuVOTree): VNodeChild {
-  switch (menuOption.type) {
+function renderMenuLabel(menuOption: MenuOption): VNodeChild {
+  const menuVOTree = menuOption as unknown as MenuVOTree
+  switch (menuVOTree.type) {
     case 'ROUTE':
       return h(
         RouterLink,
-        { to: menuOption.path as string },
-        { default: () => menuOption.label || menuOption.meta?.title }
+        { to: menuVOTree.path as string },
+        { default: () => menuVOTree.label || menuVOTree.meta?.title }
       )
     case 'LINK':
-      return h('a', { href: menuOption.path, target: '_blank' }, menuOption.label as string)
+      return h('a', { href: menuVOTree.path, target: '_blank' }, menuVOTree.label as string)
     default:
-      return menuOption.label as string
+      return menuVOTree.label as string
   }
 }
 
-function renderMenuExtra(menuOption: MenuVOTree): VNodeChild {
-  if (menuOption.type === 'LINK') {
+function renderMenuExtra(menuOption: MenuOption): VNodeChild {
+  const menuVOTree = menuOption as unknown as MenuVOTree
+  if (menuVOTree.type === 'LINK') {
     return h(NIcon, null, { default: () => h(OpenOutline) })
   }
 }
