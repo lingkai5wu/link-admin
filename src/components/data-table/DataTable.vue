@@ -79,6 +79,7 @@ function handleActionSubmit(isNeedRefresh: boolean) {
   <n-data-table
     :columns="columns"
     :data="tableData"
+    :scroll-x="640"
     :loading="loading"
     :row-key="(data: Data) => data.id"
     v-bind="dataTableProps"

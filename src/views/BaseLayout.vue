@@ -4,7 +4,7 @@ import TheSider from '@/components/layout/TheSider.vue'
 </script>
 <template>
   <n-layout has-sider>
-    <n-layout-sider style="height: 100vh">
+    <n-layout-sider class="sider">
       <TheSider />
     </n-layout-sider>
     <n-layout>
@@ -17,3 +17,12 @@ import TheSider from '@/components/layout/TheSider.vue'
     </n-layout>
   </n-layout>
 </template>
+
+<style scoped>
+.sider {
+  height: 100vh;
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+}
+</style>
