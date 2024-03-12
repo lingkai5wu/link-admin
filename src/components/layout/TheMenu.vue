@@ -20,15 +20,11 @@ function renderMenuLabel(menuOption: MenuOption): VNodeChild {
   const menuVOTree = menuOption as unknown as MenuVOTree
   switch (menuVOTree.type) {
     case 'ROUTE':
-      return h(
-        RouterLink,
-        { to: menuVOTree.path as string },
-        { default: () => menuVOTree.label || menuVOTree.meta?.title }
-      )
+      return h(RouterLink, { to: menuVOTree.path! }, () => menuVOTree.label)
     case 'LINK':
-      return h('a', { href: menuVOTree.path, target: '_blank' }, menuVOTree.label as string)
+      return h('a', { href: menuVOTree.path, target: '_blank' }, menuVOTree.label)
     default:
-      return menuVOTree.label as string
+      return menuVOTree.label
   }
 }
 
