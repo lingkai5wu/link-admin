@@ -1,0 +1,41 @@
+<script lang="ts" setup>
+import type { UserUpdateQuery } from '@/types/api/query'
+import { userSexEnumConfig, userStatusEnumConfig } from '@/utils/enum'
+
+const formData = defineModel<UserUpdateQuery>({ required: true })
+</script>
+
+<template>
+  <n-form-item label="手机号" path="phone">
+    <n-input v-model:value="formData.phone" />
+  </n-form-item>
+  <n-form-item
+    :rule="{
+      required: true,
+      trigger: ['blur']
+    }"
+    label="状态"
+    path="status"
+  >
+    <n-radio-group v-model:value="formData.status" name="status">
+      <n-radio-button
+        v-for="config in userStatusEnumConfig"
+        :key="config.value"
+        :label="config.label"
+        :value="config.value"
+      />
+    </n-radio-group>
+  </n-form-item>
+  <n-form-item label="昵称" path="nickname">
+    <n-input v-model:value="formData.nickname" />
+  </n-form-item>
+  <n-form-item label="姓名" path="realname">
+    <n-input v-model:value="formData.realname" />
+  </n-form-item>
+  <n-form-item label="头像" path="avatar">
+    <n-upload :max="1" list-type="image-card">点击上传</n-upload>
+  </n-form-item>
+  <n-form-item label="性别" path="sex">
+    <n-select v-model:value="formData.sex" :options="userSexEnumConfig" />
+  </n-form-item>
+</template>

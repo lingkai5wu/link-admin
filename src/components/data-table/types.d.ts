@@ -12,7 +12,7 @@ type DataTableActionFunc<T = Data> = (row: T) => Promise<void | null>
 
 type DataTableActionComponentProps<T = Data> = {
   row: T
-  tableData: T[]
+  tableData?: T[]
 }
 
 interface DataTableActionWithComponent<T = Data> {
