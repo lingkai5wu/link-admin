@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { saveMenu } from '@/api/menu'
 import DataTableForm from '@/components/data-table/DataTableForm.vue'
 import type { MenuSaveQuery } from '@/types/api/query'
 import type { MenuVOTree } from '@/types/menu'
@@ -36,7 +37,7 @@ const rules: FormRules = {
 </script>
 
 <template>
-  <DataTableForm v-model:value="formData" :rules="rules">
+  <DataTableForm v-model:value="formData" :func="saveMenu" :rules="rules">
     <MenuBase v-model="formData" :table-data="tableData" is-add />
   </DataTableForm>
 </template>

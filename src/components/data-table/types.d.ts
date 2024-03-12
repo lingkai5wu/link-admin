@@ -13,13 +13,11 @@ type DataTableActionFunc<T = Data> = (row: T) => Promise<void | null>
 type DataTableActionComponentProps<T = Data> = {
   row: T
   tableData: T[]
-  func?: DataTableActionFunc<T>
 }
 
 interface DataTableActionWithComponent<T = Data> {
   title: string
   type?: Type
-  func: DataTableActionFunc<T>
   disabled?: ((row: T) => boolean) | boolean
   component: Component<DataTableActionComponentProps<T>>
 }
@@ -27,6 +25,7 @@ interface DataTableActionWithComponent<T = Data> {
 interface DataTableActionWithoutComponent<T = RowDataWithId>
   extends DataTableActionWithComponent<T> {
   component?: never
+  func: DataTableActionFunc<T>
 }
 
 type DataTableAction<T = Data> =

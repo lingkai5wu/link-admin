@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { listMenuVOs, removeMenu, saveMenu, updateMenu } from '@/api/menu'
-import MenuAdd from '@/components/data-table/curd/MenuAdd.vue'
-import MenuEdit from '@/components/data-table/curd/MenuEdit.vue'
+import { listMenuVOs, removeMenu } from '@/api/menu'
+import MenuAdd from '@/components/curd/MenuAdd.vue'
+import MenuEdit from '@/components/curd/MenuEdit.vue'
 import type { DataTableActions } from '@/components/data-table/types'
 import type { MenuTypeEnum } from '@/types/api/vo'
 import type { MenuVOTree } from '@/types/menu'
@@ -58,14 +58,12 @@ const actions: DataTableActions<MenuVOTree> = {
     disabled(row) {
       return row.type !== 'PARENT'
     },
-    component: MenuAdd,
-    func: saveMenu
+    component: MenuAdd
   },
   edit: {
     title: '修改',
     type: 'warning',
-    component: MenuEdit,
-    func: updateMenu
+    component: MenuEdit
   },
   delete: {
     title: '删除',

@@ -61,7 +61,7 @@ function handleActionTrigger(
 ) {
   component.value = markRaw(action.component)
   componentKey.value = actionKey + row.id
-  componentProps.value = { row, tableData: tableData.value!, func: action.func }
+  componentProps.value = { row, tableData: tableData.value! }
   drawerTitle.value = action.title
   isDrawerShow.value = true
 }

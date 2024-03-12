@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { updateMenu } from '@/api/menu'
 import DataTableForm from '@/components/data-table/DataTableForm.vue'
 import type { MenuUpdateQuery } from '@/types/api/query'
 import type { MenuVOTree } from '@/types/menu'
@@ -31,7 +32,7 @@ const rules: FormRules = {
 </script>
 
 <template>
-  <DataTableForm v-model:value="formData" :rules="rules">
+  <DataTableForm v-model:value="formData" :func="updateMenu" :rules="rules">
     <MenuBase v-model="formData" :table-data="tableData" />
   </DataTableForm>
 </template>

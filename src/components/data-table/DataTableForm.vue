@@ -3,7 +3,7 @@ import type { DataTableActionFunc } from '@/components/data-table/types'
 import { NForm } from 'naive-ui'
 
 const props = defineProps<{
-  func?: DataTableActionFunc
+  func: DataTableActionFunc
 }>()
 const emits = defineEmits<{
   actionSubmit: [boolean]
