@@ -40,22 +40,52 @@ function generateCascaderOptions(menuVOTrees: MenuVOTree[]): CascaderOption[] {
 </script>
 
 <template>
-  <n-form-item label="父菜单" path="pid">
+  <n-form-item
+    :rule="{
+      type: 'number',
+      required: true,
+      trigger: ['blur']
+    }"
+    label="父菜单"
+    path="pid"
+  >
     <n-cascader v-model:value="formData.pid" :options="cascaderOptions" />
   </n-form-item>
-  <n-form-item label="标签" path="label">
+  <n-form-item
+    :rule="{
+      required: true,
+      max: 20,
+      trigger: ['blur', 'input']
+    }"
+    label="标签"
+    path="label"
+  >
     <n-input v-model:value="formData.label" />
   </n-form-item>
-  <n-form-item label="类型" path="type">
+  <n-form-item
+    :rule="{
+      required: true,
+      trigger: ['blur']
+    }"
+    label="类型"
+    path="type"
+  >
     <n-radio-group v-model:value="formData.type" name="type">
       <n-radio-button :disabled="!isAdd" label="父菜单" value="PARENT" />
       <n-radio-button label="路由" value="ROUTE" />
       <n-radio-button label="链接" value="LINK" />
     </n-radio-group>
   </n-form-item>
-  <n-form-item v-if="formData.type !== 'PARENT'" label="路径" path="path">
+  <n-form-item
+    v-if="formData.type !== 'PARENT'"
+    :rule="{
+      required: true,
+      max: 255,
+      trigger: ['blur', 'input']
+    }"
+    label="路径"
+    path="path"
+  >
     <n-input v-model:value="formData.path" :autosize="{ minRows: 1 }" type="textarea" />
   </n-form-item>
 </template>
-
-<style scoped></style>
