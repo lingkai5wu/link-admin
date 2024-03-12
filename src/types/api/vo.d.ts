@@ -30,7 +30,7 @@ export interface TokenInfoVO {
 export interface UserVO {
   readonly id: number
   readonly phone: string
-  readonly status: number
+  readonly status: UserStatusEnum
   readonly nickname: string | null
   readonly realname: string | null
   readonly avatar: string | null
@@ -60,5 +60,7 @@ export interface MethodArgumentNotValidExceptionVO {
 }
 
 export type MenuTypeEnum = 'PARENT' | 'ROUTE' | 'LINK'
+
+export type UserStatusEnum = 'UNCONFIRMED' | 'CONFIRMED' | 'BANNED' | 'DELETED'
 
 export type UserSexEnum = 'MALE' | 'FEMALE' | 'OTHER' | 'PREFER_NOT_TO_SAY' | 'NEUTRAL'

@@ -34,7 +34,7 @@ async function handleActionTrigger(action: DataTableAction, actionKey: string) {
   <n-button-group>
     <DataTableActionButton
       v-for="(action, key) in actions"
-      :key="key"
+      :key
       :action="action"
       :is-group-loading="isLoading"
       :row="row"

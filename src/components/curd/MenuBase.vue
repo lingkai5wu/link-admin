@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { MenuUpdateQuery } from '@/types/api/query'
 import type { MenuVOTree } from '@/types/menu'
+import { menuTypeEnumConfig } from '@/utils/enum'
 import type { CascaderOption } from 'naive-ui/es/cascader/src/interface'
 
 const props = defineProps<{
@@ -71,9 +72,13 @@ function generateCascaderOptions(menuVOTrees: MenuVOTree[]): CascaderOption[] {
     path="type"
   >
     <n-radio-group v-model:value="formData.type" name="type">
-      <n-radio-button :disabled="!isAdd" label="父菜单" value="PARENT" />
-      <n-radio-button label="路由" value="ROUTE" />
-      <n-radio-button label="链接" value="LINK" />
+      <n-radio-button
+        v-for="config in menuTypeEnumConfig"
+        :key="config.value"
+        :disabled="!isAdd && config.value === 'PARENT'"
+        :label="config.label"
+        :value="config.value"
+      />
     </n-radio-group>
   </n-form-item>
   <n-form-item

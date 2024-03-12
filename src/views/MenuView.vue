@@ -3,27 +3,12 @@ import { listMenuVOs, removeMenu } from '@/api/menu'
 import MenuAdd from '@/components/curd/MenuAdd.vue'
 import MenuEdit from '@/components/curd/MenuEdit.vue'
 import type { DataTableActions } from '@/components/data-table/types'
-import type { MenuTypeEnum } from '@/types/api/vo'
 import type { MenuVOTree } from '@/types/menu'
+import { enum2Tag, menuTypeEnumConfig } from '@/utils/enum'
 import { generateMenuVOTrees } from '@/utils/menu'
-import { type DataTableColumns, NTag } from 'naive-ui'
+import { type DataTableColumns } from 'naive-ui'
 import { RouterLink } from 'vue-router'
 
-type NTagType = 'default' | 'error' | 'primary' | 'info' | 'success' | 'warning'
-const menuType2TagConfig: Record<MenuTypeEnum, { text: string; type: NTagType }> = {
-  PARENT: {
-    text: '父菜单',
-    type: 'warning'
-  },
-  ROUTE: {
-    text: '路由',
-    type: 'primary'
-  },
-  LINK: {
-    text: '链接',
-    type: 'info'
-  }
-}
 const columns: DataTableColumns<MenuVOTree> = [
   {
     title: '标签',
@@ -33,8 +18,7 @@ const columns: DataTableColumns<MenuVOTree> = [
     title: '类型',
     key: 'type',
     render(row) {
-      const element = menuType2TagConfig[row.type]
-      return h(NTag, { type: element.type }, { default: () => element.text })
+      return enum2Tag(menuTypeEnumConfig, row.type)
     }
   },
   {

@@ -20,4 +20,33 @@ export interface MenuUpdateQuery {
   path?: string | null
 }
 
+export interface UserSaveQuery {
+  phone?: string | null
+  password?: string | null
+  wxOpenid?: string | null
+  wxUnionid?: string | null
+  status?: UserStatusEnum | null
+  nickname?: string | null
+  realname?: string | null
+  avatar?: string | null
+  sex?: UserSexEnum | null
+}
+
+export interface UserUpdateQuery {
+  id?: number | null
+  phone?: string | null
+  password?: string | null
+  wxOpenid?: string | null
+  wxUnionid?: string | null
+  status?: UserStatusEnum | null
+  nickname?: string | null
+  realname?: string | null
+  avatar?: string | null
+  sex?: UserSexEnum | null
+}
+
 export type MenuTypeEnum = 'PARENT' | 'ROUTE' | 'LINK'
+
+export type UserStatusEnum = 'UNCONFIRMED' | 'CONFIRMED' | 'BANNED' | 'DELETED'
+
+export type UserSexEnum = 'MALE' | 'FEMALE' | 'OTHER' | 'PREFER_NOT_TO_SAY' | 'NEUTRAL'

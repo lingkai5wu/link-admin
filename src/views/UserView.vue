@@ -2,7 +2,8 @@
 import { listUserVOs } from '@/api/user'
 import type { DataTableActions } from '@/components/data-table/types'
 import type { UserVO } from '@/types/api/vo'
-import type { DataTableColumns } from 'naive-ui'
+import { enum2Tag, userSexEnumConfig, userStatusEnumConfig } from '@/utils/enum'
+import { type DataTableColumns } from 'naive-ui'
 
 const columns = ref<DataTableColumns<UserVO>>([
   {
@@ -11,11 +12,17 @@ const columns = ref<DataTableColumns<UserVO>>([
   },
   {
     title: '性别',
-    key: 'sex'
+    key: 'sex',
+    render(row) {
+      return enum2Tag(userSexEnumConfig, row.sex)
+    }
   },
   {
     title: '状态',
-    key: 'status'
+    key: 'status',
+    render(row) {
+      return enum2Tag(userStatusEnumConfig, row.status)
+    }
   },
   {
     title: '创建时间',
