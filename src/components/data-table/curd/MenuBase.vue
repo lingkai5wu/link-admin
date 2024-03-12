@@ -53,8 +53,8 @@ function generateCascaderOptions(menuVOTrees: MenuVOTree[]): CascaderOption[] {
       <n-radio-button label="链接" value="LINK" />
     </n-radio-group>
   </n-form-item>
-  <n-form-item label="路径" path="path">
-    <n-input v-model:value="formData.path" />
+  <n-form-item v-if="formData.type !== 'PARENT'" label="路径" path="path">
+    <n-input v-model:value="formData.path" :autosize="{ minRows: 1 }" type="textarea" />
   </n-form-item>
 </template>
 

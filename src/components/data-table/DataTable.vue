@@ -43,7 +43,7 @@ function setActionColumn() {
   columnsWithActions.value.push({
     title: '操作',
     key: 'action',
-    render(row: RowDataWithId) {
+    render(row) {
       return h(DataTableActionButtonGroup, {
         actions,
         row,
@@ -83,7 +83,11 @@ function handleActionSubmit(isNeedRefresh: boolean) {
     :row-key="(data: Data) => data.id"
     v-bind="dataTableProps"
   />
-  <n-drawer v-model:show="isDrawerShow" :mask-closable="isDrawerMaskClosable">
+  <n-drawer
+    v-model:show="isDrawerShow"
+    :mask-closable="isDrawerMaskClosable"
+    style="min-width: 20vw"
+  >
     <n-drawer-content :title="drawerTitle">
       <component
         :is="component"

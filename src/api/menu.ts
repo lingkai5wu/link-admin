@@ -2,11 +2,11 @@ import type { MenuSaveQuery, MenuUpdateQuery } from '@/types/api/query'
 import type { MenuVO } from '@/types/api/vo'
 import request from '@/utils/request'
 
-export async function listCurrentUserMenus(): Promise<MenuVO[]> {
+export async function listCurrentUserMenuVOs(): Promise<MenuVO[]> {
   return await request.get('/menu/current')
 }
 
-export async function listMenus(): Promise<MenuVO[]> {
+export async function listMenuVOs(): Promise<MenuVO[]> {
   return await request.get('/menu')
 }
 
