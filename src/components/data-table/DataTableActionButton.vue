@@ -16,14 +16,13 @@ let changeLoadingTimeout: number
 
 const buttonText = computed(() => {
   if (isWaitConfirm.value) {
-    return '确认' + props.action.title
+    return '确认'
   }
   return props.action.title
 })
 const isDisabled = computed(() => {
-  const b = !isLoading.value && props.isGroupLoading
-  if (b) {
-    return b
+  if (props.isGroupLoading) {
+    return true
   }
   if (typeof props.action.disabled === 'function') {
     return props.action.disabled(props.row)
@@ -45,7 +44,7 @@ function handleActionPositive() {
   }
   isWaitConfirm.value = false
   emits('actionTrigger')
-  changeLoadingTimeout = setTimeout(() => (isLoading.value = true), 100)
+  changeLoadingTimeout = setTimeout(() => (isLoading.value = true), 300)
 }
 
 function handleActionNegative() {
