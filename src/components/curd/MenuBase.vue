@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { MenuUpdateQuery } from '@/types/api/query'
+import type { MenuUpdateDTO } from '@/types/api/query'
 import type { MenuVOTree } from '@/types/menu'
 import { menuTypeEnumConfig } from '@/utils/enum'
 import type { CascaderOption } from 'naive-ui/es/cascader/src/interface'
@@ -8,7 +8,7 @@ const props = defineProps<{
   tableData: MenuVOTree[]
   isAdd?: boolean
 }>()
-const formData = defineModel<MenuUpdateQuery>({ required: true })
+const formData = defineModel<MenuUpdateDTO>({ required: true })
 
 const cascaderOptions: CascaderOption[] = [
   {

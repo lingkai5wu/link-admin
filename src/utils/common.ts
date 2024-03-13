@@ -17,7 +17,7 @@ export async function initRuntimeData() {
   }
   const runtimeDataVO = await getRuntimeDataVO()
   useUserStore().userVO = runtimeDataVO.userVO
-  useMenuStore().initMenu(runtimeDataVO.menuVOList)
+  useMenuStore().initMenu(runtimeDataVO.menuVOs)
 }
 
 export function pick<T extends Data, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {

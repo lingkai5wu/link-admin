@@ -1,18 +1,18 @@
 /* tslint:disable */
 
-export interface AuthLoginQuery {
+export interface AuthOtpLoginDTO {
   phone?: string | null
-  smsCode?: string | null
+  otp?: string | null
 }
 
-export interface MenuSaveQuery {
+export interface MenuSaveDTO {
   pid?: number | null
   type?: MenuTypeEnum | null
   label?: string | null
   path?: string | null
 }
 
-export interface MenuUpdateQuery {
+export interface MenuUpdateDTO {
   id?: number | null
   pid?: number | null
   type?: MenuTypeEnum | null
@@ -20,11 +20,8 @@ export interface MenuUpdateQuery {
   path?: string | null
 }
 
-export interface UserSaveQuery {
+export interface UserSaveDTO {
   phone?: string | null
-  password?: string | null
-  wxOpenid?: string | null
-  wxUnionid?: string | null
   status?: UserStatusEnum | null
   nickname?: string | null
   realname?: string | null
@@ -32,12 +29,9 @@ export interface UserSaveQuery {
   sex?: UserSexEnum | null
 }
 
-export interface UserUpdateQuery {
+export interface UserUpdateDTO {
   id?: number | null
   phone?: string | null
-  password?: string | null
-  wxOpenid?: string | null
-  wxUnionid?: string | null
   status?: UserStatusEnum | null
   nickname?: string | null
   realname?: string | null

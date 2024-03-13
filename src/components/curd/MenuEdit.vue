@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { updateMenu } from '@/api/menu'
 import DataTableForm from '@/components/data-table/DataTableForm.vue'
-import type { MenuUpdateQuery } from '@/types/api/query'
+import type { MenuUpdateDTO } from '@/types/api/query'
 import type { MenuVOTree } from '@/types/menu'
 import { pick } from '@/utils/common'
 
@@ -10,7 +10,7 @@ const props = defineProps<{
   tableData: MenuVOTree[]
 }>()
 
-const formData = ref<MenuUpdateQuery>(pick(props.row, ['id', 'pid', 'type', 'label', 'path']))
+const formData = ref<MenuUpdateDTO>(pick(props.row, ['id', 'pid', 'type', 'label', 'path']))
 </script>
 
 <template>

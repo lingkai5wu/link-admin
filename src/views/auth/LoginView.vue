@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import { login } from '@/api/auth'
+import { otpLogin } from '@/api/auth'
 import InputSmsCode from '@/components/auth/InputSmsCode.vue'
 import LoadingButton from '@/components/LoadingButton.vue'
 import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
-import type { AuthLoginQuery } from '@/types/api/query'
+import type { AuthOtpLoginDTO } from '@/types/api/query'
 import { initRuntimeData, sleep } from '@/utils/common'
 import { LogInOutline } from '@vicons/ionicons5'
 import type { FormItemRule } from 'naive-ui'
 
-const formData = ref<AuthLoginQuery>({
+const formData = ref<AuthOtpLoginDTO>({
   phone: '18888888888',
-  smsCode: '888888'
+  otp: '888888'
 })
 const formRules = {
   phone: [
@@ -29,7 +29,7 @@ const formRules = {
       trigger: 'blur'
     }
   ],
-  smsCode: [
+  otp: [
     {
       required: true,
       validator(_: FormItemRule, value: string) {
@@ -46,7 +46,7 @@ const formRules = {
 }
 
 async function handleLogin() {
-  const tokenInfoVO = await login(formData.value)
+  const tokenInfoVO = await otpLogin(formData.value)
   const authStore = useAuthStore()
   authStore.token = tokenInfoVO
   await initRuntimeData()
@@ -61,8 +61,8 @@ async function handleLogin() {
     <n-form-item label="手机号" path="phone">
       <n-input v-model:value="formData.phone" />
     </n-form-item>
-    <n-form-item label="验证码" path="smsCode">
-      <InputSmsCode v-model="formData.smsCode" :func="() => sleep(1000)" :interval="10" />
+    <n-form-item label="验证码" path="otp">
+      <InputSmsCode v-model="formData.otp" :func="() => sleep(1000)" :interval="10" />
     </n-form-item>
     <LoadingButton :func="handleLogin" style="width: 100%; margin-top: 4px" type="primary">
       <template #icon>

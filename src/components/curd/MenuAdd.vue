@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { saveMenu } from '@/api/menu'
 import DataTableForm from '@/components/data-table/DataTableForm.vue'
-import type { MenuSaveQuery } from '@/types/api/query'
+import type { MenuSaveDTO } from '@/types/api/query'
 import type { MenuVOTree } from '@/types/menu'
 
 const props = defineProps<{
@@ -9,7 +9,7 @@ const props = defineProps<{
   tableData: MenuVOTree[]
 }>()
 
-const formData = ref<MenuSaveQuery>({
+const formData = ref<MenuSaveDTO>({
   pid: props.row.id
 })
 </script>

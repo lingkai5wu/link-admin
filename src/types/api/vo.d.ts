@@ -36,12 +36,15 @@ export interface UserVO {
   readonly avatar: string | null
   readonly sex: UserSexEnum | null
   readonly createTime: Date
-  readonly groupList: string[] | null
+}
+
+export interface UserWithGroupsVO extends UserVO {
+  readonly groups: string[] | null
 }
 
 export interface RuntimeDataVO {
   readonly userVO: UserVO
-  readonly menuVOList: MenuVO[]
+  readonly menuVOs: MenuVO[]
 }
 
 export interface DisableServiceExceptionVO {

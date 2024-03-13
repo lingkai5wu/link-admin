@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { UserUpdateQuery } from '@/types/api/query'
+import type { UserUpdateDTO } from '@/types/api/query'
 import { userSexEnumConfig, userStatusEnumConfig } from '@/utils/enum'
 
-const formData = defineModel<UserUpdateQuery>({ required: true })
+const formData = defineModel<UserUpdateDTO>({ required: true })
 </script>
 
 <template>
