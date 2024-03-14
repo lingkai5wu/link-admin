@@ -21,7 +21,7 @@ const cascaderOptions: CascaderOption[] = [
 function generateCascaderOptions(menuVOTrees: MenuVOTree[]): CascaderOption[] {
   const options: CascaderOption[] = []
   for (const menu of menuVOTrees) {
-    if (menu.type !== 'PARENT') {
+    if (menu.type !== 'PARENT' || menu.id === formData.value.id) {
       continue
     }
     const option: CascaderOption = {
