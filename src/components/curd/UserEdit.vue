@@ -9,7 +9,7 @@ const props = defineProps<{
 }>()
 
 const formData = ref<UserUpdateDTO>(
-  pick(props.row, ['id', 'phone', 'status', 'nickname', 'realname', 'avatar', 'sex'])
+  pick(props.row, ['id', 'status', 'nickname', 'realname', 'avatar', 'sex'])
 )
 </script>
 

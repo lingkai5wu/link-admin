@@ -31,7 +31,6 @@ export interface UserSaveDTO {
 
 export interface UserUpdateDTO {
   id?: number | null
-  phone?: string | null
   status?: UserStatusEnum | null
   nickname?: string | null
   realname?: string | null

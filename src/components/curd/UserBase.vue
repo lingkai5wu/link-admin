@@ -6,9 +6,6 @@ const formData = defineModel<UserUpdateDTO>({ required: true })
 </script>
 
 <template>
-  <n-form-item label="手机号" path="phone">
-    <n-input v-model:value="formData.phone" />
-  </n-form-item>
   <n-form-item
     :rule="{
       required: true,

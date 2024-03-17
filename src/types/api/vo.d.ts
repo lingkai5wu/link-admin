@@ -38,10 +38,6 @@ export interface UserVO {
   readonly createTime: Date
 }
 
-export interface UserWithGroupsVO extends UserVO {
-  readonly groups: string[] | null
-}
-
 export interface RuntimeDataVO {
   readonly userVO: UserVO
   readonly menuVOs: MenuVO[]
