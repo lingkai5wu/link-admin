@@ -34,7 +34,10 @@ instance.interceptors.response.use(
     window.$dialog.error({
       title: '服务器错误',
       content: '请联系管理员，等待服务恢复',
-      positiveText: '好的'
+      positiveText: '刷新',
+      onPositiveClick() {
+        location.reload()
+      }
     })
     window.$loadingBar.error()
     return Promise.reject(err)
