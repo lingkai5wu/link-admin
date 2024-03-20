@@ -5,6 +5,11 @@ export interface AuthOtpLoginDTO {
   otp?: string | null
 }
 
+export interface BatchManyToManyDTO {
+  targetIdsToInsert?: number[] | null
+  targetIdsToDelete?: number[] | null
+}
+
 export interface MenuSaveDTO {
   pid?: number | null
   type?: MenuTypeEnum | null
@@ -18,6 +23,17 @@ export interface MenuUpdateDTO {
   type?: MenuTypeEnum | null
   label?: string | null
   path?: string | null
+}
+
+export interface RoleSaveDTO {
+  name?: string | null
+  description?: string | null
+}
+
+export interface RoleUpdateDTO {
+  id?: number | null
+  name?: string | null
+  description?: string | null
 }
 
 export interface UserSaveDTO {

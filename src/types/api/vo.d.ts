@@ -22,6 +22,18 @@ export interface OssDirectPostObjectInfoVO {
   readonly signature: string
 }
 
+export interface PermissionVO {
+  readonly id: number
+  readonly code: string
+  readonly description: string | null
+}
+
+export interface RoleVO {
+  readonly id: number
+  readonly name: string
+  readonly description: string | null
+}
+
 export interface TokenInfoVO {
   readonly tokenName: string
   readonly tokenValue: string

@@ -7,21 +7,21 @@ export async function listCurrentUserMenuVOs(): Promise<MenuVO[]> {
 }
 
 export async function getMenuVO(id: number): Promise<MenuVO> {
-  return await request.get('/menus/' + id)
+  return await request.get(`/menus/${id}`)
 }
 
 export async function listMenuVOs(): Promise<MenuVO[]> {
   return await request.get('/menus')
 }
 
-export async function saveMenu(saveDTO: MenuSaveDTO): Promise<null> {
-  return await request.post('/menus', saveDTO)
+export async function saveMenu(dto: MenuSaveDTO): Promise<null> {
+  return await request.post('/menus', dto)
 }
 
-export async function updateMenu(updateDTO: MenuUpdateDTO): Promise<null> {
-  return await request.put('/menus', updateDTO)
+export async function updateMenu(dto: MenuUpdateDTO): Promise<null> {
+  return await request.put('/menus', dto)
 }
 
 export async function removeMenu(id: number): Promise<null> {
-  return await request.delete('/menus/' + id)
+  return await request.delete(`/menus/${id}`)
 }

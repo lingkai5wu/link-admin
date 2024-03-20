@@ -1,5 +1,5 @@
-import type { UserSaveDTO, UserUpdateDTO } from '@/types/api/query'
-import type { UserVO } from '@/types/api/vo'
+import type { BatchManyToManyDTO, UserSaveDTO, UserUpdateDTO } from '@/types/api/query'
+import type { PermissionVO, RoleVO, UserVO } from '@/types/api/vo'
 import request from '@/utils/request.js'
 
 export async function getCurrentUserVO(): Promise<UserVO> {
@@ -7,21 +7,33 @@ export async function getCurrentUserVO(): Promise<UserVO> {
 }
 
 export async function getUserVO(id: number): Promise<UserVO> {
-  return await request.get('/users/' + id)
+  return await request.get(`/users/${id}`)
+}
+
+export async function listUserRoleVOs(id: number): Promise<RoleVO[]> {
+  return await request.get(`/users/${id}/roles`)
+}
+
+export async function listUserPermissionVOs(id: number): Promise<PermissionVO> {
+  return await request.get(`/users/${id}/permissions`)
 }
 
 export async function listUserVOs(): Promise<UserVO[]> {
   return await request.get('/users')
 }
 
-export async function saveUser(saveDTO: UserSaveDTO): Promise<null> {
-  return await request.post('/users', saveDTO)
+export async function saveUser(dto: UserSaveDTO): Promise<null> {
+  return await request.post('/users', dto)
 }
 
-export async function updateUser(updateDTO: UserUpdateDTO): Promise<null> {
-  return await request.put('/users', updateDTO)
+export async function updateUser(dto: UserUpdateDTO): Promise<null> {
+  return await request.put('/users', dto)
+}
+
+export async function updateUserRoleByBatch(id: number, dto: BatchManyToManyDTO): Promise<null> {
+  return await request.put(`/users/${id}/roles`, dto)
 }
 
 export async function removeUser(id: number): Promise<null> {
-  return await request.delete('/users/' + id)
+  return await request.delete(`/users/${id}`)
 }
