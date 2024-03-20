@@ -1,4 +1,4 @@
-import type { BatchManyToManyDTO, UserSaveDTO, UserUpdateDTO } from '@/types/api/query'
+import type { BatchManyToManyDTO, UserQuery, UserSaveDTO, UserUpdateDTO } from '@/types/api/query'
 import type { PermissionVO, RoleVO, UserVO } from '@/types/api/vo'
 import request from '@/utils/request.js'
 
@@ -18,8 +18,8 @@ export async function listUserPermissionVOs(id: number): Promise<PermissionVO> {
   return await request.get(`/users/${id}/permissions`)
 }
 
-export async function listUserVOs(): Promise<UserVO[]> {
-  return await request.get('/users')
+export async function listUserVOs(query: UserQuery): Promise<UserVO[]> {
+  return await request.get('/users', { params: query })
 }
 
 export async function saveUser(dto: UserSaveDTO): Promise<null> {

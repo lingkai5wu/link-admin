@@ -1,27 +1,32 @@
 <script lang="ts" setup>
+import { listMenuVOs } from '@/api/menu'
 import type { MenuUpdateDTO } from '@/types/api/query'
 import type { MenuVOTree } from '@/types/menu'
 import { menuTypeEnumConfig } from '@/utils/enum'
+import { generateMenuVOTrees } from '@/utils/menu'
 import type { CascaderOption } from 'naive-ui/es/cascader/src/interface'
 
-const props = defineProps<{
-  tableData: MenuVOTree[]
+defineProps<{
   isAdd?: boolean
 }>()
 const formData = defineModel<MenuUpdateDTO>({ required: true })
 
-const cascaderOptions: CascaderOption[] = [
+let menuVOTrees: MenuVOTree[]
+listMenuVOs({ type: 'PARENT' }).then((data) => {
+  menuVOTrees = generateMenuVOTrees(data)
+  cascaderOptions.value.push(...generateCascaderOptions(menuVOTrees))
+})
+const cascaderOptions = ref<CascaderOption[]>([
   {
     value: 0,
     label: '根节点'
-  },
-  ...generateCascaderOptions(props.tableData)
-]
+  }
+])
 
 function generateCascaderOptions(menuVOTrees: MenuVOTree[]): CascaderOption[] {
   const options: CascaderOption[] = []
   for (const menu of menuVOTrees) {
-    if (menu.type !== 'PARENT' || menu.id === formData.value.id) {
+    if (menu.id === formData.value.id) {
       continue
     }
     const option: CascaderOption = {

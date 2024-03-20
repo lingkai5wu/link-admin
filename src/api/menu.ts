@@ -1,4 +1,4 @@
-import type { MenuSaveDTO, MenuUpdateDTO } from '@/types/api/query'
+import type { MenuQuery, MenuSaveDTO, MenuUpdateDTO } from '@/types/api/query'
 import type { MenuVO } from '@/types/api/vo'
 import request from '@/utils/request'
 
@@ -10,8 +10,8 @@ export async function getMenuVO(id: number): Promise<MenuVO> {
   return await request.get(`/menus/${id}`)
 }
 
-export async function listMenuVOs(): Promise<MenuVO[]> {
-  return await request.get('/menus')
+export async function listMenuVOs(query: MenuQuery): Promise<MenuVO[]> {
+  return await request.get('/menus', { params: query })
 }
 
 export async function saveMenu(dto: MenuSaveDTO): Promise<null> {

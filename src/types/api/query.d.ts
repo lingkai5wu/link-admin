@@ -26,12 +26,14 @@ export interface MenuUpdateDTO {
 }
 
 export interface RoleSaveDTO {
+  code?: string | null
   name?: string | null
   description?: string | null
 }
 
 export interface RoleUpdateDTO {
   id?: number | null
+  code?: string | null
   name?: string | null
   description?: string | null
 }
@@ -51,6 +53,20 @@ export interface UserUpdateDTO {
   nickname?: string | null
   realname?: string | null
   avatar?: string | null
+  sex?: UserSexEnum | null
+}
+
+export interface MenuQuery {
+  type?: MenuTypeEnum | null
+  label?: string | null
+  path?: string | null
+}
+
+export interface UserQuery {
+  phone?: string | null
+  status?: UserStatusEnum | null
+  nickname?: string | null
+  realname?: string | null
   sex?: UserSexEnum | null
 }
 

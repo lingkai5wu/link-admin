@@ -7,7 +7,6 @@ import { pick } from '@/utils/common'
 
 const props = defineProps<{
   row: MenuVOTree
-  tableData: MenuVOTree[]
 }>()
 
 const formData = ref<MenuUpdateDTO>(pick(props.row, ['id', 'pid', 'type', 'label', 'path']))
@@ -15,6 +14,6 @@ const formData = ref<MenuUpdateDTO>(pick(props.row, ['id', 'pid', 'type', 'label
 
 <template>
   <DataTableForm v-model:value="formData" :func="updateMenu">
-    <MenuBase v-model="formData" :table-data="tableData" />
+    <MenuBase v-model="formData" />
   </DataTableForm>
 </template>

@@ -30,6 +30,7 @@ export interface PermissionVO {
 
 export interface RoleVO {
   readonly id: number
+  readonly code: string
   readonly name: string
   readonly description: string | null
 }

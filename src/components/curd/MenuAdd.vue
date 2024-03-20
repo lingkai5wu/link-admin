@@ -6,7 +6,6 @@ import type { MenuVOTree } from '@/types/menu'
 
 const props = defineProps<{
   row: MenuVOTree
-  tableData: MenuVOTree[]
 }>()
 
 const formData = ref<MenuSaveDTO>({
@@ -16,6 +15,6 @@ const formData = ref<MenuSaveDTO>({
 
 <template>
   <DataTableForm v-model:value="formData" :func="saveMenu">
-    <MenuBase v-model="formData" :table-data="tableData" is-add />
+    <MenuBase v-model="formData" is-add />
   </DataTableForm>
 </template>
