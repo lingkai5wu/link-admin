@@ -61,7 +61,7 @@ function handleActionTrigger(
 ) {
   component.value = markRaw(action.component)
   componentKey.value = actionKey + row.id
-  componentProps.value = { row, tableData: tableData.value! }
+  componentProps.value = { row }
   drawerTitle.value = action.title
   isDrawerShow.value = true
 }
@@ -87,9 +87,9 @@ function handleActionSubmit(isNeedRefresh: boolean) {
   <n-drawer
     v-model:show="isDrawerShow"
     :mask-closable="isDrawerMaskClosable"
-    style="min-width: 20vw"
+    style="width: 408px; max-width: 100vw; border-radius: 0"
   >
-    <n-drawer-content :title="drawerTitle">
+    <n-drawer-content :title="drawerTitle" closable>
       <component
         :is="component"
         :key="componentKey"
