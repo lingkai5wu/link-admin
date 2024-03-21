@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { DataTableActionFunc } from '@/components/data-table/types'
+import type LoadingButton from '@/components/LoadingButton.vue'
 import { NForm } from 'naive-ui'
 
 const props = defineProps<{
@@ -11,6 +12,7 @@ const emits = defineEmits<{
 }>()
 const formData = defineModel<Data>({ required: true })
 const formRef = ref<InstanceType<typeof NForm> | null>(null)
+const loadingButtonRef = ref<InstanceType<typeof LoadingButton> | null>(null)
 
 async function handleClick() {
   await formRef.value?.validate()
@@ -25,10 +27,10 @@ async function handleClick() {
 </script>
 
 <template>
-  <n-form ref="formRef" :model="formData" v-bind="$attrs">
+  <n-form ref="formRef" :disabled="loadingButtonRef?.isLoading" :model="formData" v-bind="$attrs">
     <slot />
   </n-form>
-  <n-flex size="large" vertical>
-    <LoadingButton :func="handleClick" style="width: 100%" type="primary">提交</LoadingButton>
-  </n-flex>
+  <LoadingButton ref="loadingButtonRef" :func="handleClick" style="width: 100%" type="primary"
+    >提交</LoadingButton
+  >
 </template>
