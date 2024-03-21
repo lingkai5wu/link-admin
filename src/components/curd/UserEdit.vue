@@ -14,7 +14,7 @@ const formData = ref<UserUpdateDTO>(
 </script>
 
 <template>
-  <DataTableForm v-model:value="formData" :func="updateUser">
+  <DataTableForm v-model="formData" :func="updateUser">
     <UserBase v-model="formData" />
   </DataTableForm>
 </template>

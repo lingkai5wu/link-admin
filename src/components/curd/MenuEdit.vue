@@ -13,7 +13,7 @@ const formData = ref<MenuUpdateDTO>(pick(props.row, ['id', 'pid', 'type', 'label
 </script>
 
 <template>
-  <DataTableForm v-model:value="formData" :func="updateMenu">
+  <DataTableForm v-model="formData" :func="updateMenu">
     <MenuBase v-model="formData" />
   </DataTableForm>
 </template>

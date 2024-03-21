@@ -14,7 +14,7 @@ const formData = ref<MenuSaveDTO>({
 </script>
 
 <template>
-  <DataTableForm v-model:value="formData" :func="saveMenu">
+  <DataTableForm v-model="formData" :func="saveMenu">
     <MenuBase v-model="formData" is-add />
   </DataTableForm>
 </template>

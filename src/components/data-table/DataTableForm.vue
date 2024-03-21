@@ -9,7 +9,7 @@ const emits = defineEmits<{
   actionSubmit: [boolean]
   actionFuncExec: [boolean]
 }>()
-const formData = defineModel<Data>('value', { required: true })
+const formData = defineModel<Data>({ required: true })
 const formRef = ref<InstanceType<typeof NForm> | null>(null)
 
 async function handleClick() {
