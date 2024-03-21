@@ -18,7 +18,7 @@ export async function listUserPermissionVOs(id: number): Promise<PermissionVO> {
   return await request.get(`/users/${id}/permissions`)
 }
 
-export async function listUserVOs(query: UserQuery): Promise<UserVO[]> {
+export async function listUserVOs(query?: UserQuery): Promise<UserVO[]> {
   return await request.get('/users', { params: query })
 }
 

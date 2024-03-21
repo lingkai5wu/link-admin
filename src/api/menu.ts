@@ -10,7 +10,7 @@ export async function getMenuVO(id: number): Promise<MenuVO> {
   return await request.get(`/menus/${id}`)
 }
 
-export async function listMenuVOs(query: MenuQuery): Promise<MenuVO[]> {
+export async function listMenuVOs(query?: MenuQuery): Promise<MenuVO[]> {
   return await request.get('/menus', { params: query })
 }
 
