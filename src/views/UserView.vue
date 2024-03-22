@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { listUserVOs } from '@/api/user'
+import { listUserVOs, removeUser } from '@/api/user'
 import UserEdit from '@/components/curd/UserEdit.vue'
 import UserRoleEdit from '@/components/curd/UserRoleEdit.vue'
 import type { DataTableActions } from '@/components/data-table/types'
@@ -48,6 +48,11 @@ const actions: DataTableActions<UserVO> = {
   roleEdit: {
     title: '角色',
     component: UserRoleEdit
+  },
+  delete: {
+    title: '删除',
+    type: 'error',
+    func: (row) => removeUser(row.id)
   }
 }
 </script>
