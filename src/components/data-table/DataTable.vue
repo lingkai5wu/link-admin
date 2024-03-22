@@ -31,8 +31,11 @@ const componentProps = ref<DataTableActionComponentProps>()
 
 async function getTableData() {
   loading.value = true
-  tableData.value = await props.func()
-  loading.value = false
+  try {
+    tableData.value = await props.func()
+  } finally {
+    loading.value = false
+  }
 }
 
 function setActionColumn() {
