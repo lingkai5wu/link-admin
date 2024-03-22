@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { listCurrentUserRoleVOs, listRoleVOs } from '@/api/role'
-import { updateUserRoleByBatch } from '@/api/user'
+import { listRoleVOs } from '@/api/role'
+import { listUserRoleVOs, updateUserRoleByBatch } from '@/api/user'
 import DataTableTransfer from '@/components/data-table/DataTableTransfer.vue'
 import type { UserVO } from '@/types/api/vo'
 
-defineProps<{
+const props = defineProps<{
   row: UserVO
 }>()
 
@@ -17,7 +17,7 @@ async function getOptionsFunc() {
 }
 
 async function getValueFunc() {
-  const roleVOs = await listCurrentUserRoleVOs()
+  const roleVOs = await listUserRoleVOs(props.row.id)
   return roleVOs.map((roleVO) => roleVO.id)
 }
 </script>
