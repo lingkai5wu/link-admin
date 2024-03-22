@@ -16,7 +16,7 @@ const emits = defineEmits<{
 
 const options = ref<TransferOption[]>()
 let origin: number[]
-const value = ref<number[]>()
+const value = ref<number[]>([])
 const isLoading = ref(false)
 const loadingButtonRef = ref<InstanceType<typeof LoadingButton> | null>(null)
 
@@ -42,11 +42,19 @@ async function fetchOptionsAndValue() {
 async function handleClick() {
   const originSet = new Set(origin)
   const valueSet = new Set(value.value)
-  let targetIdsToInsert = value.value?.filter((id) => !originSet.has(id))
+  let targetIdsToInsert = value.value.filter((id) => !originSet.has(id))
   let targetIdsToDelete = origin.filter((id) => !valueSet.has(id))
+  const dto = {
+    ...(targetIdsToInsert.length > 0 && { targetIdsToInsert }),
+    ...(targetIdsToDelete.length > 0 && { targetIdsToDelete })
+  }
+  if (Object.keys(dto).length === 0) {
+    emits('actionSubmit', false)
+    return
+  }
   emits('actionFuncExec', true)
   try {
-    await props.submitFunc(props.id, { targetIdsToInsert, targetIdsToDelete })
+    await props.submitFunc(props.id, dto)
   } finally {
     emits('actionFuncExec', false)
   }
@@ -61,6 +69,8 @@ async function handleClick() {
         v-model:value="value"
         :disabled="loadingButtonRef?.isLoading"
         :options="options"
+        source-filterable
+        target-filterable
       />
     </n-spin>
     <loading-button
