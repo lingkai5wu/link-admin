@@ -30,7 +30,7 @@ async function handleClick() {
   <n-form ref="formRef" :disabled="loadingButtonRef?.isLoading" :model="formData" v-bind="$attrs">
     <slot />
   </n-form>
-  <LoadingButton ref="loadingButtonRef" :func="handleClick" style="width: 100%" type="primary"
-    >提交</LoadingButton
-  >
+  <LoadingButton ref="loadingButtonRef" :func="handleClick" style="width: 100%" type="primary">
+    提交
+  </LoadingButton>
 </template>
