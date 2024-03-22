@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { listRoleVOs, removeRole } from '@/api/role'
 import RoleEdit from '@/components/curd/RoleEdit.vue'
+import RoleMenuEdit from '@/components/curd/RoleMenuEdit.vue'
+import RolePermissionEdit from '@/components/curd/RolePermissionEdit.vue'
 import type { DataTableActions } from '@/components/data-table/types'
 import type { RoleVO } from '@/types/api/vo'
 import { type DataTableColumns } from 'naive-ui'
@@ -24,6 +26,14 @@ const actions: DataTableActions<RoleVO> = {
     title: '修改',
     type: 'warning',
     component: RoleEdit
+  },
+  permissionEdit: {
+    title: '权限',
+    component: RolePermissionEdit
+  },
+  menuEdit: {
+    title: '菜单',
+    component: RoleMenuEdit
   },
   delete: {
     title: '删除',

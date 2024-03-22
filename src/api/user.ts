@@ -14,7 +14,7 @@ export async function listUserRoleVOs(id: number): Promise<RoleVO[]> {
   return await request.get(`/users/${id}/roles`)
 }
 
-export async function listUserPermissionVOs(id: number): Promise<PermissionVO> {
+export async function listUserPermissionVOs(id: number): Promise<PermissionVO[]> {
   return await request.get(`/users/${id}/permissions`)
 }
 
