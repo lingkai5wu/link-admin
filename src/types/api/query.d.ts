@@ -25,6 +25,17 @@ export interface MenuUpdateDTO {
   path?: string | null
 }
 
+export interface PermissionSaveDTO {
+  code?: string | null
+  description?: string | null
+}
+
+export interface PermissionUpdateDTO {
+  id?: number | null
+  code?: string | null
+  description?: string | null
+}
+
 export interface RoleSaveDTO {
   code?: string | null
   name?: string | null
