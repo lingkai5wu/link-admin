@@ -79,14 +79,17 @@ function handleActionSubmit(isNeedRefresh: boolean) {
 </script>
 
 <template>
-  <n-data-table
-    :columns="columns"
-    :data="tableData"
-    :loading="loading"
-    :row-key="(data: Data) => data.id"
-    :scroll-x="640"
-    v-bind="dataTableProps"
-  />
+  <n-flex vertical>
+    <slot />
+    <n-data-table
+      :columns="columns"
+      :data="tableData"
+      :loading="loading"
+      :row-key="(data: Data) => data.id"
+      :scroll-x="640"
+      v-bind="dataTableProps"
+    />
+  </n-flex>
   <n-drawer
     v-model:show="isDrawerShow"
     :mask-closable="isDrawerMaskClosable"

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
-    func: () => Promise<void>
+    func: () => Promise<void | null>
     delay?: number
   }>(),
   {

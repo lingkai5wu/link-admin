@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { listPermissionVOs, removePermission } from '@/api/permission'
+import { listPermissionVOs, syncPermission } from '@/api/permission'
 import PermissionEdit from '@/components/curd/PermissionEdit.vue'
 import type { DataTableActions } from '@/components/data-table/types'
 import type { PermissionVO } from '@/types/api/vo'
@@ -20,15 +20,14 @@ const actions: DataTableActions<PermissionVO> = {
     title: '修改',
     type: 'warning',
     component: PermissionEdit
-  },
-  delete: {
-    title: '删除',
-    type: 'error',
-    func: (row) => removePermission(row.id)
   }
 }
 </script>
 
 <template>
-  <DataTable :actions="actions" :columns="columns" :func="listPermissionVOs" />
+  <DataTable :actions="actions" :columns="columns" :func="listPermissionVOs">
+    <n-flex>
+      <LoadingButton :func="syncPermission" type="info">同步权限</LoadingButton>
+    </n-flex>
+  </DataTable>
 </template>
