@@ -11,5 +11,5 @@ export async function otpLogin(dto: AuthOtpLoginDTO): Promise<TokenInfoVO> {
 }
 
 export async function logout(): Promise<null> {
-  return await request.get('/auth/logout')
+  return await request.post('/auth/logout')
 }
