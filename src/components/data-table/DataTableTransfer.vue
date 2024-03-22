@@ -58,7 +58,7 @@ async function handleClick() {
   } finally {
     emits('actionFuncExec', false)
   }
-  emits('actionSubmit', true)
+  emits('actionSubmit', false)
 }
 </script>
 
