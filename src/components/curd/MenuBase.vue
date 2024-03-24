@@ -6,9 +6,6 @@ import { menuTypeEnumConfig } from '@/utils/enum'
 import { generateMenuVOTrees } from '@/utils/menu'
 import type { CascaderOption } from 'naive-ui/es/cascader/src/interface'
 
-defineProps<{
-  isAdd?: boolean
-}>()
 const formData = defineModel<MenuUpdateDTO>({ required: true })
 
 let menuVOTrees: MenuVOTree[]
@@ -80,7 +77,6 @@ function generateCascaderOptions(menuVOTrees: MenuVOTree[]): CascaderOption[] {
       <n-radio-button
         v-for="config in menuTypeEnumConfig"
         :key="config.value"
-        :disabled="!isAdd && config.value === 'PARENT'"
         :label="config.label"
         :value="config.value"
       />
