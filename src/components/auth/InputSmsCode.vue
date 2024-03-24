@@ -5,6 +5,7 @@ const props = withDefaults(
   defineProps<{
     func: () => Promise<void>
     interval?: number
+    disabled?: boolean
   }>(),
   {
     interval: 60
@@ -52,7 +53,12 @@ async function handleSent() {
 <template>
   <n-input v-model:value="inputModel">
     <template #suffix>
-      <LoadingButton :disabled="isCountdownActive" :func="handleSent" quaternary size="small">
+      <LoadingButton
+        :disabled="disabled || isCountdownActive"
+        :func="handleSent"
+        quaternary
+        size="small"
+      >
         <n-flex size="small">
           <n-countdown
             v-if="isCountdownActive"

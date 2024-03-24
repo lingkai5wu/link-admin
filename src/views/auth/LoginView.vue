@@ -44,6 +44,7 @@ const formRules = {
     }
   ]
 }
+const loadingButtonRef = ref<InstanceType<typeof LoadingButton> | null>(null)
 
 async function handleLogin() {
   const tokenInfoVO = await otpLogin(formData.value)
@@ -57,14 +58,29 @@ async function handleLogin() {
 
 <template>
   <n-h2>登录您的账号</n-h2>
-  <n-form ref="formRef" :model="formData" :rules="formRules">
+  <n-form
+    ref="formRef"
+    :disabled="loadingButtonRef?.isLoading"
+    :model="formData"
+    :rules="formRules"
+  >
     <n-form-item label="手机号" path="phone">
       <n-input v-model:value="formData.phone" />
     </n-form-item>
     <n-form-item label="验证码" path="otp">
-      <InputSmsCode v-model="formData.otp" :func="() => sleep(1000)" :interval="10" />
+      <InputSmsCode
+        v-model="formData.otp"
+        :disabled="loadingButtonRef?.isLoading"
+        :func="() => sleep(1000)"
+        :interval="10"
+      />
     </n-form-item>
-    <LoadingButton :func="handleLogin" style="width: 100%; margin-top: 4px" type="primary">
+    <LoadingButton
+      ref="loadingButtonRef"
+      :func="handleLogin"
+      style="width: 100%; margin-top: 4px"
+      type="primary"
+    >
       <template #icon>
         <LogInOutline />
       </template>
