@@ -3,6 +3,7 @@ import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
 import { useMenuStore } from '@/stores/menu'
 import { useUserStore } from '@/stores/user'
+import type { BatchManyToManyDTO } from '@/types/api/query'
 
 export const sleep = (delay: number): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, delay))
@@ -28,4 +29,16 @@ export function pick<T extends Data, K extends keyof T>(obj: T, keys: K[]): Pick
     }
   })
   return result
+}
+
+export function generateBatchManyToManyDTO<T>(oldValue: T[], value: T[]) {
+  const originSet = new Set(oldValue)
+  const valueSet = new Set(value)
+  const targetIdsToInsert = value.filter((id) => !originSet.has(id))
+  const targetIdsToDelete = oldValue.filter((id) => !valueSet.has(id))
+  const dto: BatchManyToManyDTO<T> = {
+    ...(targetIdsToInsert.length > 0 && { targetIdsToInsert }),
+    ...(targetIdsToDelete.length > 0 && { targetIdsToDelete })
+  }
+  return dto
 }

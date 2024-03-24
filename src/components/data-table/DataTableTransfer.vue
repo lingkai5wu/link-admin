@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type LoadingButton from '@/components/LoadingButton.vue'
 import type { BatchManyToManyDTO } from '@/types/api/query'
+import { generateBatchManyToManyDTO } from '@/utils/common'
 import { type TransferOption } from 'naive-ui'
 
 const props = defineProps<{
@@ -15,16 +16,16 @@ const emits = defineEmits<{
 }>()
 
 const options = ref<TransferOption[]>()
-let origin: number[]
+let oldValue: number[]
 const value = ref<number[]>([])
 const isLoading = ref(false)
 const loadingButtonRef = ref<InstanceType<typeof LoadingButton> | null>(null)
 
 onMounted(() => {
-  fetchOptionsAndValue()
+  getOptionsAndValue()
 })
 
-async function fetchOptionsAndValue() {
+async function getOptionsAndValue() {
   isLoading.value = true
   try {
     const [optionsData, valueData] = await Promise.all([
@@ -32,7 +33,7 @@ async function fetchOptionsAndValue() {
       props.getValueFunc()
     ])
     options.value = optionsData
-    origin = valueData
+    oldValue = valueData
     value.value = [...valueData]
   } finally {
     isLoading.value = false
@@ -40,14 +41,7 @@ async function fetchOptionsAndValue() {
 }
 
 async function handleClick() {
-  const originSet = new Set(origin)
-  const valueSet = new Set(value.value)
-  let targetIdsToInsert = value.value.filter((id) => !originSet.has(id))
-  let targetIdsToDelete = origin.filter((id) => !valueSet.has(id))
-  const dto = {
-    ...(targetIdsToInsert.length > 0 && { targetIdsToInsert }),
-    ...(targetIdsToDelete.length > 0 && { targetIdsToDelete })
-  }
+  const dto = generateBatchManyToManyDTO(oldValue, value.value)
   if (Object.keys(dto).length === 0) {
     emits('actionSubmit', false)
     return
@@ -63,7 +57,7 @@ async function handleClick() {
 </script>
 
 <template>
-  <n-flex :size="24" vertical>
+  <n-flex :size="20" vertical>
     <n-spin :show="isLoading">
       <n-transfer
         v-model:value="value"
@@ -79,7 +73,8 @@ async function handleClick() {
       :func="handleClick"
       style="width: 100%"
       type="primary"
-      >提交
+    >
+      提交
     </loading-button>
   </n-flex>
 </template>
