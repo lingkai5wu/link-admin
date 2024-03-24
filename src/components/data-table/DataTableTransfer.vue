@@ -7,7 +7,7 @@ const props = defineProps<{
   id: number
   getOptionsFunc: () => Promise<TransferOption[]>
   getValueFunc: () => Promise<number[]>
-  submitFunc: (id: number, dto: BatchManyToManyDTO) => Promise<null>
+  submitFunc: (id: number, dto: BatchManyToManyDTO<any>) => Promise<null>
 }>()
 const emits = defineEmits<{
   actionSubmit: [boolean]

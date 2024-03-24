@@ -32,12 +32,15 @@ export async function updateRole(dto: RoleUpdateDTO): Promise<null> {
 
 export async function updateRolePermissionByBatch(
   id: number,
-  dto: BatchManyToManyDTO
+  dto: BatchManyToManyDTO<number>
 ): Promise<null> {
   return await request.put(`/roles/${id}/permissions`, dto)
 }
 
-export async function updateRoleMenuByBatch(id: number, dto: BatchManyToManyDTO): Promise<null> {
+export async function updateRoleMenuByBatch(
+  id: number,
+  dto: BatchManyToManyDTO<number>
+): Promise<null> {
   return await request.put(`/roles/${id}/menus`, dto)
 }
 

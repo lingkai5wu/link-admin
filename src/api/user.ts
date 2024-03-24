@@ -30,7 +30,10 @@ export async function updateUser(dto: UserUpdateDTO): Promise<null> {
   return await request.put('/users', dto)
 }
 
-export async function updateUserRoleByBatch(id: number, dto: BatchManyToManyDTO): Promise<null> {
+export async function updateUserRoleByBatch(
+  id: number,
+  dto: BatchManyToManyDTO<number>
+): Promise<null> {
   return await request.put(`/users/${id}/roles`, dto)
 }
 

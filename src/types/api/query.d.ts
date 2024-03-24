@@ -5,9 +5,9 @@ export interface AuthOtpLoginDTO {
   otp?: string | null
 }
 
-export interface BatchManyToManyDTO {
-  targetIdsToInsert?: number[] | null
-  targetIdsToDelete?: number[] | null
+export interface BatchManyToManyDTO<T> {
+  targetIdsToInsert?: T[] | null
+  targetIdsToDelete?: T[] | null
 }
 
 export interface MenuSaveDTO {
