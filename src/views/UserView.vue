@@ -2,7 +2,7 @@
 import { listUserVOs, removeUser } from '@/api/user'
 import UserEdit from '@/components/curd/UserEdit.vue'
 import UserRoleEdit from '@/components/curd/UserRoleEdit.vue'
-import type { DataTableActions } from '@/components/data-table/types'
+import type { RowActions } from '@/components/data-table/types'
 import type { UserVO } from '@/types/api/vo'
 import { enum2Tag, userSexEnumConfig, userStatusEnumConfig } from '@/utils/enum'
 import { type DataTableColumns } from 'naive-ui'
@@ -39,7 +39,7 @@ const columns: DataTableColumns<UserVO> = [
     key: 'createTime'
   }
 ]
-const actions: DataTableActions<UserVO> = {
+const rowActions: RowActions<UserVO> = {
   edit: {
     title: '修改',
     type: 'warning',
@@ -58,5 +58,5 @@ const actions: DataTableActions<UserVO> = {
 </script>
 
 <template>
-  <DataTable :actions="actions" :columns="columns" :func="listUserVOs" />
+  <DataTable :columns="columns" :func="listUserVOs" :row-actions="rowActions" />
 </template>

@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import type { DataTableActionFunc } from '@/components/data-table/types'
 import type LoadingButton from '@/components/LoadingButton.vue'
 import { NForm } from 'naive-ui'
 
 const props = defineProps<{
-  func: DataTableActionFunc
+  func: (row: Data) => Promise<void | null>
 }>()
 const emits = defineEmits<{
   actionSubmit: [boolean]

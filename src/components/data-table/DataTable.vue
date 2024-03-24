@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import DataTableActionButtonGroup from '@/components/data-table/DataTableActionButtonGroup.vue'
+import ActionButtonGroup from '@/components/data-table/ActionButtonGroup.vue'
 import type {
-  DataTableActionComponentProps,
-  DataTableActions,
-  DataTableActionWithComponent,
+  ActionComponentProps,
   DataTablePropsEx,
-  RowDataWithId
+  RowActions,
+  RowActionWithComponent,
+  RowDataWithId,
+  TopActions
 } from '@/components/data-table/types'
 import type { DataTableColumns } from 'naive-ui'
 import type { Component } from 'vue'
@@ -13,7 +14,8 @@ import type { Component } from 'vue'
 const props = defineProps<{
   func: () => Promise<RowDataWithId[]>
   columns: DataTableColumns<any>
-  actions?: DataTableActions<any>
+  rowActions?: RowActions<any>
+  topActions?: TopActions
   dataTableProps?: DataTablePropsEx
 }>()
 
@@ -27,7 +29,7 @@ const isDrawerMaskClosable = ref(true)
 const drawerTitle = ref<string>()
 const component = ref<Component>()
 const componentKey = ref<string>()
-const componentProps = ref<DataTableActionComponentProps>()
+const componentProps = ref<ActionComponentProps>()
 
 async function getTableData() {
   loading.value = true
@@ -39,7 +41,7 @@ async function getTableData() {
 }
 
 function setActionColumn() {
-  const actions = props.actions
+  const actions = props.rowActions
   if (!actions || Object.keys(actions).length === 0) {
     return
   }
@@ -47,7 +49,7 @@ function setActionColumn() {
     title: '操作',
     key: 'action',
     render(row) {
-      return h(DataTableActionButtonGroup, {
+      return h(ActionButtonGroup, {
         actions,
         row,
         onActionTrigger: handleActionTrigger,
@@ -58,12 +60,12 @@ function setActionColumn() {
 }
 
 function handleActionTrigger(
-  row: RowDataWithId,
-  action: DataTableActionWithComponent,
+  row: RowDataWithId | undefined,
+  action: RowActionWithComponent,
   actionKey: string
 ) {
   component.value = markRaw(action.component)
-  componentKey.value = actionKey + row.id
+  componentKey.value = actionKey + row?.id
   componentProps.value = { row }
   drawerTitle.value = action.title
   isDrawerShow.value = true
@@ -81,6 +83,12 @@ function handleActionSubmit(isNeedRefresh: boolean) {
 <template>
   <n-flex vertical>
     <slot />
+    <ActionButtonGroup
+      v-if="topActions"
+      :actions="topActions"
+      @action-trigger="handleActionTrigger"
+      @action-submit="handleActionSubmit"
+    />
     <n-data-table
       :columns="columns"
       :data="tableData"

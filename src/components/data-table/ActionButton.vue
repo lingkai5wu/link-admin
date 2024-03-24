@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { DataTableAction, RowDataWithId } from '@/components/data-table/types'
+import type { Action, RowDataWithId } from '@/components/data-table/types'
 
 const props = defineProps<{
-  action: DataTableAction
-  row: RowDataWithId
+  action: Action
+  row?: RowDataWithId
   isGroupLoading: boolean
 }>()
 const emits = defineEmits<{
@@ -24,7 +24,7 @@ const isDisabled = computed(() => {
   if (props.isGroupLoading) {
     return true
   }
-  if (typeof props.action.disabled === 'function') {
+  if (typeof props.action.disabled === 'function' && props.row) {
     return props.action.disabled(props.row)
   }
   return false

@@ -8,29 +8,42 @@ interface DataTablePropsEx extends DataTableProps {
 
 type RowDataWithId = Data & { id: number }
 
-type DataTableActionFunc<T = Data> = (row: T) => Promise<void | null>
+type RowActionFunc<T = Data> = (row: T) => Promise<void | null>
+type TopActionFunc = () => Promise<void | null>
 
-type DataTableActionComponentProps<T = Data> = {
-  row: T
+type ActionComponentProps<T = Data> = {
+  row?: T
 }
 
-interface DataTableActionWithComponent<T = Data> {
+interface RowActionWithComponent<T = Data> {
   title: string
   type?: Type
   disabled?: ((row: T) => boolean) | boolean
-  component: Component<DataTableActionComponentProps<T>>
+  component: Component<ActionComponentProps<T>>
 }
 
-interface DataTableActionWithoutComponent<T = RowDataWithId>
-  extends DataTableActionWithComponent<T> {
+interface RowActionWithoutComponent<T = RowDataWithId> extends RowActionWithComponent<T> {
   component?: never
-  func: DataTableActionFunc<T>
+  func: RowActionFunc<T>
 }
 
-type DataTableAction<T = Data> =
-  | DataTableActionWithComponent<T>
-  | DataTableActionWithoutComponent<T>
+type RowAction<T = Data> = RowActionWithComponent<T> | RowActionWithoutComponent<T>
 
-interface DataTableActions<T = Data> {
-  [key: string]: DataTableAction<T>
+type RowActions<T = Data> = Record<string, RowAction<T>>
+
+interface TopActionWithComponent extends RowActionWithComponent {
+  disabled?: boolean
+  component: Component
 }
+
+interface TopActionWithoutComponent extends TopActionWithComponent {
+  component?: never
+  func: TopActionFunc<T>
+}
+
+type TopAction = TopActionWithComponent | TopActionWithoutComponent
+type TopActions = Record<string, TopAction>
+
+type Action = RowAction | TopAction
+type Actions = RowActions | TopActions
+type ActionWithComponent = RowActionWithComponent | TopActionWithComponent

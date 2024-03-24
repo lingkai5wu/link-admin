@@ -2,7 +2,7 @@
 import { listMenuVOs, removeMenu } from '@/api/menu'
 import MenuAdd from '@/components/curd/MenuAdd.vue'
 import MenuEdit from '@/components/curd/MenuEdit.vue'
-import type { DataTableActions } from '@/components/data-table/types'
+import type { RowActions } from '@/components/data-table/types'
 import type { MenuVOTree } from '@/types/menu'
 import { enum2Tag, menuTypeEnumConfig } from '@/utils/enum'
 import { generateMenuVOTrees } from '@/utils/menu'
@@ -35,7 +35,7 @@ const columns: DataTableColumns<MenuVOTree> = [
     }
   }
 ]
-const actions: DataTableActions<MenuVOTree> = {
+const rowActions: RowActions<MenuVOTree> = {
   add: {
     title: '新增',
     type: 'primary',
@@ -62,8 +62,8 @@ const actions: DataTableActions<MenuVOTree> = {
 
 <template>
   <DataTable
-    :actions="actions"
     :columns="columns"
     :func="async () => generateMenuVOTrees(await listMenuVOs())"
+    :row-actions="rowActions"
   />
 </template>

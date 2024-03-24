@@ -1,7 +1,7 @@
 import router from '@/router'
 import type { MenuVO } from '@/types/api/vo'
 import type { MenuVOTree } from '@/types/menu'
-import type { TreeOption } from 'naive-ui/lib'
+import type { TreeOption } from 'naive-ui'
 
 export function generateMenuVOTrees(menuVOs: MenuVO[]) {
   const routes = router.getRoutes()
