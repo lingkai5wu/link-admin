@@ -10,8 +10,10 @@ export async function getRoleVO(id: number): Promise<RoleVO> {
   return await request.get(`/roles/${id}`)
 }
 
-export async function listRolePermissionVOs(id: number): Promise<PermissionVO[]> {
-  return await request.get(`/roles/${id}/permissions`)
+export async function listRolePermissionVOs(id: number) {
+  const permissionVOs: PermissionVO[] = await request.get(`/roles/${id}/permissions`)
+  permissionVOs.sort((a, b) => a.code.localeCompare(b.code))
+  return permissionVOs
 }
 
 export async function listRoleMenuVOs(id: number): Promise<MenuVO[]> {
