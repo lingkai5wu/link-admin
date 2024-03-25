@@ -1,7 +1,7 @@
 import router from '@/router'
 import type { MenuVO } from '@/types/api/vo'
-import type { MenuVOTree } from '@/types/menu'
-import type { TreeOption } from 'naive-ui'
+import type { MenuTreeOption, MenuVOTree } from '@/types/menu'
+import { pick } from '@/utils/common'
 
 export function generateMenuVOTrees(menuVOs: MenuVO[]) {
   const routes = router.getRoutes()
@@ -30,14 +30,17 @@ export function generateTreeOptions(menuVOs: MenuVO[], pid = 0) {
   return menuVOs
     .filter((menuVO) => menuVO.pid === pid)
     .map((menuVO) => {
-      const current: TreeOption = {
-        key: menuVO.id,
-        label: menuVO.label
-      }
-      const children = generateTreeOptions(menuVOs, menuVO.id)
-      if (children.length > 0) {
-        current.children = children
+      const current: MenuTreeOption = pick(menuVO, ['id', 'pid', 'label', 'sortOrder'])
+      if (menuVO.type === 'PARENT') {
+        current.children = generateTreeOptions(menuVOs, menuVO.id)
       }
       return current
     })
+}
+
+export function compare(a: MenuVO, b: MenuVO) {
+  if (a.sortOrder !== null && b.sortOrder !== null) {
+    return a.sortOrder - b.sortOrder
+  }
+  return a.id - b.id
 }

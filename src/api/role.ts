@@ -1,5 +1,6 @@
 import type { BatchManyToManyDTO, RoleSaveDTO, RoleUpdateDTO } from '@/types/api/query'
 import type { MenuVO, PermissionVO, RoleVO } from '@/types/api/vo'
+import { compare } from '@/utils/menu'
 import request from '@/utils/request'
 
 export async function listCurrentUserRoleVOs(): Promise<RoleVO[]> {
@@ -17,7 +18,9 @@ export async function listRolePermissionVOs(id: number) {
 }
 
 export async function listRoleMenuVOs(id: number): Promise<MenuVO[]> {
-  return await request.get(`/roles/${id}/menus`)
+  const menuVOs: MenuVO[] = await request.get(`/roles/${id}/menus`)
+  menuVOs.sort(compare)
+  return menuVOs
 }
 
 export async function listRoleVOs(): Promise<RoleVO[]> {

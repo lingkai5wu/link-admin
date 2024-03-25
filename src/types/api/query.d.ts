@@ -10,6 +10,12 @@ export interface BatchManyToManyDTO<T> {
   targetIdsToDelete?: T[] | null
 }
 
+export interface MenuOrderUpdateDTO {
+  id?: number | null
+  pid?: number | null
+  sortOrder?: number | null
+}
+
 export interface MenuSaveDTO {
   pid?: number | null
   type?: MenuTypeEnum | null

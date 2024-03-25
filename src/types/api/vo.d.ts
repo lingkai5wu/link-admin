@@ -12,6 +12,7 @@ export interface MenuVO {
   readonly type: MenuTypeEnum
   readonly label: string
   readonly path: string | null
+  readonly sortOrder: number | null
 }
 
 export interface OssDirectPostObjectInfoVO {

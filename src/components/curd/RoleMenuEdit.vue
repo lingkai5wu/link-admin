@@ -54,11 +54,11 @@ async function handleClick() {
 </script>
 
 <template>
-  <n-h2>
+  <n-p>
     修改
     <n-text type="info">{{ row.name }}</n-text>
     菜单
-  </n-h2>
+  </n-p>
   <n-flex :size="20" vertical>
     <n-spin :show="isLoading">
       <n-tree
@@ -70,6 +70,7 @@ async function handleClick() {
         cascade
         checkable
         expand-on-click
+        key-field="id"
         show-line
       />
     </n-spin>

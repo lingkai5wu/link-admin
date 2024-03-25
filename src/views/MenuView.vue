@@ -2,7 +2,8 @@
 import { listMenuVOs, removeMenu } from '@/api/menu'
 import MenuAdd from '@/components/curd/MenuAdd.vue'
 import MenuEdit from '@/components/curd/MenuEdit.vue'
-import type { RowActions } from '@/components/data-table/types'
+import MenuSort from '@/components/curd/MenuSort.vue'
+import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { MenuVOTree } from '@/types/menu'
 import { enum2Tag, menuTypeEnumConfig } from '@/utils/enum'
 import { generateMenuVOTrees } from '@/utils/menu'
@@ -58,6 +59,13 @@ const rowActions: RowActions<MenuVOTree> = {
     func: (row) => removeMenu(row.id)
   }
 }
+const topActions: TopActions = {
+  sort: {
+    title: '排序',
+    type: 'info',
+    component: MenuSort
+  }
+}
 </script>
 
 <template>
@@ -65,5 +73,6 @@ const rowActions: RowActions<MenuVOTree> = {
     :columns="columns"
     :func="async () => generateMenuVOTrees(await listMenuVOs())"
     :row-actions="rowActions"
+    :top-actions="topActions"
   />
 </template>
