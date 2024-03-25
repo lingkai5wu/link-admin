@@ -36,9 +36,12 @@ const componentProps = computed(() => {
 async function handleActionTrigger(action: Action, actionKey: string) {
   if (!action.component) {
     isLoading.value = true
-    await action.func(props.row)
-    emits('actionSubmit', true)
-    isLoading.value = false
+    try {
+      await action.func(props.row)
+      emits('actionSubmit', true)
+    } finally {
+      isLoading.value = false
+    }
     return
   }
   emits('actionTrigger', props.row, action, actionKey)
