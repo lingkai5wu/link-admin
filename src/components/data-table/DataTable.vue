@@ -2,9 +2,9 @@
 import ActionButtonGroup from '@/components/data-table/ActionButtonGroup.vue'
 import type {
   ActionComponentProps,
+  ActionWithComponent,
   DataTablePropsEx,
   RowActions,
-  RowActionWithComponent,
   RowDataWithId,
   TopActions
 } from '@/components/data-table/types'
@@ -61,12 +61,14 @@ function setActionColumn() {
 
 function handleActionTrigger(
   row: RowDataWithId | undefined,
-  action: RowActionWithComponent,
+  action: ActionWithComponent,
   actionKey: string
 ) {
   component.value = markRaw(action.component)
   componentKey.value = actionKey + row?.id
-  componentProps.value = { row }
+  if (row) {
+    componentProps.value = { row }
+  }
   drawerTitle.value = action.title
   isDrawerShow.value = true
 }
