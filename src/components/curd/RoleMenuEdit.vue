@@ -69,6 +69,8 @@ async function handleClick() {
         block-line
         cascade
         checkable
+        expand-on-click
+        show-line
       />
     </n-spin>
     <loading-button
