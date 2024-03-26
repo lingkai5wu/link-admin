@@ -62,7 +62,7 @@ async function handleClick() {
       <n-transfer
         v-model:value="value"
         :disabled="loadingButtonRef?.isLoading"
-        :options="options"
+        :options
         source-filterable
         target-filterable
       />

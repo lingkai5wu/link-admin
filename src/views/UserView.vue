@@ -67,7 +67,7 @@ const topActions: TopActions = {
 
 <template>
   <DataTable
-    :columns="columns"
+    :columns
     :func="listUserVOsWithPage"
     :row-actions="rowActions"
     :top-actions="topActions"

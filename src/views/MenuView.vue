@@ -75,7 +75,7 @@ const topActions: TopActions = {
 
 <template>
   <DataTable
-    :columns="columns"
+    :columns
     :func="async () => generateMenuVOTrees(await listMenuVOs())"
     :row-actions="rowActions"
     :top-actions="topActions"

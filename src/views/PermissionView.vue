@@ -33,7 +33,7 @@ const topActions: TopActions = {
 
 <template>
   <DataTable
-    :columns="columns"
+    :columns
     :func="listPermissionVOsWithPage"
     :row-actions="rowActions"
     :top-actions="topActions"

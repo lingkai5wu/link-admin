@@ -115,10 +115,10 @@ function handleActionSubmit(isNeedRefresh: boolean) {
       @action-submit="handleActionSubmit"
     />
     <n-data-table
-      :columns="columns"
+      :columns
       :data="tableData"
       :loading
-      :pagination="pagination"
+      :pagination
       :row-key="(data: Data) => data.id"
       :scroll-x="640"
       remote

@@ -52,10 +52,5 @@ const topActions: TopActions = {
 </script>
 
 <template>
-  <DataTable
-    :columns="columns"
-    :func="listRoleVOs"
-    :row-actions="rowActions"
-    :top-actions="topActions"
-  />
+  <DataTable :columns :func="listRoleVOs" :row-actions="rowActions" :top-actions="topActions" />
 </template>
