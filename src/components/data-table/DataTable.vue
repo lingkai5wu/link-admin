@@ -123,7 +123,7 @@ function handleActionSubmit(isNeedRefresh: boolean) {
       :scroll-x="640"
       remote
       v-bind="dataTableProps"
-      @page-change="handlePageChange"
+      @update:page="handlePageChange"
     />
   </n-flex>
   <n-drawer
