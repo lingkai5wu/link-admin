@@ -1,10 +1,11 @@
 import type { PermissionUpdateDTO } from '@/types/api/query'
 import type { PermissionVO } from '@/types/api/vo'
+import { comparePermissionVO } from '@/utils/compare'
 import request from '@/utils/request'
 
 export async function listCurrentUserPermissionVOs() {
   const permissionVOs: PermissionVO[] = await request.get('/permissions/current')
-  permissionVOs.sort((a, b) => a.code.localeCompare(b.code))
+  permissionVOs.sort(comparePermissionVO)
   return permissionVOs
 }
 
@@ -14,7 +15,7 @@ export async function getPermissionVO(id: number): Promise<PermissionVO> {
 
 export async function listPermissionVOs() {
   const permissionVOs: PermissionVO[] = await request.get('/permissions')
-  permissionVOs.sort((a, b) => a.code.localeCompare(b.code))
+  permissionVOs.sort(comparePermissionVO)
   return permissionVOs
 }
 

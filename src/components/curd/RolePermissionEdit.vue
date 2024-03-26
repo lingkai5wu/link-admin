@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { listPermissionVOs } from '@/api/permission'
-import { listRolePermissionVOs, batchUpdateRolePermission } from '@/api/role'
+import { batchUpdateRolePermission, listRolePermissionVOs } from '@/api/role'
 import DataTableTransfer from '@/components/data-table/DataTableTransfer.vue'
 import type { RoleVO } from '@/types/api/vo'
 

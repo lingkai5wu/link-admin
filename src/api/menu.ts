@@ -1,11 +1,11 @@
 import type { MenuOrderUpdateDTO, MenuQuery, MenuSaveDTO, MenuUpdateDTO } from '@/types/api/query'
 import type { MenuVO } from '@/types/api/vo'
-import { compare } from '@/utils/menu'
+import { compareMenuVO } from '@/utils/compare'
 import request from '@/utils/request'
 
 export async function listCurrentUserMenuVOs(): Promise<MenuVO[]> {
   const menuVOs: MenuVO[] = await request.get('/menus/current')
-  menuVOs.sort(compare)
+  menuVOs.sort(compareMenuVO)
   return menuVOs
 }
 
@@ -15,7 +15,7 @@ export async function getMenuVO(id: number): Promise<MenuVO> {
 
 export async function listMenuVOs(query?: MenuQuery): Promise<MenuVO[]> {
   const menuVOs: MenuVO[] = await request.get('/menus', { params: query })
-  menuVOs.sort(compare)
+  menuVOs.sort(compareMenuVO)
   return menuVOs
 }
 

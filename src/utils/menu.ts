@@ -37,10 +37,3 @@ export function generateTreeOptions(menuVOs: MenuVO[], pid = 0) {
       return current
     })
 }
-
-export function compare(a: MenuVO, b: MenuVO) {
-  if (a.sortOrder !== null && b.sortOrder !== null) {
-    return a.sortOrder - b.sortOrder
-  }
-  return a.id - b.id
-}

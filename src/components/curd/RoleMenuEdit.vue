@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { listMenuVOs } from '@/api/menu'
-import { listRoleMenuVOs, batchUpdateRoleMenu } from '@/api/role'
+import { batchUpdateRoleMenu, listRoleMenuVOs } from '@/api/role'
 import type LoadingButton from '@/components/LoadingButton.vue'
 import type { RoleVO } from '@/types/api/vo'
 import { generateBatchUpdateManyToManyDTO } from '@/utils/common'

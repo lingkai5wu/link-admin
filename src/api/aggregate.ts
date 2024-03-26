@@ -1,9 +1,9 @@
 import type { RuntimeDataVO } from '@/types/api/vo'
-import { compare } from '@/utils/menu'
+import { compareMenuVO } from '@/utils/compare'
 import request from '@/utils/request'
 
 export async function getRuntimeDataVO(): Promise<RuntimeDataVO> {
   const runtimeDataVO: RuntimeDataVO = await request.get('/aggregate/runtime-data')
-  runtimeDataVO.menuVOs.sort(compare)
+  runtimeDataVO.menuVOs.sort(compareMenuVO)
   return runtimeDataVO
 }
