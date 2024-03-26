@@ -67,7 +67,7 @@ const topActions: TopActions = {
   },
   sort: {
     title: '修改顺序',
-    type: 'info',
+    type: 'warning',
     component: MenuSort
   }
 }

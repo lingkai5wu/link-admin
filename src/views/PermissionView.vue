@@ -25,7 +25,7 @@ const rowActions: RowActions<PermissionVO> = {
 const topActions: TopActions = {
   sync: {
     title: '同步',
-    type: 'info',
+    type: 'primary',
     func: syncPermission
   }
 }
