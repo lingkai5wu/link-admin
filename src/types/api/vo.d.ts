@@ -6,6 +6,13 @@ export interface Result<T> {
   readonly data: T
 }
 
+export interface PageVO<T> {
+  readonly current: number
+  readonly size: number
+  readonly total: number
+  readonly records: T[]
+}
+
 export interface MenuVO {
   readonly id: number
   readonly pid: number

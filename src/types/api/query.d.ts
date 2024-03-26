@@ -1,5 +1,10 @@
 /* tslint:disable */
 
+export interface PageDTO {
+  current?: number | null
+  size?: number | null
+}
+
 export interface AuthOtpLoginDTO {
   phone?: string | null
   otp?: string | null

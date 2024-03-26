@@ -8,11 +8,13 @@ import type {
   RowDataWithId,
   TopActions
 } from '@/components/data-table/types'
-import type { DataTableColumns } from 'naive-ui'
+import type { PageDTO } from '@/types/api/query'
+import type { PageVO } from '@/types/api/vo'
+import type { DataTableColumns, PaginationProps } from 'naive-ui'
 import type { Component } from 'vue'
 
 const props = defineProps<{
-  func: () => Promise<RowDataWithId[]>
+  func: (() => Promise<RowDataWithId[]>) | ((pageDTO?: PageDTO) => Promise<PageVO<RowDataWithId>>)
   columns: DataTableColumns<any>
   rowActions?: RowActions<any>
   topActions?: TopActions
@@ -21,6 +23,7 @@ const props = defineProps<{
 
 const loading = ref(false)
 const tableData = ref<RowDataWithId[]>()
+const pagination = ref<PaginationProps>()
 getTableData()
 const columnsWithActions = ref(props.columns)
 setActionColumn()
@@ -31,13 +34,24 @@ const component = ref<Component>()
 const componentKey = ref<string>()
 const componentProps = ref<ActionComponentProps>()
 
-async function getTableData() {
+async function getTableData(pageDTO?: PageDTO) {
   loading.value = true
+  let data
   try {
-    tableData.value = await props.func()
+    data = await props.func(pageDTO)
   } finally {
     loading.value = false
   }
+  if (Array.isArray(data)) {
+    tableData.value = data
+    return
+  }
+  pagination.value = {
+    page: data.current,
+    pageSize: data.size,
+    itemCount: data.total
+  }
+  tableData.value = data.records
 }
 
 function setActionColumn() {
@@ -56,6 +70,13 @@ function setActionColumn() {
         onActionSubmit: handleActionSubmit
       })
     }
+  })
+}
+
+function handlePageChange(current: number) {
+  getTableData({
+    current,
+    size: pagination.value?.pageSize
   })
 }
 
@@ -94,10 +115,13 @@ function handleActionSubmit(isNeedRefresh: boolean) {
     <n-data-table
       :columns="columns"
       :data="tableData"
-      :loading="loading"
+      :loading
+      :pagination="pagination"
       :row-key="(data: Data) => data.id"
       :scroll-x="640"
+      remote
       v-bind="dataTableProps"
+      @page-change="handlePageChange"
     />
   </n-flex>
   <n-drawer

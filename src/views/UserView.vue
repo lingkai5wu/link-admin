@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { listUserVOs, removeUser } from '@/api/user'
+import { listUserVOsWithPage, removeUser } from '@/api/user'
 import UserEdit from '@/components/curd/UserEdit.vue'
 import UserRoleEdit from '@/components/curd/UserRoleEdit.vue'
 import type { RowActions } from '@/components/data-table/types'
@@ -58,5 +58,5 @@ const rowActions: RowActions<UserVO> = {
 </script>
 
 <template>
-  <DataTable :columns="columns" :func="listUserVOs" :row-actions="rowActions" />
+  <DataTable :columns="columns" :func="listUserVOsWithPage" :row-actions="rowActions" />
 </template>
