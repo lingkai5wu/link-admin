@@ -14,7 +14,7 @@ import type { DataTableColumns, PaginationProps } from 'naive-ui'
 import type { Component } from 'vue'
 
 const props = defineProps<{
-  func: (() => Promise<RowDataWithId[]>) | ((pageDTO?: PageDTO) => Promise<PageVO<RowDataWithId>>)
+  func: (pageDTO?: PageDTO) => Promise<RowDataWithId[] | PageVO<RowDataWithId>>
   columns: DataTableColumns<any>
   rowActions?: RowActions<any>
   topActions?: TopActions
@@ -24,6 +24,10 @@ const props = defineProps<{
 const loading = ref(false)
 const tableData = ref<RowDataWithId[]>()
 const pagination = ref<PaginationProps>()
+const pageDTO = computed<PageDTO>(() => ({
+  current: pagination.value?.page,
+  size: pagination.value?.pageSize
+}))
 getTableData()
 const columnsWithActions = ref(props.columns)
 setActionColumn()
@@ -34,11 +38,11 @@ const component = ref<Component>()
 const componentKey = ref<string>()
 const componentProps = ref<ActionComponentProps>()
 
-async function getTableData(pageDTO?: PageDTO) {
+async function getTableData() {
   loading.value = true
   let data
   try {
-    data = await props.func(pageDTO)
+    data = await props.func(pageDTO.value)
   } finally {
     loading.value = false
   }
@@ -74,10 +78,8 @@ function setActionColumn() {
 }
 
 function handlePageChange(current: number) {
-  getTableData({
-    current,
-    size: pagination.value?.pageSize
-  })
+  pagination.value!.page = current
+  getTableData()
 }
 
 function handleActionTrigger(
