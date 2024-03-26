@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { listMenuVOs } from '@/api/menu'
-import { listRoleMenuVOs, updateRoleMenuByBatch } from '@/api/role'
+import { listRoleMenuVOs, batchUpdateRoleMenu } from '@/api/role'
 import type LoadingButton from '@/components/LoadingButton.vue'
 import type { RoleVO } from '@/types/api/vo'
-import { generateBatchManyToManyDTO } from '@/utils/common'
+import { generateBatchUpdateManyToManyDTO } from '@/utils/common'
 import { generateTreeOptions } from '@/utils/menu'
 import type { TreeOptions } from 'naive-ui/es/tree/src/interface'
 
@@ -38,14 +38,14 @@ async function getOptionsAndValue() {
 }
 
 async function handleClick() {
-  const dto = generateBatchManyToManyDTO(oldValue, value.value)
+  const dto = generateBatchUpdateManyToManyDTO(oldValue, value.value)
   if (Object.keys(dto).length === 0) {
     emits('actionSubmit', false)
     return
   }
   emits('actionFuncExec', true)
   try {
-    await updateRoleMenuByBatch(props.row.id, dto)
+    await batchUpdateRoleMenu(props.row.id, dto)
   } finally {
     emits('actionFuncExec', false)
   }

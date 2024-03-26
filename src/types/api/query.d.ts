@@ -5,7 +5,7 @@ export interface AuthOtpLoginDTO {
   otp?: string | null
 }
 
-export interface BatchManyToManyDTO<T> {
+export interface BatchUpdateManyToManyDTO<T> {
   targetIdsToInsert?: T[] | null
   targetIdsToDelete?: T[] | null
 }

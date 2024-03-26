@@ -1,4 +1,4 @@
-import type { BatchManyToManyDTO, RoleSaveDTO, RoleUpdateDTO } from '@/types/api/query'
+import type { BatchUpdateManyToManyDTO, RoleSaveDTO, RoleUpdateDTO } from '@/types/api/query'
 import type { MenuVO, PermissionVO, RoleVO } from '@/types/api/vo'
 import { compare } from '@/utils/menu'
 import request from '@/utils/request'
@@ -35,16 +35,16 @@ export async function updateRole(dto: RoleUpdateDTO): Promise<null> {
   return await request.put('/roles', dto)
 }
 
-export async function updateRolePermissionByBatch(
+export async function batchUpdateRolePermission(
   id: number,
-  dto: BatchManyToManyDTO<number>
+  dto: BatchUpdateManyToManyDTO<number>
 ): Promise<null> {
   return await request.put(`/roles/${id}/permissions`, dto)
 }
 
-export async function updateRoleMenuByBatch(
+export async function batchUpdateRoleMenu(
   id: number,
-  dto: BatchManyToManyDTO<number>
+  dto: BatchUpdateManyToManyDTO<number>
 ): Promise<null> {
   return await request.put(`/roles/${id}/menus`, dto)
 }

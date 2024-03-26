@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 import type LoadingButton from '@/components/LoadingButton.vue'
-import type { BatchManyToManyDTO } from '@/types/api/query'
-import { generateBatchManyToManyDTO } from '@/utils/common'
+import type { BatchUpdateManyToManyDTO } from '@/types/api/query'
+import { generateBatchUpdateManyToManyDTO } from '@/utils/common'
 import { type TransferOption } from 'naive-ui'
 
 const props = defineProps<{
   id: number
   getOptionsFunc: () => Promise<TransferOption[]>
   getValueFunc: () => Promise<number[]>
-  submitFunc: (id: number, dto: BatchManyToManyDTO<any>) => Promise<null>
+  submitFunc: (id: number, dto: BatchUpdateManyToManyDTO<any>) => Promise<null>
 }>()
 const emits = defineEmits<{
   actionSubmit: [boolean]
@@ -41,7 +41,7 @@ async function getOptionsAndValue() {
 }
 
 async function handleClick() {
-  const dto = generateBatchManyToManyDTO(oldValue, value.value)
+  const dto = generateBatchUpdateManyToManyDTO(oldValue, value.value)
   if (Object.keys(dto).length === 0) {
     emits('actionSubmit', false)
     return

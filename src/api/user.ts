@@ -1,4 +1,4 @@
-import type { BatchManyToManyDTO, UserQuery, UserSaveDTO, UserUpdateDTO } from '@/types/api/query'
+import type { BatchUpdateManyToManyDTO, UserQuery, UserSaveDTO, UserUpdateDTO } from '@/types/api/query'
 import type { PermissionVO, RoleVO, UserVO } from '@/types/api/vo'
 import request from '@/utils/request.js'
 
@@ -32,9 +32,9 @@ export async function updateUser(dto: UserUpdateDTO): Promise<null> {
   return await request.put('/users', dto)
 }
 
-export async function updateUserRoleByBatch(
+export async function batchUpdateUserRole(
   id: number,
-  dto: BatchManyToManyDTO<number>
+  dto: BatchUpdateManyToManyDTO<number>
 ): Promise<null> {
   return await request.put(`/users/${id}/roles`, dto)
 }

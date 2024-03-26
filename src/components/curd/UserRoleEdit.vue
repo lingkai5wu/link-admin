@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { listRoleVOs } from '@/api/role'
-import { listUserRoleVOs, updateUserRoleByBatch } from '@/api/user'
+import { listUserRoleVOs, batchUpdateUserRole } from '@/api/user'
 import DataTableTransfer from '@/components/data-table/DataTableTransfer.vue'
 import type { UserVO } from '@/types/api/vo'
 
@@ -27,6 +27,6 @@ async function getValueFunc() {
     :id="row.id"
     :get-options-func="getOptionsFunc"
     :get-value-func="getValueFunc"
-    :submit-func="updateUserRoleByBatch"
+    :submit-func="batchUpdateUserRole"
   />
 </template>
