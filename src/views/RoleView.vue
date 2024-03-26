@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { listRoleVOs, removeRole } from '@/api/role'
+import RoleAdd from '@/components/curd/RoleAdd.vue'
 import RoleEdit from '@/components/curd/RoleEdit.vue'
 import RoleMenuEdit from '@/components/curd/RoleMenuEdit.vue'
 import RolePermissionEdit from '@/components/curd/RolePermissionEdit.vue'
-import type { RowActions } from '@/components/data-table/types'
+import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { RoleVO } from '@/types/api/vo'
 import { type DataTableColumns } from 'naive-ui'
 
@@ -41,8 +42,20 @@ const rowActions: RowActions<RoleVO> = {
     func: (row) => removeRole(row.id)
   }
 }
+const topActions: TopActions = {
+  add: {
+    title: '新增',
+    type: 'primary',
+    component: RoleAdd
+  }
+}
 </script>
 
 <template>
-  <DataTable :columns="columns" :func="listRoleVOs" :row-actions="rowActions" />
+  <DataTable
+    :columns="columns"
+    :func="listRoleVOs"
+    :row-actions="rowActions"
+    :top-actions="topActions"
+  />
 </template>
