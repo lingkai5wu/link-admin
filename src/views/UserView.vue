@@ -18,7 +18,10 @@ const columns: DataTableColumns<UserVO> = [
     key: 'status',
     render(row) {
       return enum2Tag(userStatusEnumConfig, row.status)
-    }
+    },
+    filter: true,
+    filterMultiple: false,
+    filterOptions: userStatusEnumConfig
   },
   {
     title: '昵称',
@@ -33,7 +36,10 @@ const columns: DataTableColumns<UserVO> = [
     key: 'sex',
     render(row) {
       return enum2Tag(userSexEnumConfig, row.sex)
-    }
+    },
+    filter: true,
+    filterMultiple: false,
+    filterOptions: userSexEnumConfig
   },
   {
     title: '注册日期',

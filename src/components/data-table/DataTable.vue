@@ -14,7 +14,7 @@ import type { DataTableColumns, PaginationProps } from 'naive-ui'
 import type { Component } from 'vue'
 
 const props = defineProps<{
-  func: (pageDTO?: PageDTO) => Promise<RowDataWithId[] | PageVO<RowDataWithId>>
+  func: (pageDTO?: PageDTO, query?: object) => Promise<RowDataWithId[] | PageVO<RowDataWithId>>
   columns: DataTableColumns<any>
   rowActions?: RowActions<any>
   topActions?: TopActions
@@ -38,11 +38,11 @@ const component = ref<Component>()
 const componentKey = ref<string>()
 const componentProps = ref<ActionComponentProps>()
 
-async function getTableData() {
+async function getTableData(query?: object) {
   loading.value = true
   let data
   try {
-    data = await props.func(pageDTO.value)
+    data = await props.func(pageDTO.value, query)
   } finally {
     loading.value = false
   }
@@ -77,8 +77,8 @@ function setActionColumn() {
   })
 }
 
-function handlePageChange(current: number) {
-  pagination.value!.page = current
+function handlePageChange(page: number) {
+  pagination.value!.page = page
   getTableData()
 }
 
@@ -123,6 +123,7 @@ function handleActionSubmit(isNeedRefresh: boolean) {
       :scroll-x="640"
       remote
       v-bind="dataTableProps"
+      @update:filters="getTableData"
       @update:page="handlePageChange"
     />
   </n-flex>
