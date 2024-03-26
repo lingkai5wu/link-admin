@@ -56,7 +56,7 @@ export interface UserVO {
   readonly realname: string | null
   readonly avatar: string | null
   readonly sex: UserSexEnum | null
-  readonly createTime: Date
+  readonly createTime: string
 }
 
 export interface RuntimeDataVO {

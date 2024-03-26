@@ -6,7 +6,7 @@ import UserRoleEdit from '@/components/curd/UserRoleEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { UserVO } from '@/types/api/vo'
 import { enum2Tag, userSexEnumConfig, userStatusEnumConfig } from '@/utils/enum'
-import { type DataTableColumns } from 'naive-ui'
+import { type DataTableColumns, NTime } from 'naive-ui'
 
 const columns: DataTableColumns<UserVO> = [
   {
@@ -36,8 +36,11 @@ const columns: DataTableColumns<UserVO> = [
     }
   },
   {
-    title: '创建时间',
-    key: 'createTime'
+    title: '注册日期',
+    key: 'createTime',
+    render(row) {
+      return h(NTime, { time: new Date(row.createTime), type: 'date' })
+    }
   }
 ]
 const rowActions: RowActions<UserVO> = {
