@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { listUserVOsWithPage, removeUser } from '@/api/user'
+import UserAdd from '@/components/curd/UserAdd.vue'
 import UserEdit from '@/components/curd/UserEdit.vue'
 import UserRoleEdit from '@/components/curd/UserRoleEdit.vue'
-import type { RowActions } from '@/components/data-table/types'
+import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { UserVO } from '@/types/api/vo'
 import { enum2Tag, userSexEnumConfig, userStatusEnumConfig } from '@/utils/enum'
 import { type DataTableColumns } from 'naive-ui'
@@ -55,8 +56,20 @@ const rowActions: RowActions<UserVO> = {
     func: (row) => removeUser(row.id)
   }
 }
+const topActions: TopActions = {
+  add: {
+    title: '新增',
+    type: 'primary',
+    component: UserAdd
+  }
+}
 </script>
 
 <template>
-  <DataTable :columns="columns" :func="listUserVOsWithPage" :row-actions="rowActions" />
+  <DataTable
+    :columns="columns"
+    :func="listUserVOsWithPage"
+    :row-actions="rowActions"
+    :top-actions="topActions"
+  />
 </template>
