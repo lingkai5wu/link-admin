@@ -60,8 +60,13 @@ const rowActions: RowActions<MenuVOTree> = {
   }
 }
 const topActions: TopActions = {
+  add: {
+    title: '新增',
+    type: 'primary',
+    component: MenuAdd
+  },
   sort: {
-    title: '排序',
+    title: '修改顺序',
     type: 'info',
     component: MenuSort
   }

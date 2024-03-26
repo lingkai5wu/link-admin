@@ -53,7 +53,7 @@ async function handleActionTrigger(action: Action, actionKey: string) {
     <ActionButton
       v-for="(action, key) in actions"
       :key
-      :action="action"
+      :action
       :is-group-loading="isLoading"
       :row
       @action-trigger="handleActionTrigger(action, key as string)"

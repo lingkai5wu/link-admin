@@ -107,10 +107,10 @@ function handleActionSubmit(isNeedRefresh: boolean) {
 
 <template>
   <n-flex vertical>
-    <slot />
     <ActionButtonGroup
       v-if="topActions"
       :actions="topActions"
+      :flex-props="{}"
       @action-trigger="handleActionTrigger"
       @action-submit="handleActionSubmit"
     />

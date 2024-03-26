@@ -5,11 +5,11 @@ import type { MenuSaveDTO } from '@/types/api/query'
 import type { MenuVOTree } from '@/types/menu'
 
 const props = defineProps<{
-  row: MenuVOTree
+  row?: MenuVOTree
 }>()
 
 const formData = ref<MenuSaveDTO>({
-  pid: props.row.id
+  pid: props.row?.id || 0
 })
 </script>
 
