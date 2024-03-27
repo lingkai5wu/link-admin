@@ -53,15 +53,18 @@ const rowActions: RowActions<UserVO> = {
   edit: {
     title: '修改',
     type: 'warning',
+    permission: 'user:update',
     component: UserEdit
   },
   roleEdit: {
     title: '角色',
+    permission: ['user:update', 'role:update'],
     component: UserRoleEdit
   },
   delete: {
     title: '删除',
     type: 'error',
+    permission: 'user:remove',
     func: (row) => removeUser(row.id)
   }
 }
@@ -69,6 +72,7 @@ const topActions: TopActions = {
   add: {
     title: '新增',
     type: 'primary',
+    permission: 'user:save',
     component: UserAdd
   }
 }
@@ -76,7 +80,7 @@ const topActions: TopActions = {
 
 <template>
   <DataTable
-    :columns
+    :columns="columns"
     :func="listUserVOsWithPage"
     :row-actions="rowActions"
     :top-actions="topActions"

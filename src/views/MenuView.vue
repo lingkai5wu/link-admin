@@ -40,6 +40,7 @@ const rowActions: RowActions<MenuVOTree> = {
   add: {
     title: '新增',
     type: 'primary',
+    permission: 'menu:save',
     disabled(row) {
       return row.type !== 'PARENT'
     },
@@ -48,11 +49,13 @@ const rowActions: RowActions<MenuVOTree> = {
   edit: {
     title: '修改',
     type: 'warning',
+    permission: 'menu:update',
     component: MenuEdit
   },
   delete: {
     title: '删除',
     type: 'error',
+    permission: 'menu:remove',
     disabled(row) {
       return row.children !== undefined
     },
@@ -63,11 +66,13 @@ const topActions: TopActions = {
   add: {
     title: '新增',
     type: 'primary',
+    permission: 'menu:save',
     component: MenuAdd
   },
   sort: {
     title: '修改顺序',
     type: 'warning',
+    permission: 'menu:update',
     component: MenuSort
   }
 }
@@ -75,7 +80,7 @@ const topActions: TopActions = {
 
 <template>
   <DataTable
-    :columns
+    :columns="columns"
     :func="async () => generateMenuVOTrees(await listMenuVOs())"
     :row-actions="rowActions"
     :top-actions="topActions"

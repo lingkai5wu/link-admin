@@ -10,6 +10,7 @@ import type {
 } from '@/components/data-table/types'
 import type { PageDTO } from '@/types/api/query'
 import type { PageVO } from '@/types/api/vo'
+import { getAuthorizedActions } from '@/utils/permission'
 import type { DataTableColumns, PaginationProps } from 'naive-ui'
 import type { Component } from 'vue'
 
@@ -59,7 +60,10 @@ async function getTableData(query?: object) {
 }
 
 function setActionColumn() {
-  const actions = props.rowActions
+  if (!props.rowActions) {
+    return
+  }
+  const actions = getAuthorizedActions(props.rowActions)
   if (!actions || Object.keys(actions).length === 0) {
     return
   }
@@ -108,8 +112,7 @@ function handleActionSubmit(isNeedRefresh: boolean) {
 <template>
   <n-flex vertical>
     <ActionButtonGroup
-      v-if="topActions"
-      :actions="topActions"
+      :actions="getAuthorizedActions(topActions)"
       :flex-props="{}"
       @action-trigger="handleActionTrigger"
       @action-submit="handleActionSubmit"

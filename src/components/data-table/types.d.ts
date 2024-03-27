@@ -18,6 +18,7 @@ type ActionComponentProps<T = Data> = {
 interface RowActionWithComponent<T = Data> {
   title: string
   type?: Type
+  permission: string | string[] | null
   disabled?: ((row: T) => boolean) | boolean
   component: Component<ActionComponentProps<T>>
 }

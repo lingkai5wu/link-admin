@@ -12,9 +12,9 @@ async function init() {
   pinia.use(piniaPluginPersistedstate)
   app.use(pinia)
   app.use(router)
-  app.mount('#app')
   initNaiveUIDiscreteApi()
   await initRuntimeData()
+  app.mount('#app')
 }
 
 init().then()

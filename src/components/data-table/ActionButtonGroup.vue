@@ -10,7 +10,7 @@ import type { FlexProps } from 'naive-ui'
 import { NButtonGroup, NFlex } from 'naive-ui'
 
 const props = defineProps<{
-  actions: Actions
+  actions?: Actions
   row?: RowDataWithId
   flexProps?: FlexProps
 }>()

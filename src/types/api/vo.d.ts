@@ -62,6 +62,7 @@ export interface UserVO {
 export interface RuntimeDataVO {
   readonly userVO: UserVO
   readonly menuVOs: MenuVO[]
+  readonly permissionCodes: string[]
 }
 
 export interface DisableServiceExceptionVO {

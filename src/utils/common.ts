@@ -2,6 +2,7 @@ import { getRuntimeDataVO } from '@/api/aggregate'
 import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
 import { useMenuStore } from '@/stores/menu'
+import { usePermissionStore } from '@/stores/permission'
 import { useUserStore } from '@/stores/user'
 import type { BatchUpdateManyToManyDTO } from '@/types/api/query'
 
@@ -19,6 +20,7 @@ export async function initRuntimeData() {
   const runtimeDataVO = await getRuntimeDataVO()
   useUserStore().userVO = runtimeDataVO.userVO
   useMenuStore().initMenu(runtimeDataVO.menuVOs)
+  usePermissionStore().permissionCodes = runtimeDataVO.permissionCodes
 }
 
 export function pick<T extends Data, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {

@@ -26,19 +26,23 @@ const rowActions: RowActions<RoleVO> = {
   edit: {
     title: '修改',
     type: 'warning',
+    permission: 'role:update',
     component: RoleEdit
   },
   permissionEdit: {
     title: '权限',
+    permission: ['role:update', 'permission:update'],
     component: RolePermissionEdit
   },
   menuEdit: {
     title: '菜单',
+    permission: ['role:update', 'menu:update'],
     component: RoleMenuEdit
   },
   delete: {
     title: '删除',
     type: 'error',
+    permission: 'role:remove',
     func: (row) => removeRole(row.id)
   }
 }
@@ -46,11 +50,17 @@ const topActions: TopActions = {
   add: {
     title: '新增',
     type: 'primary',
+    permission: 'role:save',
     component: RoleAdd
   }
 }
 </script>
 
 <template>
-  <DataTable :columns :func="listRoleVOs" :row-actions="rowActions" :top-actions="topActions" />
+  <DataTable
+    :columns="columns"
+    :func="listRoleVOs"
+    :row-actions="rowActions"
+    :top-actions="topActions"
+  />
 </template>
