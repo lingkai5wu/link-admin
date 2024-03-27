@@ -11,7 +11,7 @@ import type {
 import type { PageDTO } from '@/types/api/query'
 import type { PageVO } from '@/types/api/vo'
 import { getAuthorizedActions } from '@/utils/permission'
-import type { DataTableColumns, PaginationProps } from 'naive-ui'
+import type { DataTableColumns } from 'naive-ui'
 import type { Component } from 'vue'
 
 const props = defineProps<{
@@ -24,7 +24,11 @@ const props = defineProps<{
 
 const loading = ref(false)
 const tableData = ref<RowDataWithId[]>()
-const pagination = ref<PaginationProps>()
+const pagination = ref({
+  page: 1,
+  pageSize: 10,
+  itemCount: 0
+})
 const pageDTO = computed<PageDTO>(() => ({
   current: pagination.value?.page,
   size: pagination.value?.pageSize
@@ -82,8 +86,8 @@ function setActionColumn() {
 }
 
 function handlePageChange(page: number) {
-  pagination.value!.page = page
-  getTableData()
+  pagination.value.page = page
+  pagination.value.itemCount > 0 && getTableData()
 }
 
 function handleActionTrigger(
@@ -122,9 +126,9 @@ function handleActionSubmit(isNeedRefresh: boolean) {
       :data="tableData"
       :loading
       :pagination
+      :remote="pagination.itemCount > 0"
       :row-key="(data: Data) => data.id"
       :scroll-x="640"
-      remote
       v-bind="dataTableProps"
       @update:filters="getTableData"
       @update:page="handlePageChange"

@@ -1,5 +1,5 @@
-import type { PageDTO, PermissionUpdateDTO } from '@/types/api/query'
-import type { PageVO, PermissionVO } from '@/types/api/vo'
+import type { PermissionUpdateDTO } from '@/types/api/query'
+import type { PermissionVO } from '@/types/api/vo'
 import { comparePermissionVO } from '@/utils/compare'
 import request from '@/utils/request'
 
@@ -17,10 +17,6 @@ export async function listPermissionVOs() {
   const permissionVOs: PermissionVO[] = await request.get('/permissions')
   permissionVOs.sort(comparePermissionVO)
   return permissionVOs
-}
-
-export async function listPermissionVOsWithPage(pageDTO?: PageDTO): Promise<PageVO<PermissionVO>> {
-  return await request.get('/permissions/page', { params: pageDTO })
 }
 
 export async function syncPermission(): Promise<null> {

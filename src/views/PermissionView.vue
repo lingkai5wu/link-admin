@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { listPermissionVOsWithPage, syncPermission } from '@/api/permission'
+import { listPermissionVOs, syncPermission } from '@/api/permission'
 import PermissionEdit from '@/components/curd/PermissionEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { PermissionVO } from '@/types/api/vo'
@@ -36,7 +36,7 @@ const topActions: TopActions = {
 <template>
   <DataTable
     :columns="columns"
-    :func="listPermissionVOsWithPage"
+    :func="listPermissionVOs"
     :row-actions="rowActions"
     :top-actions="topActions"
   />
