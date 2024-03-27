@@ -14,10 +14,10 @@ const formData = ref<UserUpdateDTO>(
 </script>
 
 <template>
-  <n-form-item label="手机号">
-    <n-input :value="row.phone" disabled />
-  </n-form-item>
   <DataTableForm v-model="formData" :func="updateUser">
+    <n-form-item label="手机号">
+      <n-input :value="row.phone" disabled />
+    </n-form-item>
     <UserBase v-model="formData" />
   </DataTableForm>
 </template>
