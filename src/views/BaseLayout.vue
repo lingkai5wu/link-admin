@@ -3,7 +3,7 @@ import TheHeader from '@/components/layout/TheHeader.vue'
 import TheSider from '@/components/layout/TheSider.vue'
 </script>
 <template>
-  <n-layout has-sider>
+  <n-layout has-sider style="min-height: 100vh">
     <n-layout-sider class="sider">
       <TheSider />
     </n-layout-sider>
