@@ -16,7 +16,7 @@ import type { Component } from 'vue'
 const props = defineProps<{
   func: (pageDTO?: PageDTO, query?: object) => Promise<RowDataWithId[] | PageVO<RowDataWithId>>
   columns: DataTableColumns<any>
-  rowActions?: RowActions<any>
+  rowActions?: RowActions
   topActions?: TopActions
   dataTableProps?: DataTablePropsEx
 }>()

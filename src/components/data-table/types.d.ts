@@ -27,9 +27,9 @@ interface RowActionWithoutComponent<T = RowDataWithId> extends RowActionWithComp
   func: RowActionFunc<T>
 }
 
-type RowAction<T = Data> = RowActionWithComponent<T> | RowActionWithoutComponent<T>
+type RowAction<T = any> = RowActionWithComponent<T> | RowActionWithoutComponent<T>
 
-type RowActions<T = Data> = Record<string, RowAction<T>>
+type RowActions<T = any> = Record<string, RowAction<T>>
 
 interface TopActionWithComponent extends RowActionWithComponent {
   disabled?: boolean
