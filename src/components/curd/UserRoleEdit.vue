@@ -23,6 +23,11 @@ async function getValueFunc() {
 </script>
 
 <template>
+  <n-p>
+    分配
+    <n-text type="info">{{ row.phone }}</n-text>
+    角色
+  </n-p>
   <DataTableTransfer
     :id="row.id"
     :get-options-func="getOptionsFunc"

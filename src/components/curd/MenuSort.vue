@@ -140,7 +140,11 @@ async function handleClick() {
 </script>
 
 <template>
-  <n-p>通过拖放来修改父菜单和菜单顺序</n-p>
+  <n-p>
+    通过
+    <n-text type="info">拖放操作</n-text>
+    修改菜单的父菜单和展示顺序
+  </n-p>
   <n-flex :size="20" vertical>
     <n-spin :show="isLoading">
       <n-tree
