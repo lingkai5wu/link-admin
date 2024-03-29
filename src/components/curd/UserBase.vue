@@ -30,7 +30,7 @@ const formData = defineModel<UserUpdateDTO>({ required: true })
     <n-input v-model:value="formData.realname" />
   </n-form-item>
   <n-form-item label="头像" path="avatar">
-    <n-upload :max="1" list-type="image-card">点击上传</n-upload>
+    <SingleImageUpload v-model="formData.avatar" />
   </n-form-item>
   <n-form-item label="性别" path="sex">
     <n-select v-model:value="formData.sex" :options="userSexEnumConfig" />
