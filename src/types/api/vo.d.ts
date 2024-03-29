@@ -25,6 +25,7 @@ export interface MenuVO {
 export interface OssDirectPostObjectInfoVO {
   readonly host: string
   readonly expire: number
+  readonly maxSize: number
   readonly ossAccessKeyId: string
   readonly policy: string
   readonly signature: string
