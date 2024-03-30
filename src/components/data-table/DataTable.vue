@@ -5,7 +5,6 @@ import type {
   ActionWithComponent,
   DataTablePropsEx,
   RowActions,
-  RowDataWithId,
   TopActions
 } from '@/components/data-table/types'
 import type { PageDTO } from '@/types/api/query'
@@ -15,7 +14,7 @@ import type { DataTableColumns } from 'naive-ui'
 import type { Component } from 'vue'
 
 const props = defineProps<{
-  func: (pageDTO?: PageDTO, query?: object) => Promise<RowDataWithId[] | PageVO<RowDataWithId>>
+  func: (pageDTO?: PageDTO, query?: object) => Promise<DataWithId[] | PageVO<DataWithId>>
   columns: DataTableColumns<any>
   rowActions?: RowActions
   topActions?: TopActions
@@ -23,7 +22,7 @@ const props = defineProps<{
 }>()
 
 const loading = ref(false)
-const tableData = ref<RowDataWithId[]>()
+const tableData = ref<DataWithId[]>()
 const pagination = ref({
   page: 1,
   pageSize: 10,
@@ -91,7 +90,7 @@ function handlePageChange(page: number) {
 }
 
 function handleActionTrigger(
-  row: RowDataWithId | undefined,
+  row: DataWithId | undefined,
   action: ActionWithComponent,
   actionKey: string
 ) {

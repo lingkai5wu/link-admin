@@ -1,5 +1,4 @@
 import { getRuntimeDataVO } from '@/api/aggregate'
-import type { RowDataWithId } from '@/components/data-table/types'
 import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
 import { useMenuStore } from '@/stores/menu'
@@ -45,7 +44,7 @@ export function getDiff<T extends Data>(oldData: T, data: T) {
   return result
 }
 
-export function generateUpdateDTO<T extends Data>(oldData: T, data: T): RowDataWithId | undefined {
+export function generateUpdateDTO<T extends Data>(oldData: T, data: T): DataWithId | undefined {
   if ('id' in oldData) {
     if (oldData.id !== data.id) {
       throw new Error('ID should not be changed.')

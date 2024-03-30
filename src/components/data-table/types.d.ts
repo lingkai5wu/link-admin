@@ -6,8 +6,6 @@ interface DataTablePropsEx extends DataTableProps {
   columns: never
 }
 
-type RowDataWithId = Data & { id: number }
-
 type RowActionFunc<T = Data> = (row: T) => Promise<void | null>
 type TopActionFunc = () => Promise<void | null>
 
@@ -23,7 +21,7 @@ interface RowActionWithComponent<T = Data> {
   component: Component<ActionComponentProps<T>>
 }
 
-interface RowActionWithoutComponent<T = RowDataWithId> extends RowActionWithComponent<T> {
+interface RowActionWithoutComponent<T = DataWithId> extends RowActionWithComponent<T> {
   component?: never
   func: RowActionFunc<T>
 }

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { Action, RowDataWithId } from '@/components/data-table/types'
+import type { Action } from '@/components/data-table/types'
 
 const props = defineProps<{
   action: Action
-  row?: RowDataWithId
+  row?: DataWithId
   isGroupLoading: boolean
 }>()
 const emits = defineEmits<{
