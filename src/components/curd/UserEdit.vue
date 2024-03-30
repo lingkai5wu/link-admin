@@ -2,7 +2,7 @@
 import { updateUser } from '@/api/user'
 import type { UserUpdateDTO } from '@/types/api/query'
 import type { UserVO } from '@/types/api/vo'
-import { pick } from '@/utils/common'
+import { pick } from '@/utils/data'
 
 const props = defineProps<{
   row: UserVO

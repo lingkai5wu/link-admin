@@ -3,7 +3,7 @@ import { listMenuVOs } from '@/api/menu'
 import { batchUpdateRoleMenu, listRoleMenuVOs } from '@/api/role'
 import type LoadingButton from '@/components/LoadingButton.vue'
 import type { RoleVO } from '@/types/api/vo'
-import { generateBatchUpdateManyToManyDTO } from '@/utils/common'
+import { generateBatchUpdateManyToManyDTO } from '@/utils/data'
 import { generateTreeOptions } from '@/utils/menu'
 import type { TreeOptions } from 'naive-ui/es/tree/src/interface'
 

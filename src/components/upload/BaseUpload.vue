@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useOssStore } from '@/stores/oss'
 import type { OssDirectPostObjectInfoVO } from '@/types/api/vo'
-import { pick } from '@/utils/common'
+import { pick } from '@/utils/data'
 import { generateOssObjectName } from '@/utils/upload'
 import { NUpload, type UploadFileInfo } from 'naive-ui'
 

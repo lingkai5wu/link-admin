@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type LoadingButton from '@/components/LoadingButton.vue'
 import type { BatchUpdateManyToManyDTO } from '@/types/api/query'
-import { generateBatchUpdateManyToManyDTO } from '@/utils/common'
+import { generateBatchUpdateManyToManyDTO } from '@/utils/data'
 import { type TransferOption } from 'naive-ui'
 
 const props = defineProps<{

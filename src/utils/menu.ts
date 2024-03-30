@@ -1,7 +1,7 @@
 import router from '@/router'
 import type { MenuVO } from '@/types/api/vo'
 import type { MenuTreeOption, MenuVOTree } from '@/types/menu'
-import { pick } from '@/utils/common'
+import { pick } from '@/utils/data'
 
 export function generateMenuVOTrees(menuVOs: MenuVO[]) {
   const routes = router.getRoutes()

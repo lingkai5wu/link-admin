@@ -2,7 +2,7 @@
 import { updatePermission } from '@/api/permission'
 import type { PermissionUpdateDTO } from '@/types/api/query'
 import type { PermissionVO } from '@/types/api/vo'
-import { pick } from '@/utils/common'
+import { pick } from '@/utils/data'
 
 const props = defineProps<{
   row: PermissionVO

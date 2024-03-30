@@ -2,7 +2,7 @@
 import { updateRole } from '@/api/role'
 import type { RoleUpdateDTO } from '@/types/api/query'
 import type { RoleVO } from '@/types/api/vo'
-import { pick } from '@/utils/common'
+import { pick } from '@/utils/data'
 
 const props = defineProps<{
   row: RoleVO

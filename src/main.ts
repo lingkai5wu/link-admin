@@ -1,4 +1,4 @@
-import { initRuntimeData } from '@/utils/common'
+import { initRuntimeData } from '@/utils/data'
 import { initNaiveUIDiscreteApi } from '@/utils/naive-ui'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
