@@ -1,4 +1,5 @@
 import { getRuntimeDataVO } from '@/api/aggregate'
+import type { RowDataWithId } from '@/components/data-table/types'
 import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
 import { useMenuStore } from '@/stores/menu'
@@ -28,6 +29,32 @@ export function pick<T extends Data, K extends keyof T>(obj: T, keys: K[]): Pick
     }
   })
   return result
+}
+
+export function getDiff<T extends Data>(oldData: T, data: T) {
+  const result: Partial<T> = {}
+  for (const key in data) {
+    if (!Object.prototype.hasOwnProperty.call(oldData, key)) {
+      result[key] = data[key]
+      continue
+    }
+    if (JSON.stringify(oldData[key]) !== JSON.stringify(data[key])) {
+      result[key] = data[key]
+    }
+  }
+  return result
+}
+
+export function generateUpdateDTO<T extends Data>(oldData: T, data: T): RowDataWithId | undefined {
+  if ('id' in oldData) {
+    if (oldData.id !== data.id) {
+      throw new Error('ID should not be changed.')
+    }
+    return {
+      id: oldData.id as number,
+      ...getDiff(oldData, data)
+    }
+  }
 }
 
 export function generateBatchUpdateManyToManyDTO<T>(oldValue: T[], value: T[]) {

@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import type LoadingButton from '@/components/LoadingButton.vue'
+import { clone } from '@/utils/common'
+import { generateUpdateDTO } from '@/utils/data'
 import { NForm } from 'naive-ui'
 
 const props = defineProps<{
@@ -10,14 +12,19 @@ const emits = defineEmits<{
   actionFuncExec: [boolean]
 }>()
 const formData = defineModel<Data>({ required: true })
+const oldFormData = clone(formData.value)
 const formRef = ref<InstanceType<typeof NForm> | null>(null)
 const loadingButtonRef = ref<InstanceType<typeof LoadingButton> | null>(null)
 
 async function handleClick() {
   await formRef.value?.validate()
-  emits('actionFuncExec', true)
+  let updateDTO = generateUpdateDTO(oldFormData, formData.value)
+  if (updateDTO && Object.keys(updateDTO).length < 2) {
+    emits('actionSubmit', false)
+    return
+  }
   try {
-    await props.func!(formData.value)
+    await props.func!(updateDTO || formData.value)
   } finally {
     emits('actionFuncExec', false)
   }
