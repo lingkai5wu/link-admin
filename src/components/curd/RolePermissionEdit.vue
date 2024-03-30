@@ -33,5 +33,6 @@ async function getValueFunc() {
     :get-options-func="getOptionsFunc"
     :get-value-func="getValueFunc"
     :submit-func="batchUpdateRolePermission"
+    v-bind="$attrs"
   />
 </template>
