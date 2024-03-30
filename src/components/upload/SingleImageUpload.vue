@@ -4,16 +4,25 @@ import type { UploadFileInfo } from 'naive-ui'
 
 const objectName = defineModel<string | null>()
 const fileList = ref<UploadFileInfo[]>()
-if (objectName.value && objectName.value.length > 0) {
-  generateOssGetObjectUrl(objectName.value).then((url) => {
-    fileList.value = [
-      {
-        id: objectName.value!.split('-')[0],
-        name: objectName.value!,
-        status: 'finished',
-        url
-      }
-    ]
+initFileList()
+
+function initFileList() {
+  const name = objectName.value
+  if (!name || name.length === 0) {
+    return
+  }
+  const id = name.split('-')[0]
+  fileList.value = [
+    {
+      id,
+      name,
+      status: 'finished'
+    }
+  ]
+  generateOssGetObjectUrl(name).then((url) => {
+    if (fileList.value![0] && fileList.value![0].id === id) {
+      fileList.value![0].url = url
+    }
   })
 }
 
