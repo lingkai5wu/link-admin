@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { UserUpdateDTO } from '@/types/api/query'
 import { userSexEnumConfig, userStatusEnumConfig } from '@/utils/enum'
+import { NFormItem } from 'naive-ui'
 
 const formData = defineModel<UserUpdateDTO>({ required: true })
 </script>
@@ -29,9 +30,7 @@ const formData = defineModel<UserUpdateDTO>({ required: true })
   <n-form-item label="姓名" path="realname">
     <n-input v-model:value="formData.realname" />
   </n-form-item>
-  <n-form-item label="头像" path="avatar">
-    <SingleImageUpload v-model="formData.avatar" />
-  </n-form-item>
+  <SingleImageUploadFormItem v-model="formData.avatar" label="头像" path="avatar" />
   <n-form-item label="性别" path="sex">
     <n-select v-model:value="formData.sex" :options="userSexEnumConfig" />
   </n-form-item>

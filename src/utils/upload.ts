@@ -1,5 +1,6 @@
 import { useUserStore } from '@/stores/user'
 import type { UploadFileInfo } from 'naive-ui'
+import type { FormItemRule } from 'naive-ui/es/form/src/interface'
 
 function getExtname(url: string) {
   const split = url.split('/')
@@ -12,3 +13,17 @@ export function generateOssObjectName(file: UploadFileInfo) {
   const userStore = useUserStore()
   return [file.id, userStore.userVO?.id, Date.now()].join('-') + getExtname(file.name)
 }
+
+export const createFormItemRule = (fileList: UploadFileInfo[]): FormItemRule => ({
+  validator() {
+    if (!fileList || fileList.length === 0) {
+      return
+    }
+    if (fileList.some((file) => file.status === 'uploading')) {
+      return new Error('请等待文件上传完成')
+    }
+    if (fileList.some((file) => !(file.status === 'finished' || file.status === 'removed'))) {
+      return new Error('存在未上传的文件')
+    }
+  }
+})

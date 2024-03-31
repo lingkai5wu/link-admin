@@ -17,7 +17,11 @@ const formRef = ref<InstanceType<typeof NForm> | null>(null)
 const loadingButtonRef = ref<InstanceType<typeof LoadingButton> | null>(null)
 
 async function handleClick() {
-  await formRef.value?.validate()
+  try {
+    await formRef.value?.validate()
+  } catch (e) {
+    return
+  }
   let updateDTO = generateUpdateDTO(oldFormData, formData.value)
   if (updateDTO && Object.keys(updateDTO).length < 2) {
     emits('actionSubmit', false)
