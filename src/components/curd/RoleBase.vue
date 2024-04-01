@@ -15,7 +15,14 @@ const formData = defineModel<RoleUpdateDTO>({ required: true })
   >
     <n-input v-model:value="formData.code" />
   </n-form-item>
-  <n-form-item label="角色名" path="name">
+  <n-form-item
+    :rule="{
+      required: true,
+      trigger: ['blur']
+    }"
+    label="角色名"
+    path="name"
+  >
     <n-input v-model:value="formData.name" />
   </n-form-item>
   <n-form-item label="描述" path="description">
