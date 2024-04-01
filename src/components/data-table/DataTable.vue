@@ -10,6 +10,7 @@ import type {
 import type { PageDTO } from '@/types/api/query'
 import type { PageVO } from '@/types/api/vo'
 import { getAuthorizedActions } from '@/utils/permission'
+import { RefreshOutline } from '@vicons/ionicons5'
 import type { DataTableColumns } from 'naive-ui'
 import type { Component } from 'vue'
 
@@ -114,12 +115,19 @@ function handleActionSubmit(isNeedRefresh: boolean) {
 
 <template>
   <n-flex vertical>
-    <ActionButtonGroup
-      :actions="getAuthorizedActions(topActions)"
-      :flex-props="{}"
-      @action-trigger="handleActionTrigger"
-      @action-submit="handleActionSubmit"
-    />
+    <n-flex justify="space-between">
+      <ActionButtonGroup
+        :actions="getAuthorizedActions(topActions)"
+        :flex-props="{}"
+        @action-trigger="handleActionTrigger"
+        @action-submit="handleActionSubmit"
+      />
+      <LoadingButton :func="getTableData" secondary>
+        <template #icon>
+          <RefreshOutline />
+        </template>
+      </LoadingButton>
+    </n-flex>
     <n-data-table
       :columns
       :data="tableData"
