@@ -43,6 +43,7 @@ const rowActions: RowActions<RoleVO> = {
     title: '删除',
     type: 'error',
     permission: 'role:remove',
+    needTwoStep: true,
     func: (row) => removeRole(row.id)
   }
 }

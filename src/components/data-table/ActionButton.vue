@@ -15,7 +15,7 @@ const isLoading = ref(false)
 let changeLoadingTimeout: number
 
 const buttonText = computed(() => {
-  if (isWaitConfirm.value) {
+  if (props.action.needTwoStep && isWaitConfirm.value) {
     return '确认'
   }
   return props.action.title
@@ -38,7 +38,7 @@ watchEffect(() => {
 })
 
 function handleActionPositive() {
-  if (!isWaitConfirm.value) {
+  if (props.action.needTwoStep && !isWaitConfirm.value) {
     isWaitConfirm.value = true
     return
   }
@@ -58,8 +58,8 @@ function handleActionNegative() {
   <n-button
     v-if="action.component"
     :disabled="isDisabled"
+    :secondary="!(props.action.needTwoStep && isWaitConfirm)"
     :type="action.type"
-    secondary
     @click="emits('actionTrigger')"
   >
     {{ buttonText }}
@@ -68,7 +68,7 @@ function handleActionNegative() {
     v-else
     :disabled="isDisabled"
     :loading="isLoading"
-    :secondary="!isWaitConfirm"
+    :secondary="!(props.action.needTwoStep && isWaitConfirm)"
     :type="action.type"
     @blur="handleActionNegative"
     @click="handleActionPositive"

@@ -56,6 +56,7 @@ const rowActions: RowActions<MenuVOTree> = {
     title: '删除',
     type: 'error',
     permission: 'menu:remove',
+    needTwoStep: true,
     disabled(row) {
       return row.children !== undefined
     },

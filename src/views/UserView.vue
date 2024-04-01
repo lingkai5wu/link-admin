@@ -66,6 +66,7 @@ const rowActions: RowActions<UserVO> = {
     title: '删除',
     type: 'error',
     permission: 'user:remove',
+    needTwoStep: true,
     func: (row) => removeUser(row.id)
   }
 }
