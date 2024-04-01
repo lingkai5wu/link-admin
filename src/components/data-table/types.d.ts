@@ -1,5 +1,4 @@
-import type { DataTableProps } from 'naive-ui'
-import type { Type } from 'naive-ui/es/button/src/interface'
+import type { DataTableProps, Type } from 'naive-ui'
 import type { Component } from 'vue'
 
 interface DataTablePropsEx extends DataTableProps {

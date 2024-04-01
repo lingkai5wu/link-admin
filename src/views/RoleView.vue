@@ -6,7 +6,7 @@ import RoleMenuEdit from '@/components/curd/RoleMenuEdit.vue'
 import RolePermissionEdit from '@/components/curd/RolePermissionEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { RoleVO } from '@/types/api/vo'
-import { type DataTableColumns } from 'naive-ui'
+import type { DataTableColumns } from 'naive-ui'
 
 const columns: DataTableColumns<RoleVO> = [
   {

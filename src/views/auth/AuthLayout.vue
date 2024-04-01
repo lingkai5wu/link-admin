@@ -1,5 +1,3 @@
-<script lang="ts" setup></script>
-
 <template>
   <n-layout>
     <n-flex align="center" class="container" justify="center">

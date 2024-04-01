@@ -1,6 +1,5 @@
 import { useUserStore } from '@/stores/user'
-import type { UploadFileInfo } from 'naive-ui'
-import type { FormItemRule } from 'naive-ui/es/form/src/interface'
+import type { FormItemRule, UploadFileInfo } from 'naive-ui'
 
 function getExtname(url: string) {
   const split = url.split('/')

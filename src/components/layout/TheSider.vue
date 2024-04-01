@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { logout } from '@/api/auth'
-import TheMenu from '@/components/layout/TheMenu.vue'
 import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
 import { LogOutOutline } from '@vicons/ionicons5'

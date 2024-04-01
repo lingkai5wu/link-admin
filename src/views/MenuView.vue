@@ -7,7 +7,7 @@ import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { MenuVOTree } from '@/types/menu'
 import { enum2Tag, menuTypeEnumConfig } from '@/utils/enum'
 import { generateMenuVOTrees } from '@/utils/menu'
-import { type DataTableColumns } from 'naive-ui'
+import type { DataTableColumns } from 'naive-ui'
 import { RouterLink } from 'vue-router'
 
 const columns: DataTableColumns<MenuVOTree> = [

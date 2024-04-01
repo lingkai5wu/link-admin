@@ -4,7 +4,7 @@ import type { MenuUpdateDTO } from '@/types/api/query'
 import type { MenuVOTree } from '@/types/menu'
 import { menuTypeEnumConfig } from '@/utils/enum'
 import { generateMenuVOTrees } from '@/utils/menu'
-import type { CascaderOption } from 'naive-ui/es/cascader/src/interface'
+import type { CascaderOption } from 'naive-ui'
 
 const formData = defineModel<MenuUpdateDTO>({ required: true })
 

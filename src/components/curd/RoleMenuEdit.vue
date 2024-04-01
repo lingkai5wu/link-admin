@@ -5,7 +5,7 @@ import type LoadingButton from '@/components/LoadingButton.vue'
 import type { RoleVO } from '@/types/api/vo'
 import { generateBatchUpdateManyToManyDTO } from '@/utils/data'
 import { generateTreeOptions } from '@/utils/menu'
-import type { TreeOptions } from 'naive-ui/es/tree/src/interface'
+import type { TreeOption } from 'naive-ui'
 
 const props = defineProps<{
   row: RoleVO
@@ -15,7 +15,7 @@ const emits = defineEmits<{
   actionFuncExec: [boolean]
 }>()
 
-const options = ref<TreeOptions>()
+const options = ref<TreeOption[]>()
 let oldValue: number[]
 const value = ref<number[]>([])
 const isLoading = ref(false)

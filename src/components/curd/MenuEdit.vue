@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { updateMenu } from '@/api/menu'
-import DataTableForm from '@/components/data-table/DataTableForm.vue'
 import type { MenuUpdateDTO } from '@/types/api/query'
 import type { MenuVOTree } from '@/types/menu'
 import { pick } from '@/utils/data'

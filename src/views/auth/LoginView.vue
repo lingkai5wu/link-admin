@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { otpLogin } from '@/api/auth'
-import InputSmsCode from '@/components/auth/InputSmsCode.vue'
 import LoadingButton from '@/components/LoadingButton.vue'
 import router from '@/router'
 import { useAuthStore } from '@/stores/auth'

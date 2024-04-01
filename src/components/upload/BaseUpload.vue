@@ -3,7 +3,8 @@ import { useOssStore } from '@/stores/oss'
 import type { OssDirectPostObjectInfoVO } from '@/types/api/vo'
 import { pick } from '@/utils/data'
 import { generateOssObjectName } from '@/utils/upload'
-import { NUpload, type UploadFileInfo } from 'naive-ui'
+import type { UploadFileInfo } from 'naive-ui'
+import { NUpload } from 'naive-ui'
 
 const ossDirectPostObjectInfo = ref<OssDirectPostObjectInfoVO>()
 const uploadRef = ref<InstanceType<typeof NUpload> | null>(null)

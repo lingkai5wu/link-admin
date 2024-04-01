@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import ActionButton from '@/components/data-table/ActionButton.vue'
 import type { Action, Actions, ActionWithComponent } from '@/components/data-table/types'
 import type { FlexProps } from 'naive-ui'
 import { NButtonGroup, NFlex } from 'naive-ui'

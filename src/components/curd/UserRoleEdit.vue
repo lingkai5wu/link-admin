@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { listRoleVOs } from '@/api/role'
 import { batchUpdateUserRole, listUserRoleVOs } from '@/api/user'
-import DataTableTransfer from '@/components/data-table/DataTableTransfer.vue'
 import type { UserVO } from '@/types/api/vo'
 
 const props = defineProps<{

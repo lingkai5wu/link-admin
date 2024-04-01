@@ -3,7 +3,7 @@ import { listPermissionVOs, syncPermission } from '@/api/permission'
 import PermissionEdit from '@/components/curd/PermissionEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { PermissionVO } from '@/types/api/vo'
-import { type DataTableColumns } from 'naive-ui'
+import type { DataTableColumns } from 'naive-ui'
 
 const columns: DataTableColumns<PermissionVO> = [
   {
