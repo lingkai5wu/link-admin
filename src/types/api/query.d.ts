@@ -11,7 +11,7 @@ export interface AnimalSaveDTO {
   populationId?: number | null
   breed?: string | null
   sex?: AnimalSexEnum | null
-  dateOfBirth?: string | null
+  dateOfBirth?: number | null
   color?: string | null
   feature?: string | null
   health?: string | null
@@ -28,7 +28,7 @@ export interface AnimalUpdateDTO {
   populationId?: number | null
   breed?: string | null
   sex?: AnimalSexEnum | null
-  dateOfBirth?: string | null
+  dateOfBirth?: number | null
   color?: string | null
   feature?: string | null
   health?: string | null
@@ -111,7 +111,7 @@ export interface AnimalQuery {
   populationId?: number | null
   breed?: string | null
   sex?: AnimalSexEnum | null
-  dateOfBirth?: string | null
+  dateOfBirth?: number | null
   color?: string | null
   feature?: string | null
   health?: string | null

@@ -46,7 +46,7 @@ const columns: DataTableColumns<UserVO> = [
     title: '注册日期',
     key: 'createTime',
     render(row) {
-      return h(NTime, { time: new Date(row.createTime), type: 'date' })
+      return h(NTime, { time: row.createTime, type: 'date' })
     }
   }
 ]

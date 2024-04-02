@@ -19,7 +19,7 @@ export interface AnimalBasicInfoVO {
   readonly status: AnimalStatusEnum
   readonly breed: string | null
   readonly sex: AnimalSexEnum
-  readonly dateOfBirth: string | null
+  readonly dateOfBirth: number | null
   readonly feature: string | null
   readonly avatar: string | null
   readonly banner: string | null
@@ -32,7 +32,7 @@ export interface AnimalVO {
   readonly populationId: number | null
   readonly breed: string | null
   readonly sex: AnimalSexEnum
-  readonly dateOfBirth: string | null
+  readonly dateOfBirth: number | null
   readonly color: string | null
   readonly feature: string | null
   readonly health: string | null
@@ -40,8 +40,8 @@ export interface AnimalVO {
   readonly rfid: string | null
   readonly avatar: string | null
   readonly banner: string | null
-  readonly createTime: string | null
-  readonly updateTime: string | null
+  readonly createTime: number | null
+  readonly updateTime: number | null
 }
 
 export interface MenuVO {
@@ -88,7 +88,7 @@ export interface UserVO {
   readonly realname: string | null
   readonly avatar: string | null
   readonly sex: UserSexEnum | null
-  readonly createTime: string
+  readonly createTime: number
 }
 
 export interface RuntimeDataVO {
