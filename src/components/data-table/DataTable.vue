@@ -115,18 +115,18 @@ function handleActionSubmit(isNeedRefresh: boolean) {
 
 <template>
   <n-flex vertical>
-    <n-flex justify="space-between">
+    <n-flex>
+      <LoadingButton :func="getTableData" secondary>
+        <template #icon>
+          <RefreshOutline />
+        </template>
+      </LoadingButton>
       <ActionButtonGroup
         :actions="getAuthorizedActions(topActions)"
         :flex-props="{}"
         @action-trigger="handleActionTrigger"
         @action-submit="handleActionSubmit"
       />
-      <LoadingButton :func="getTableData" secondary>
-        <template #icon>
-          <RefreshOutline />
-        </template>
-      </LoadingButton>
     </n-flex>
     <n-data-table
       :columns
