@@ -11,12 +11,24 @@ const emits = defineEmits<{
   actionSubmit: [boolean]
   actionFuncExec: [boolean]
 }>()
-const formData = defineModel<Data>({ required: true })
-const oldFormData = clone(formData.value)
+let oldFormData: Data
+const formData = defineModel<Data>()
 const formRef = ref<InstanceType<typeof NForm> | null>(null)
 const loadingButtonRef = ref<InstanceType<typeof LoadingButton> | null>(null)
 
+watch(
+  formData,
+  (newData, oldData) => {
+    oldFormData = clone(oldData || newData!)
+  },
+  { once: true, deep: true }
+)
+
 async function handleClick() {
+  if (!formData.value || !oldFormData) {
+    emits('actionSubmit', false)
+    return
+  }
   try {
     await formRef.value?.validate()
   } catch (e) {
