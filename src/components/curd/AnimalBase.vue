@@ -33,7 +33,14 @@ const formData = defineModel<AnimalUpdateDTO>({ required: true })
   <n-form-item label="品种" path="breed">
     <n-input v-model:value="formData.breed" />
   </n-form-item>
-  <n-form-item label="性别" path="sex">
+  <n-form-item
+    label="性别"
+    path="sex"
+    :rule="{
+      required: true,
+      trigger: ['blur']
+    }"
+  >
     <n-radio-group v-model:value="formData.sex" name="sex">
       <n-radio-button
         v-for="config in animalSexEnumConfig"
