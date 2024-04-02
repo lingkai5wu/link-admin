@@ -1,4 +1,10 @@
-import type { MenuTypeEnum, UserSexEnum, UserStatusEnum } from '@/types/api/vo'
+import type {
+  AnimalSexEnum,
+  AnimalStatusEnum,
+  MenuTypeEnum,
+  UserSexEnum,
+  UserStatusEnum
+} from '@/types/api/vo'
 import { NTag } from 'naive-ui'
 
 type EnumShowType = 'default' | 'error' | 'primary' | 'info' | 'success' | 'warning'
@@ -15,6 +21,51 @@ export function enum2Tag<T extends string>(config: EnumConfig<T>[], key: T | nul
     return h(NTag, { type: element.type }, () => element.label)
   }
 }
+
+export const animalSexEnumConfig: EnumConfig<AnimalSexEnum>[] = [
+  {
+    value: 'MALE',
+    label: '公',
+    type: 'info'
+  },
+  {
+    value: 'FEMALE',
+    label: '母',
+    type: 'error'
+  },
+  {
+    value: 'OTHER',
+    label: '其他性别'
+  },
+  {
+    value: 'UNKNOWN',
+    label: '未知',
+    type: 'warning'
+  }
+]
+
+export const animalStatusEnumConfig: EnumConfig<AnimalStatusEnum>[] = [
+  {
+    value: 'NORMAL',
+    label: '在读',
+    type: 'primary'
+  },
+  {
+    value: 'MISSING',
+    label: '休学',
+    type: 'warning'
+  },
+  {
+    value: 'ADOPTED',
+    label: '毕业',
+    type: 'info'
+  },
+  {
+    value: 'DECEASED',
+    label: '喵星',
+    type: 'error'
+  }
+]
 
 export const menuTypeEnumConfig: EnumConfig<MenuTypeEnum>[] = [
   {

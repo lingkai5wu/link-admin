@@ -5,6 +5,39 @@ export interface PageDTO {
   size?: number | null
 }
 
+export interface AnimalSaveDTO {
+  name?: string | null
+  status?: AnimalStatusEnum | null
+  populationId?: number | null
+  breed?: string | null
+  sex?: AnimalSexEnum | null
+  dateOfBirth?: string | null
+  color?: string | null
+  feature?: string | null
+  health?: string | null
+  weight?: number | null
+  rfid?: string | null
+  avatar?: string | null
+  banner?: string | null
+}
+
+export interface AnimalUpdateDTO {
+  id?: number | null
+  name?: string | null
+  status?: AnimalStatusEnum | null
+  populationId?: number | null
+  breed?: string | null
+  sex?: AnimalSexEnum | null
+  dateOfBirth?: string | null
+  color?: string | null
+  feature?: string | null
+  health?: string | null
+  weight?: number | null
+  rfid?: string | null
+  avatar?: string | null
+  banner?: string | null
+}
+
 export interface AuthOtpLoginDTO {
   phone?: string | null
   otp?: string | null
@@ -72,6 +105,19 @@ export interface UserUpdateDTO {
   sex?: UserSexEnum | null
 }
 
+export interface AnimalQuery {
+  name?: string | null
+  status?: AnimalStatusEnum | null
+  populationId?: number | null
+  breed?: string | null
+  sex?: AnimalSexEnum | null
+  dateOfBirth?: string | null
+  color?: string | null
+  feature?: string | null
+  health?: string | null
+  rfid?: string | null
+}
+
 export interface MenuQuery {
   type?: MenuTypeEnum | null
   label?: string | null
@@ -85,6 +131,10 @@ export interface UserQuery {
   realname?: string | null
   sex?: UserSexEnum | null
 }
+
+export type AnimalStatusEnum = 'NORMAL' | 'MISSING' | 'ADOPTED' | 'DECEASED'
+
+export type AnimalSexEnum = 'MALE' | 'FEMALE' | 'OTHER' | 'UNKNOWN'
 
 export type MenuTypeEnum = 'PARENT' | 'ROUTE' | 'LINK'
 

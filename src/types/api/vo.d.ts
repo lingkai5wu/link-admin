@@ -13,6 +13,37 @@ export interface PageVO<T> {
   readonly records: T[]
 }
 
+export interface AnimalBasicInfoVO {
+  readonly id: number
+  readonly name: string | null
+  readonly status: AnimalStatusEnum
+  readonly breed: string | null
+  readonly sex: AnimalSexEnum
+  readonly dateOfBirth: string | null
+  readonly feature: string | null
+  readonly avatar: string | null
+  readonly banner: string | null
+}
+
+export interface AnimalVO {
+  readonly id: number
+  readonly name: string | null
+  readonly status: AnimalStatusEnum
+  readonly populationId: number | null
+  readonly breed: string | null
+  readonly sex: AnimalSexEnum
+  readonly dateOfBirth: string | null
+  readonly color: string | null
+  readonly feature: string | null
+  readonly health: string | null
+  readonly weight: number | null
+  readonly rfid: string | null
+  readonly avatar: string | null
+  readonly banner: string | null
+  readonly createTime: string | null
+  readonly updateTime: string | null
+}
+
 export interface MenuVO {
   readonly id: number
   readonly pid: number
@@ -80,6 +111,10 @@ export interface ExceptionVO {
 export interface MethodArgumentNotValidExceptionVO {
   readonly invalidArgument: { [index: string]: string }
 }
+
+export type AnimalStatusEnum = 'NORMAL' | 'MISSING' | 'ADOPTED' | 'DECEASED'
+
+export type AnimalSexEnum = 'MALE' | 'FEMALE' | 'OTHER' | 'UNKNOWN'
 
 export type MenuTypeEnum = 'PARENT' | 'ROUTE' | 'LINK'
 
