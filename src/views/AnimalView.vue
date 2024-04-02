@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { listAnimalBasicDataVOsWithPage } from '@/api/animal'
+import AnimalEdit from '@/components/curd/AnimalEdit.vue'
 import type { RowActions } from '@/components/data-table/types'
-import type { AnimalBasicInfoVO, PermissionVO } from '@/types/api/vo'
+import type { AnimalBasicInfoVO } from '@/types/api/vo'
 import { animalSexEnumConfig, animalStatusEnumConfig, enum2Tag } from '@/utils/enum'
 import { type DataTableColumns, NTime } from 'naive-ui'
 
@@ -33,7 +34,7 @@ const columns: DataTableColumns<AnimalBasicInfoVO> = [
     key: 'dateOfBirth',
     render(row) {
       if (row.dateOfBirth) {
-        return h(NTime, { time: new Date(row.dateOfBirth), type: 'date' })
+        return h(NTime, { time: row.dateOfBirth, type: 'date' })
       }
     }
   },
@@ -42,7 +43,14 @@ const columns: DataTableColumns<AnimalBasicInfoVO> = [
     key: 'feature'
   }
 ]
-const rowActions: RowActions<PermissionVO> = {}
+const rowActions: RowActions<AnimalBasicInfoVO> = {
+  edit: {
+    title: '修改',
+    type: 'warning',
+    permission: 'animal:update',
+    component: AnimalEdit
+  }
+}
 </script>
 
 <template>
