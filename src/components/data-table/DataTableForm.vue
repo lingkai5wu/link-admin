@@ -23,7 +23,6 @@ watch(
     }
   },
   (newData, oldData) => {
-    console.log(newData, oldData)
     oldFormData = clone(oldData || newData!)
   },
   { once: true, deep: true }
