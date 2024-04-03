@@ -38,6 +38,19 @@ export interface AnimalUpdateDTO {
   banner?: string | null
 }
 
+export interface AreaSaveDTO {
+  label?: string | null
+  description?: string | null
+  locations?: LocationSaveDTO[] | null
+}
+
+export interface AreaUpdateDTO {
+  id?: number | null
+  label?: string | null
+  description?: string | null
+  locations?: LocationSaveOrUpdateDTO[] | null
+}
+
 export interface AuthOtpLoginDTO {
   phone?: string | null
   otp?: string | null
@@ -46,6 +59,17 @@ export interface AuthOtpLoginDTO {
 export interface BatchUpdateManyToManyDTO<T> {
   targetIdsToInsert?: T[] | null
   targetIdsToDelete?: T[] | null
+}
+
+export interface LocationSaveDTO {
+  lng?: number | null
+  lat?: number | null
+}
+
+export interface LocationSaveOrUpdateDTO {
+  id?: number | null
+  lng?: number | null
+  lat?: number | null
 }
 
 export interface MenuOrderUpdateDTO {

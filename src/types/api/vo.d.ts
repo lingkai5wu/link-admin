@@ -43,6 +43,19 @@ export interface AnimalVO {
   readonly updateTime: number | null
 }
 
+export interface AreaVO {
+  readonly id: number
+  readonly label: string
+  readonly description: string | null
+  readonly locations: LocationVO[] | null
+}
+
+export interface LocationVO {
+  readonly id: number
+  readonly lng: number
+  readonly lat: number
+}
+
 export interface MenuVO {
   readonly id: number
   readonly pid: number
