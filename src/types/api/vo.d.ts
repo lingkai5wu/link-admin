@@ -20,7 +20,6 @@ export interface AnimalBasicInfoVO {
   readonly breed: string | null
   readonly sex: AnimalSexEnum
   readonly dateOfBirth: number | null
-  readonly feature: string | null
   readonly avatar: string | null
   readonly banner: string | null
 }

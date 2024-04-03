@@ -38,10 +38,6 @@ const columns: DataTableColumns<AnimalBasicInfoVO> = [
         return h(NTime, { time: row.dateOfBirth, type: 'date' })
       }
     }
-  },
-  {
-    title: '特征',
-    key: 'feature'
   }
 ]
 const rowActions: RowActions<AnimalBasicInfoVO> = {
