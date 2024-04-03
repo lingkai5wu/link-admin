@@ -37,7 +37,7 @@ getTableData()
 const columnsWithActions = ref(props.columns)
 setActionColumn()
 const isDrawerShow = ref(false)
-const isDrawerMaskClosable = ref(true)
+const isDrawerClosable = ref(true)
 const drawerTitle = ref<string>()
 const component = ref<Component>()
 const componentKey = ref<string>()
@@ -143,16 +143,16 @@ function handleActionSubmit(isNeedRefresh: boolean) {
   </n-flex>
   <n-drawer
     v-model:show="isDrawerShow"
-    :mask-closable="isDrawerMaskClosable"
+    :mask-closable="isDrawerClosable"
     style="width: 408px; max-width: 100vw; border-radius: 0"
   >
-    <n-drawer-content :title="drawerTitle" closable>
+    <n-drawer-content :closable="isDrawerClosable" :title="drawerTitle">
       <component
         :is="component"
         :key="componentKey"
         v-bind="componentProps"
         @action-submit="handleActionSubmit"
-        @action-func-exec="(isFuncExec: boolean) => (isDrawerMaskClosable = !isFuncExec)"
+        @action-func-exec="(isFuncExec: boolean) => (isDrawerClosable = !isFuncExec)"
       />
     </n-drawer-content>
   </n-drawer>

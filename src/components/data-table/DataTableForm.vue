@@ -44,6 +44,7 @@ async function handleClick() {
     emits('actionSubmit', false)
     return
   }
+  emits('actionFuncExec', true)
   try {
     await props.func!(updateDTO || formData.value)
   } finally {
