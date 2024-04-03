@@ -17,8 +17,13 @@ const formRef = ref<InstanceType<typeof NForm> | null>(null)
 const loadingButtonRef = ref<InstanceType<typeof LoadingButton> | null>(null)
 
 watch(
-  formData,
+  () => {
+    if (formData.value) {
+      return clone(formData.value)
+    }
+  },
   (newData, oldData) => {
+    console.log(newData, oldData)
     oldFormData = clone(oldData || newData!)
   },
   { once: true, deep: true }
