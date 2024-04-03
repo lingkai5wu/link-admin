@@ -3,7 +3,7 @@ import type { AnimalUpdateDTO } from '@/types/api/query'
 import { animalSexEnumConfig, animalStatusEnumConfig } from '@/utils/enum'
 import { NFormItem } from 'naive-ui'
 
-const formData = defineModel<AnimalUpdateDTO>({ required: true })
+const formData = defineModel<AnimalUpdateDTO>({ default: {} })
 </script>
 
 <template>
@@ -34,12 +34,12 @@ const formData = defineModel<AnimalUpdateDTO>({ required: true })
     <n-input v-model:value="formData.breed" />
   </n-form-item>
   <n-form-item
-    label="性别"
-    path="sex"
     :rule="{
       required: true,
       trigger: ['blur']
     }"
+    label="性别"
+    path="sex"
   >
     <n-radio-group v-model:value="formData.sex" name="sex">
       <n-radio-button

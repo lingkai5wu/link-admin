@@ -15,6 +15,6 @@ getAnimalVO(props.row.id).then((data) => {
 
 <template>
   <DataTableForm v-model="formData" :func="updateAnimal">
-    <AnimalBase v-if="formData" v-model="formData" />
+    <AnimalBase v-model="formData" />
   </DataTableForm>
 </template>

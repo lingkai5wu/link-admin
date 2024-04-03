@@ -49,10 +49,12 @@ async function handleClick() {
 </script>
 
 <template>
-  <n-form ref="formRef" :disabled="loadingButtonRef?.isLoading" :model="formData" v-bind="$attrs">
-    <slot />
-  </n-form>
-  <LoadingButton ref="loadingButtonRef" :func="handleClick" style="width: 100%" type="primary">
-    提交
-  </LoadingButton>
+  <n-spin :show="!formData">
+    <n-form ref="formRef" :disabled="loadingButtonRef?.isLoading" :model="formData" v-bind="$attrs">
+      <slot />
+    </n-form>
+    <LoadingButton ref="loadingButtonRef" :func="handleClick" style="width: 100%" type="primary">
+      提交
+    </LoadingButton>
+  </n-spin>
 </template>
