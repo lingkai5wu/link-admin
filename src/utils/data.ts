@@ -45,14 +45,15 @@ export function getDiff<T extends Data>(oldData: T, data: T) {
 }
 
 export function generateUpdateDTO<T extends Data>(oldData: T, data: T): DataWithId | undefined {
-  if ('id' in oldData) {
-    if (oldData.id !== data.id) {
-      throw new Error('ID should not be changed.')
-    }
-    return {
-      id: oldData.id as number,
-      ...getDiff(oldData, data)
-    }
+  if (!('id' in oldData)) {
+    return
+  }
+  if (oldData.id !== data.id) {
+    throw new Error('ID should not be changed.')
+  }
+  return {
+    id: oldData.id as number,
+    ...getDiff(oldData, data)
   }
 }
 
