@@ -41,7 +41,7 @@ const isDrawerClosable = ref(true)
 const drawerTitle = ref<string>()
 const component = ref<Component>()
 const componentKey = ref<string>()
-const componentProps = ref<ActionComponentProps>()
+const componentProps = ref<ActionComponentProps | null>(null)
 
 async function getTableData(query?: object) {
   loading.value = true
@@ -97,9 +97,7 @@ function handleActionTrigger(
 ) {
   component.value = markRaw(action.component)
   componentKey.value = actionKey + row?.id
-  if (row) {
-    componentProps.value = { row }
-  }
+  componentProps.value = row ? { row } : null
   drawerTitle.value = action.title
   isDrawerShow.value = true
 }
