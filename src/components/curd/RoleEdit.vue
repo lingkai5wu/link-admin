@@ -2,13 +2,12 @@
 import { updateRole } from '@/api/role'
 import type { RoleUpdateDTO } from '@/types/api/query'
 import type { RoleVO } from '@/types/api/vo'
-import { pick } from '@/utils/data'
 
 const props = defineProps<{
   row: RoleVO
 }>()
 
-const formData = ref<RoleUpdateDTO>(pick(props.row, ['id', 'code', 'name', 'description']))
+const formData = ref<RoleUpdateDTO>(props.row)
 </script>
 
 <template>
