@@ -5,7 +5,6 @@ import { NFormItem } from 'naive-ui'
 
 const objectName = defineModel<string | null>()
 const fileList = ref<UploadFileInfo[]>([])
-initFileList()
 const formItemRef = ref<InstanceType<typeof NFormItem> | null>(null)
 
 function initFileList() {
@@ -13,6 +12,7 @@ function initFileList() {
   if (!value) {
     return
   }
+  stopFileListInitWatcher()
   const id = value.split('-')[0]
   fileList.value = [
     {
@@ -22,6 +22,9 @@ function initFileList() {
     }
   ]
 }
+
+const stopFileListInitWatcher = watch(objectName, initFileList, { once: true })
+initFileList()
 
 watch(fileList, async (newList) => {
   if (newList.length > 0 && !newList.some((file) => file.status === 'finished')) {
