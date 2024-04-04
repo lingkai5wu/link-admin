@@ -14,7 +14,7 @@ async function handleLogout() {
 </script>
 
 <template>
-  <n-flex justify="space-between" style="height: 100%" vertical>
+  <n-flex justify="space-between" style="min-height: 100%; padding-right: 4px" vertical>
     <TheMenu />
     <n-flex justify="right" style="padding: 20px">
       <LoadingButton :func="handleLogout" secondary type="warning">

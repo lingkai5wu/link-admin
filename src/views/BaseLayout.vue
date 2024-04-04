@@ -1,6 +1,6 @@
 <template>
   <n-layout has-sider style="min-height: 100vh">
-    <n-layout-sider class="sider">
+    <n-layout-sider :native-scrollbar="false" class="sider">
       <TheSider />
     </n-layout-sider>
     <n-layout>
