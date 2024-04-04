@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { getAnimalVO, updateAnimal } from '@/api/animal'
 import type { AnimalUpdateDTO } from '@/types/api/query'
-import type { AnimalBasicInfoVO } from '@/types/api/vo'
+import type { AnimalBasicVO } from '@/types/api/vo'
 
 const props = defineProps<{
-  row: AnimalBasicInfoVO
+  row: AnimalBasicVO
 }>()
 
 const formData = ref<AnimalUpdateDTO>()

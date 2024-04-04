@@ -1,12 +1,12 @@
 import type { PopulationSaveDTO, PopulationUpdateDTO } from '@/types/api/query'
-import type { PopulationInfoVO, PopulationVO } from '@/types/api/vo'
+import type { PopulationBasicVO, PopulationVO } from '@/types/api/vo'
 import request from '@/utils/request'
 
 export async function getPopulationVO(id: number): Promise<PopulationVO> {
   return await request.get(`/populations/${id}`)
 }
 
-export async function listPopulationInfoVOs(): Promise<PopulationInfoVO[]> {
+export async function listPopulationBasicVOs(): Promise<PopulationBasicVO[]> {
   return await request.get('/populations')
 }
 

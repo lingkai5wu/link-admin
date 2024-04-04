@@ -13,7 +13,7 @@ export interface PageVO<T> {
   readonly records: T[]
 }
 
-export interface AnimalBasicInfoVO {
+export interface AnimalBasicVO {
   readonly id: number
   readonly name: string | null
   readonly status: AnimalStatusEnum
@@ -80,7 +80,7 @@ export interface PermissionVO {
   readonly description: string | null
 }
 
-export interface PopulationInfoVO {
+export interface PopulationBasicVO {
   readonly id: number
   readonly species: string
   readonly area: string

@@ -1,19 +1,19 @@
 import type { AnimalQuery, AnimalSaveDTO, AnimalUpdateDTO, PageDTO } from '@/types/api/query'
-import type { AnimalBasicInfoVO, AnimalVO } from '@/types/api/vo'
+import type { AnimalBasicVO, AnimalVO } from '@/types/api/vo'
 import request from '@/utils/request'
 
 export async function getAnimalVO(id: number): Promise<AnimalVO> {
   return await request.get(`/animals/${id}`)
 }
 
-export async function listAnimalBasicDataVOs(query?: AnimalQuery): Promise<AnimalBasicInfoVO[]> {
+export async function listAnimalBasicVOs(query?: AnimalQuery): Promise<AnimalBasicVO[]> {
   return await request.get('/animals', { params: query })
 }
 
-export async function listAnimalBasicDataVOsWithPage(
+export async function listAnimalBasicVOsWithPage(
   pageDTO?: PageDTO,
   query?: AnimalQuery
-): Promise<AnimalBasicInfoVO[]> {
+): Promise<AnimalBasicVO[]> {
   return await request.get('/animals/page', { params: { ...pageDTO, ...query } })
 }
 

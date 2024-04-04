@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import { listPopulationInfoVOs } from '@/api/population'
+import { listPopulationBasicVOs } from '@/api/population'
 import type { AnimalUpdateDTO } from '@/types/api/query'
-import type { PopulationInfoVO, PopulationVO } from '@/types/api/vo'
+import type { PopulationBasicVO } from '@/types/api/vo'
 import { animalSexEnumConfig, animalStatusEnumConfig } from '@/utils/enum'
 import { NFormItem, NPopover } from 'naive-ui'
 import type { VNode } from 'vue'
 
 const formData = defineModel<AnimalUpdateDTO>({ default: {} })
 
-const populationOptions = ref<PopulationInfoVO[]>([])
-listPopulationInfoVOs().then((data) => {
+const populationOptions = ref<PopulationBasicVO[]>([])
+listPopulationBasicVOs().then((data) => {
   populationOptions.value = data
 })
 
-function renderOption({ node, option }: { node: VNode; option: PopulationInfoVO }) {
+function renderOption({ node, option }: { node: VNode; option: PopulationBasicVO }) {
   if (!option.description) {
     return node
   }
@@ -49,10 +49,7 @@ function renderOption({ node, option }: { node: VNode; option: PopulationInfoVO 
       />
     </n-radio-group>
   </n-form-item>
-  <n-form-item
-    label="种群"
-    path="populationId"
-  >
+  <n-form-item label="种群" path="populationId">
     <n-select
       v-model:value="formData.populationId"
       :loading="populationOptions.length === 0"

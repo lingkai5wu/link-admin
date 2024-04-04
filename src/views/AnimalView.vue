@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { listAnimalBasicDataVOsWithPage } from '@/api/animal'
+import { listAnimalBasicVOsWithPage } from '@/api/animal'
 import AnimalAdd from '@/components/curd/AnimalAdd.vue'
 import AnimalEdit from '@/components/curd/AnimalEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'
-import type { AnimalBasicInfoVO } from '@/types/api/vo'
+import type { AnimalBasicVO } from '@/types/api/vo'
 import { animalSexEnumConfig, animalStatusEnumConfig, enum2Tag } from '@/utils/enum'
 import { type DataTableColumns, NTime } from 'naive-ui'
 
-const columns: DataTableColumns<AnimalBasicInfoVO> = [
+const columns: DataTableColumns<AnimalBasicVO> = [
   {
     title: '姓名',
     key: 'name'
@@ -40,7 +40,7 @@ const columns: DataTableColumns<AnimalBasicInfoVO> = [
     }
   }
 ]
-const rowActions: RowActions<AnimalBasicInfoVO> = {
+const rowActions: RowActions<AnimalBasicVO> = {
   edit: {
     title: '修改',
     type: 'warning',
@@ -61,7 +61,7 @@ const topActions: TopActions = {
 <template>
   <DataTable
     :columns="columns"
-    :func="listAnimalBasicDataVOsWithPage"
+    :func="listAnimalBasicVOsWithPage"
     :row-actions="rowActions"
     :top-actions="topActions"
   />

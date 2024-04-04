@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { listPopulationInfoVOs, removePopulation } from '@/api/population'
+import { listPopulationBasicVOs, removePopulation } from '@/api/population'
 import PopulationAdd from '@/components/curd/PopulationAdd.vue'
 import PopulationEdit from '@/components/curd/PopulationEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'
-import type { PopulationInfoVO } from '@/types/api/vo'
+import type { PopulationBasicVO } from '@/types/api/vo'
 import { type DataTableColumns } from 'naive-ui'
 
-const columns: DataTableColumns<PopulationInfoVO> = [
+const columns: DataTableColumns<PopulationBasicVO> = [
   {
     title: '标签',
     key: 'label'
@@ -24,7 +24,7 @@ const columns: DataTableColumns<PopulationInfoVO> = [
     key: 'description'
   }
 ]
-const rowActions: RowActions<PopulationInfoVO> = {
+const rowActions: RowActions<PopulationBasicVO> = {
   edit: {
     title: '修改',
     type: 'warning',
@@ -52,7 +52,7 @@ const topActions: TopActions = {
 <template>
   <DataTable
     :columns="columns"
-    :func="listPopulationInfoVOs"
+    :func="listPopulationBasicVOs"
     :row-actions="rowActions"
     :top-actions="topActions"
   />
