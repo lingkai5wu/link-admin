@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { listAreaVOs } from '@/api/area'
+import { listAreaVOs, removeArea } from '@/api/area'
 import AreaAdd from '@/components/curd/AreaAdd.vue'
 import AreaEdit from '@/components/curd/AreaEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'
@@ -22,6 +22,13 @@ const rowActions: RowActions<AreaVO> = {
     type: 'warning',
     permission: 'area:update',
     component: AreaEdit
+  },
+  delete: {
+    title: '删除',
+    type: 'error',
+    permission: 'area:remove',
+    needTwoStep: true,
+    func: (row) => removeArea(row.id)
   }
 }
 const topActions: TopActions = {
