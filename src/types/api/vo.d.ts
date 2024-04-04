@@ -80,10 +80,45 @@ export interface PermissionVO {
   readonly description: string | null
 }
 
+export interface PopulationInfoVO {
+  readonly id: number
+  readonly species: string
+  readonly area: string
+  readonly label: string
+  readonly description: string | null
+}
+
+export interface PopulationStatVO {
+  readonly id: number
+  readonly populationId: number
+  readonly areaId: number
+  readonly startDate: number
+  readonly endDate: number
+  readonly individualCount: number | null
+  readonly birthRate: number | null
+  readonly deathRate: number | null
+  readonly immigrationRate: number | null
+  readonly emigrationRate: number | null
+}
+
+export interface PopulationVO {
+  readonly id: number
+  readonly speciesId: number
+  readonly areaId: number
+  readonly label: string
+  readonly description: string | null
+}
+
 export interface RoleVO {
   readonly id: number
   readonly code: string
   readonly name: string
+  readonly description: string | null
+}
+
+export interface SpeciesVO {
+  readonly id: number
+  readonly label: string
   readonly description: string | null
 }
 

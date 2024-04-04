@@ -98,6 +98,21 @@ export interface PermissionUpdateDTO {
   description?: string | null
 }
 
+export interface PopulationSaveDTO {
+  speciesId?: number | null
+  areaId?: number | null
+  label?: string | null
+  description?: string | null
+}
+
+export interface PopulationUpdateDTO {
+  id?: number | null
+  speciesId?: number | null
+  areaId?: number | null
+  label?: string | null
+  description?: string | null
+}
+
 export interface RoleSaveDTO {
   code?: string | null
   name?: string | null
@@ -108,6 +123,17 @@ export interface RoleUpdateDTO {
   id?: number | null
   code?: string | null
   name?: string | null
+  description?: string | null
+}
+
+export interface SpeciesSaveDTO {
+  label?: string | null
+  description?: string | null
+}
+
+export interface SpeciesUpdateDTO {
+  id?: number | null
+  label?: string | null
   description?: string | null
 }
 
