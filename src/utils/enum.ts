@@ -62,7 +62,7 @@ export const animalStatusEnumConfig: EnumConfig<AnimalStatusEnum>[] = [
   },
   {
     value: 'DECEASED',
-    label: '喵星',
+    label: '退学',
     type: 'error'
   }
 ]
