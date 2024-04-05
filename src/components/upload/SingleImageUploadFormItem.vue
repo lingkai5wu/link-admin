@@ -4,7 +4,7 @@ import type { UploadFileInfo } from 'naive-ui'
 import { NFormItem } from 'naive-ui'
 
 const objectName = defineModel<string | null>()
-const fileList = ref<UploadFileInfo[]>([])
+const fileList = ref<UploadFileInfo[]>()
 const formItemRef = ref<InstanceType<typeof NFormItem> | null>(null)
 
 function initFileList() {
@@ -27,6 +27,9 @@ const stopFileListInitWatcher = watch(objectName, initFileList, { once: true })
 initFileList()
 
 watch(fileList, async (newList) => {
+  if (!newList) {
+    return
+  }
   if (newList.length > 0 && !newList.some((file) => file.status === 'finished')) {
     return
   }
@@ -41,7 +44,7 @@ watch(fileList, async (newList) => {
 </script>
 
 <template>
-  <n-form-item ref="formItemRef" :rule="createFormItemRule(fileList)">
+  <n-form-item ref="formItemRef" :rule="createFormItemRule(fileList!)">
     <ImageUpload v-model="fileList" :max="1" />
   </n-form-item>
 </template>
