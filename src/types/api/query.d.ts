@@ -67,6 +67,19 @@ export interface EntityOrderUpdateDTO {
   sortOrder?: number | null
 }
 
+export interface ForumSaveDTO {
+  pid?: number | null
+  label?: string | null
+  description?: string | null
+}
+
+export interface ForumUpdateDTO {
+  id?: number | null
+  pid?: number | null
+  label?: string | null
+  description?: string | null
+}
+
 export interface LocationSaveDTO {
   lng?: number | null
   lat?: number | null

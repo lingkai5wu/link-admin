@@ -50,6 +50,15 @@ export interface AreaVO {
   readonly locations: LocationVO[] | null
 }
 
+export interface ForumVO {
+  readonly id: number
+  readonly pid: number
+  readonly label: string
+  readonly description: string | null
+  readonly sortOrder: number | null
+  readonly createTime: number
+}
+
 export interface LocationVO {
   readonly id: number
   readonly lng: number
