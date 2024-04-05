@@ -4,7 +4,7 @@ import { batchUpdateRoleMenu, listRoleMenuVOs } from '@/api/role'
 import type LoadingButton from '@/components/LoadingButton.vue'
 import type { RoleVO } from '@/types/api/vo'
 import { generateBatchUpdateManyToManyDTO } from '@/utils/data'
-import { generateTreeOptions } from '@/utils/menu'
+import { generateMenuVOTreeOptions } from '@/utils/menu'
 import type { TreeOption } from 'naive-ui'
 
 const props = defineProps<{
@@ -29,7 +29,7 @@ async function getOptionsAndValue() {
   isLoading.value = true
   try {
     const [menuVOs, roleMenuVOs] = await Promise.all([listMenuVOs(), listRoleMenuVOs(props.row.id)])
-    options.value = generateTreeOptions(menuVOs)
+    options.value = generateMenuVOTreeOptions(menuVOs)
     oldValue = roleMenuVOs.map((menuVO) => menuVO.id)
     value.value = [...oldValue]
   } finally {

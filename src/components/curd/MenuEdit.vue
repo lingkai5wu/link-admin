@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { updateMenu } from '@/api/menu'
 import type { MenuUpdateDTO } from '@/types/api/query'
-import type { MenuVOTree } from '@/types/menu'
+import type { MenuVOTree } from '@/types/tree'
 import { pick } from '@/utils/data'
 
 const props = defineProps<{

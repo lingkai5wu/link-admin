@@ -1,7 +1,7 @@
 import router from '@/router'
 import type { MenuVO } from '@/types/api/vo'
-import type { MenuTreeOption, MenuVOTree } from '@/types/menu'
-import { pick } from '@/utils/data'
+import type { MenuVOTree } from '@/types/tree'
+import { generateEntityTreeOptions } from '@/utils/tree'
 
 export function generateMenuVOTrees(menuVOs: MenuVO[]) {
   const routes = router.getRoutes()
@@ -26,14 +26,10 @@ export function generateMenuVOTrees(menuVOs: MenuVO[]) {
   return build(menuVOs, 0)
 }
 
-export function generateTreeOptions(menuVOs: MenuVO[], pid = 0) {
-  return menuVOs
-    .filter((menuVO) => menuVO.pid === pid)
-    .map((menuVO) => {
-      const current: MenuTreeOption = pick(menuVO, ['id', 'pid', 'label', 'sortOrder'])
-      if (menuVO.type === 'PARENT') {
-        current.children = generateTreeOptions(menuVOs, menuVO.id)
-      }
-      return current
-    })
+export function generateMenuVOTreeOptions(menuVOs: MenuVO[]) {
+  return generateEntityTreeOptions(
+    menuVOs,
+    ['id', 'pid', 'label', 'sortOrder'],
+    (menuVO) => menuVO.type === 'PARENT'
+  )
 }

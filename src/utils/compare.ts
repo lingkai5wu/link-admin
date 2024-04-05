@@ -1,6 +1,6 @@
-import type { MenuVO, PermissionVO } from '@/types/api/vo'
+import type { PermissionVO } from '@/types/api/vo'
 
-export function compareMenuVO(a: MenuVO, b: MenuVO) {
+export function compareSortableEntity(a: SortableEntity, b: SortableEntity) {
   if (a.sortOrder !== null && b.sortOrder !== null) {
     return a.sortOrder - b.sortOrder
   }

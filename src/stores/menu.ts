@@ -1,5 +1,5 @@
 import type { MenuVO } from '@/types/api/vo'
-import type { MenuVOTree } from '@/types/menu'
+import type { MenuVOTree } from '@/types/tree'
 import { generateMenuVOTrees } from '@/utils/menu'
 import { defineStore } from 'pinia'
 

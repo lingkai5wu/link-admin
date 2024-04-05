@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { saveMenu } from '@/api/menu'
 import type { MenuSaveDTO } from '@/types/api/query'
-import type { MenuVOTree } from '@/types/menu'
+import type { MenuVOTree } from '@/types/tree'
 
 const props = defineProps<{
   row?: MenuVOTree

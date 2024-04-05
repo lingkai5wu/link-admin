@@ -1,45 +1,27 @@
 <script lang="ts" setup>
 import { listMenuVOs } from '@/api/menu'
 import type { MenuUpdateDTO } from '@/types/api/query'
-import type { MenuVOTree } from '@/types/menu'
 import { menuTypeEnumConfig } from '@/utils/enum'
-import { generateMenuVOTrees } from '@/utils/menu'
+import { generateEntityTreeOptions } from '@/utils/tree'
 import type { CascaderOption } from 'naive-ui'
 
 const formData = defineModel<MenuUpdateDTO>({ required: true })
 
-let menuVOTrees: MenuVOTree[]
-listMenuVOs({ type: 'PARENT' }).then((data) => {
-  menuVOTrees = generateMenuVOTrees(data)
-  cascaderOptions.value.push(...generateCascaderOptions(menuVOTrees))
-})
 const cascaderOptions = ref<CascaderOption[]>([
   {
-    value: 0,
+    id: 0,
     label: '根节点'
   }
 ])
-
-function generateCascaderOptions(menuVOTrees: MenuVOTree[]): CascaderOption[] {
-  const options: CascaderOption[] = []
-  for (const menu of menuVOTrees) {
-    if (menu.id === formData.value.id) {
-      continue
-    }
-    const option: CascaderOption = {
-      value: menu.id,
-      label: menu.label
-    }
-    if (menu.children) {
-      const children = generateCascaderOptions(menu.children)
-      if (children.length > 0) {
-        option.children = children
-      }
-    }
-    options.push(option)
-  }
-  return options
-}
+listMenuVOs({ type: 'PARENT' }).then((menuVOs) => {
+  const treeOptions = generateEntityTreeOptions(
+    menuVOs,
+    ['id', 'label'],
+    false,
+    (menuVO) => menuVO.id === formData.value.id
+  )
+  cascaderOptions.value.push(...treeOptions)
+})
 </script>
 
 <template>
@@ -52,7 +34,7 @@ function generateCascaderOptions(menuVOTrees: MenuVOTree[]): CascaderOption[] {
     label="父菜单"
     path="pid"
   >
-    <n-cascader v-model:value="formData.pid" :options="cascaderOptions" />
+    <n-cascader v-model:value="formData.pid" :options="cascaderOptions" value-field="id" />
   </n-form-item>
   <n-form-item
     :rule="{

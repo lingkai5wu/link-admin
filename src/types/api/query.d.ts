@@ -61,6 +61,12 @@ export interface BatchUpdateManyToManyDTO<T> {
   targetIdsToDelete?: T[] | null
 }
 
+export interface EntityOrderUpdateDTO {
+  id?: number | null
+  pid?: number | null
+  sortOrder?: number | null
+}
+
 export interface LocationSaveDTO {
   lng?: number | null
   lat?: number | null
@@ -70,12 +76,6 @@ export interface LocationSaveOrUpdateDTO {
   id?: number | null
   lng?: number | null
   lat?: number | null
-}
-
-export interface MenuOrderUpdateDTO {
-  id?: number | null
-  pid?: number | null
-  sortOrder?: number | null
 }
 
 export interface MenuSaveDTO {

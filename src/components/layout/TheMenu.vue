@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import router from '@/router'
 import { useMenuStore } from '@/stores/menu.js'
-import type { MenuVOTree } from '@/types/menu'
+import type { MenuVOTree } from '@/types/tree'
 import { OpenOutline } from '@vicons/ionicons5'
 import type { MenuOption } from 'naive-ui'
 import { NIcon } from 'naive-ui'

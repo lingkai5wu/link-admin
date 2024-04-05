@@ -1,11 +1,11 @@
-import type { MenuOrderUpdateDTO, MenuQuery, MenuSaveDTO, MenuUpdateDTO } from '@/types/api/query'
+import type { EntityOrderUpdateDTO, MenuQuery, MenuSaveDTO, MenuUpdateDTO } from '@/types/api/query'
 import type { MenuVO } from '@/types/api/vo'
-import { compareMenuVO } from '@/utils/compare'
+import { compareSortableEntity } from '@/utils/compare'
 import request from '@/utils/request'
 
 export async function listCurrentUserMenuVOs(): Promise<MenuVO[]> {
   const menuVOs: MenuVO[] = await request.get('/menus/current')
-  menuVOs.sort(compareMenuVO)
+  menuVOs.sort(compareSortableEntity)
   return menuVOs
 }
 
@@ -15,7 +15,7 @@ export async function getMenuVO(id: number): Promise<MenuVO> {
 
 export async function listMenuVOs(query?: MenuQuery): Promise<MenuVO[]> {
   const menuVOs: MenuVO[] = await request.get('/menus', { params: query })
-  menuVOs.sort(compareMenuVO)
+  menuVOs.sort(compareSortableEntity)
   return menuVOs
 }
 
@@ -27,7 +27,7 @@ export async function updateMenu(dto: MenuUpdateDTO): Promise<null> {
   return await request.put('/menus', dto)
 }
 
-export async function batchUpdateMenuOrder(dtos: MenuOrderUpdateDTO[]): Promise<null> {
+export async function batchUpdateMenuOrder(dtos: EntityOrderUpdateDTO[]): Promise<null> {
   return await request.post('/menus/batch-update-order', dtos)
 }
 
