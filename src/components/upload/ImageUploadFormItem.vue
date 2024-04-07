@@ -3,27 +3,23 @@ import { createFormItemRule } from '@/utils/upload'
 import type { UploadFileInfo } from 'naive-ui'
 import { NFormItem } from 'naive-ui'
 
-const objectName = defineModel<string | null>()
+const objectNames = defineModel<string[] | null>()
 const fileList = ref<UploadFileInfo[]>()
 const formItemRef = ref<InstanceType<typeof NFormItem> | null>(null)
 
 function initFileList() {
-  const value = objectName.value
-  if (!value) {
+  if (!objectNames.value) {
     return
   }
   stopFileListInitWatcher()
-  const id = value.split('-')[0]
-  fileList.value = [
-    {
-      id,
-      name: value,
-      status: 'finished'
-    }
-  ]
+  fileList.value = objectNames.value.map((name) => ({
+    id: name.split('-')[0],
+    name,
+    status: 'finished'
+  }))
 }
 
-const stopFileListInitWatcher = watch(objectName, initFileList, { once: true })
+const stopFileListInitWatcher = watch(objectNames, initFileList, { once: true })
 initFileList()
 
 watch(fileList, async (newList) => {
@@ -32,14 +28,12 @@ watch(fileList, async (newList) => {
   }
   await nextTick()
   formItemRef.value?.validate()
-  objectName.value = newList[0]?.name || ''
+  objectNames.value = newList.map((file) => file.name)
 })
 </script>
 
 <template>
   <n-form-item ref="formItemRef" :rule="createFormItemRule(fileList!)">
-    <ImageUpload v-model="fileList" :max="1" />
+    <ImageUpload v-model="fileList" :max="30" v-bind="$attrs" />
   </n-form-item>
 </template>
-
-<style scoped></style>

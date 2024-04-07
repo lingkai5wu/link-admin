@@ -108,4 +108,5 @@ listAreaVOs().then((data) => {
   </n-form-item>
   <SingleImageUploadFormItem v-model="formData.avatar" label="头像" path="avatar" />
   <SingleImageUploadFormItem v-model="formData.banner" label="横幅" path="banner" />
+  <ImageUploadFormItem v-model="formData.attachment" label="附件" path="attachment" />
 </template>
