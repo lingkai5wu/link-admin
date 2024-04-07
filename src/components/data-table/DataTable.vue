@@ -15,7 +15,10 @@ import type { DataTableColumns, DataTableFilterState } from 'naive-ui'
 import type { Component, ComputedRef } from 'vue'
 
 const props = defineProps<{
-  func: (pageDTO?: PageDTO, query?: DataTableFilterState) => Promise<DataWithId[] | PageVO<DataWithId>>
+  func: (
+    pageDTO?: PageDTO,
+    query?: DataTableFilterState
+  ) => Promise<DataWithId[] | PageVO<DataWithId>>
   columns: DataTableColumns<any>
   rowActions?: RowActions
   topActions?: TopActions

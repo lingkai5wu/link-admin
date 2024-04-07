@@ -1,5 +1,5 @@
 import type { EntityOrderUpdateDTO, ForumSaveDTO, ForumUpdateDTO } from '@/types/api/query'
-import type { ForumVO } from '@/types/api/vo'
+import type { ForumBasicVO, ForumVO } from '@/types/api/vo'
 import { compareSortableEntity } from '@/utils/compare'
 import request from '@/utils/request'
 
@@ -7,8 +7,8 @@ export async function getForumVO(id: number): Promise<ForumVO> {
   return await request.get(`/forums/${id}`)
 }
 
-export async function listForumVOs(): Promise<ForumVO[]> {
-  const forumVOs: ForumVO[] = await request.get('/forums')
+export async function listForumBasicVOs() {
+  const forumVOs: ForumBasicVO[] = await request.get('/forums')
   forumVOs.sort(compareSortableEntity)
   return forumVOs
 }

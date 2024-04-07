@@ -3,7 +3,7 @@ import type { ForumUpdateDTO } from '@/types/api/query'
 import { entityStatusEnumConfig } from '@/utils/enum'
 import { NFormItem } from 'naive-ui'
 
-const formData = defineModel<ForumUpdateDTO>({ required: true })
+const formData = defineModel<ForumUpdateDTO>({ default: {} })
 </script>
 
 <template>

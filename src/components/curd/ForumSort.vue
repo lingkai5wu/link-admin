@@ -8,5 +8,5 @@ import { batchUpdateForumOrder, listForumBasicVOs } from '@/api/forum'
     <n-text type="info">拖放操作</n-text>
     修改板块的展示顺序
   </n-p>
-  <TreeSort :get-options-func="listForumBasicVOs" :submit-func="batchUpdateForumOrder" />
+  <TreeSort :get-options-func="listForumBasicVOs" :submit-func="batchUpdateForumOrder" v-bind="$attrs" />
 </template>

@@ -17,7 +17,9 @@ export interface AnimalBasicVO {
   readonly id: number
   readonly name: string | null
   readonly status: AnimalStatusEnum
+  readonly speciesId: string
   readonly breed: string | null
+  readonly areaId: string | null
   readonly sex: AnimalSexEnum
   readonly dateOfBirth: number | null
   readonly avatar: string | null
@@ -28,8 +30,9 @@ export interface AnimalVO {
   readonly id: number
   readonly name: string | null
   readonly status: AnimalStatusEnum
-  readonly populationId: number | null
+  readonly speciesId: number
   readonly breed: string | null
+  readonly areaId: number | null
   readonly sex: AnimalSexEnum
   readonly dateOfBirth: number | null
   readonly color: string | null
@@ -39,7 +42,8 @@ export interface AnimalVO {
   readonly rfid: string | null
   readonly avatar: string | null
   readonly banner: string | null
-  readonly createTime: number | null
+  readonly attachment: string[] | null
+  readonly createTime: number
   readonly updateTime: number | null
 }
 
@@ -97,35 +101,6 @@ export interface OssDirectPostObjectInfoVO {
 export interface PermissionVO {
   readonly id: number
   readonly code: string
-  readonly description: string | null
-}
-
-export interface PopulationBasicVO {
-  readonly id: number
-  readonly species: string
-  readonly area: string
-  readonly label: string
-  readonly description: string | null
-}
-
-export interface PopulationStatVO {
-  readonly id: number
-  readonly populationId: number
-  readonly areaId: number
-  readonly startDate: number
-  readonly endDate: number
-  readonly individualCount: number | null
-  readonly birthRate: number | null
-  readonly deathRate: number | null
-  readonly immigrationRate: number | null
-  readonly emigrationRate: number | null
-}
-
-export interface PopulationVO {
-  readonly id: number
-  readonly speciesId: number
-  readonly areaId: number
-  readonly label: string
   readonly description: string | null
 }
 

@@ -1,31 +1,22 @@
 <script lang="ts" setup>
-import { listPopulationBasicVOs } from '@/api/population'
+import { listAreaVOs } from '@/api/area'
+import { listSpeciesVOs } from '@/api/species'
 import type { AnimalUpdateDTO } from '@/types/api/query'
-import type { PopulationBasicVO } from '@/types/api/vo'
+import type { AreaVO, SpeciesVO } from '@/types/api/vo'
 import { animalSexEnumConfig, animalStatusEnumConfig } from '@/utils/enum'
-import { NFormItem, NPopover } from 'naive-ui'
-import type { VNode } from 'vue'
+import { renderOption } from '@/utils/form'
+import { NFormItem } from 'naive-ui'
 
 const formData = defineModel<AnimalUpdateDTO>({ default: {} })
 
-const populationOptions = ref<PopulationBasicVO[]>([])
-listPopulationBasicVOs().then((data) => {
-  populationOptions.value = data
+const speciesOptions = ref<SpeciesVO[]>([])
+listSpeciesVOs().then((data) => {
+  speciesOptions.value = data
 })
-
-function renderOption({ node, option }: { node: VNode; option: PopulationBasicVO }) {
-  if (!option.description) {
-    return node
-  }
-  return h(NPopover, null, {
-    trigger: () => node,
-    default: () => {
-      if (option.description && option.description.length > 0) {
-        return option.description
-      }
-    }
-  })
-}
+const areaOptions = ref<AreaVO[]>([])
+listAreaVOs().then((data) => {
+  areaOptions.value = data
+})
 </script>
 
 <template>
@@ -49,11 +40,19 @@ function renderOption({ node, option }: { node: VNode; option: PopulationBasicVO
       />
     </n-radio-group>
   </n-form-item>
-  <n-form-item label="种群" path="populationId">
+  <n-form-item
+    :rule="{
+      type: 'number',
+      required: true,
+      trigger: ['blur']
+    }"
+    label="物种"
+    path="speciesId"
+  >
     <n-select
-      v-model:value="formData.populationId"
-      :loading="populationOptions.length === 0"
-      :options="populationOptions"
+      v-model:value="formData.speciesId"
+      :loading="speciesOptions.length === 0"
+      :options="speciesOptions"
       :render-option="renderOption"
       filterable
       value-field="id"
@@ -61,6 +60,16 @@ function renderOption({ node, option }: { node: VNode; option: PopulationBasicVO
   </n-form-item>
   <n-form-item label="品种" path="breed">
     <n-input v-model:value="formData.breed" />
+  </n-form-item>
+  <n-form-item label="区域" path="speciesId">
+    <n-select
+      v-model:value="formData.areaId"
+      :loading="areaOptions.length === 0"
+      :options="areaOptions"
+      :render-option="renderOption"
+      filterable
+      value-field="id"
+    />
   </n-form-item>
   <n-form-item
     :rule="{

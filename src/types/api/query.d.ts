@@ -8,8 +8,9 @@ export interface PageDTO {
 export interface AnimalSaveDTO {
   name?: string | null
   status?: AnimalStatusEnum | null
-  populationId?: number | null
+  speciesId?: number | null
   breed?: string | null
+  areaId?: number | null
   sex?: AnimalSexEnum | null
   dateOfBirth?: number | null
   color?: string | null
@@ -19,14 +20,16 @@ export interface AnimalSaveDTO {
   rfid?: string | null
   avatar?: string | null
   banner?: string | null
+  attachment?: string[] | null
 }
 
 export interface AnimalUpdateDTO {
   id?: number | null
   name?: string | null
   status?: AnimalStatusEnum | null
-  populationId?: number | null
+  speciesId?: number | null
   breed?: string | null
+  areaId?: number | null
   sex?: AnimalSexEnum | null
   dateOfBirth?: number | null
   color?: string | null
@@ -36,6 +39,7 @@ export interface AnimalUpdateDTO {
   rfid?: string | null
   avatar?: string | null
   banner?: string | null
+  attachment?: string[] | null
 }
 
 export interface AreaSaveDTO {
@@ -115,21 +119,6 @@ export interface PermissionUpdateDTO {
   description?: string | null
 }
 
-export interface PopulationSaveDTO {
-  speciesId?: number | null
-  areaId?: number | null
-  label?: string | null
-  description?: string | null
-}
-
-export interface PopulationUpdateDTO {
-  id?: number | null
-  speciesId?: number | null
-  areaId?: number | null
-  label?: string | null
-  description?: string | null
-}
-
 export interface RoleSaveDTO {
   code?: string | null
   name?: string | null
@@ -175,8 +164,9 @@ export interface UserUpdateDTO {
 export interface AnimalQuery {
   name?: string | null
   status?: AnimalStatusEnum | null
-  populationId?: number | null
+  speciesId?: number | null
   breed?: string | null
+  areaId?: number | null
   sex?: AnimalSexEnum | null
   dateOfBirth?: number | null
   color?: string | null

@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { updateForum } from '@/api/forum'
+import { getForumVO, updateForum } from '@/api/forum'
 import type { ForumUpdateDTO } from '@/types/api/query'
 import type { ForumBasicVO } from '@/types/api/vo'
-import { pick } from '@/utils/data'
 
 const props = defineProps<{
   row: ForumBasicVO
 }>()
 
-const formData = ref<ForumUpdateDTO>(
-  pick(props.row, ['id', 'label', 'status', 'description', 'notice', 'header'])
-)
+const formData = ref<ForumUpdateDTO>()
+getForumVO(props.row.id).then((data) => {
+  formData.value = data
+})
 </script>
 
 <template>
