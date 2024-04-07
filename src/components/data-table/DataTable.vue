@@ -11,11 +11,11 @@ import type { PageDTO } from '@/types/api/query'
 import type { PageVO } from '@/types/api/vo'
 import { getAuthorizedActions } from '@/utils/permission'
 import { RefreshOutline } from '@vicons/ionicons5'
-import type { DataTableColumns } from 'naive-ui'
-import type { Component } from 'vue'
+import type { DataTableColumns, DataTableFilterState } from 'naive-ui'
+import type { Component, ComputedRef } from 'vue'
 
 const props = defineProps<{
-  func: (pageDTO?: PageDTO, query?: object) => Promise<DataWithId[] | PageVO<DataWithId>>
+  func: (pageDTO?: PageDTO, query?: DataTableFilterState) => Promise<DataWithId[] | PageVO<DataWithId>>
   columns: DataTableColumns<any>
   rowActions?: RowActions
   topActions?: TopActions
@@ -24,10 +24,11 @@ const props = defineProps<{
 
 const loading = ref(false)
 const tableData = ref<DataWithId[]>()
+const filteredTableData = ref<ComputedRef<DataWithId[] | undefined>>()
 const pagination = ref({
   page: 1,
   pageSize: 10,
-  itemCount: 0
+  itemCount: -1
 })
 const pageDTO = computed<PageDTO>(() => ({
   current: pagination.value?.page,
@@ -43,7 +44,7 @@ const component = ref<Component>()
 const componentKey = ref<string>()
 const componentProps = ref<ActionComponentProps | null>(null)
 
-async function getTableData(query?: object) {
+async function getTableData(query?: DataTableFilterState) {
   loading.value = true
   let data
   try {
@@ -87,7 +88,19 @@ function setActionColumn() {
 
 function handlePageChange(page: number) {
   pagination.value.page = page
-  pagination.value.itemCount > 0 && getTableData()
+  pagination.value.itemCount !== -1 && getTableData()
+}
+
+function handleFiltersChange(filters: DataTableFilterState) {
+  if (pagination.value.itemCount !== -1) {
+    getTableData(filters)
+    return
+  }
+  filteredTableData.value = computed(() =>
+    tableData.value?.filter((row) =>
+      Object.entries(filters).every(([key, value]) => value === null || row[key] === value)
+    )
+  )
 }
 
 function handleActionTrigger(
@@ -128,14 +141,14 @@ function handleActionSubmit(isNeedRefresh: boolean) {
     </n-flex>
     <n-data-table
       :columns
-      :data="tableData"
+      :data="filteredTableData?.value || tableData"
       :loading
       :pagination
       :remote="pagination.itemCount > 0"
       :row-key="(data: Data) => data.id"
       :scroll-x="640"
       v-bind="dataTableProps"
-      @update:filters="getTableData"
+      @update:filters="handleFiltersChange"
       @update:page="handlePageChange"
     />
   </n-flex>
