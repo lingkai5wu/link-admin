@@ -68,16 +68,20 @@ export interface EntityOrderUpdateDTO {
 }
 
 export interface ForumSaveDTO {
-  pid?: number | null
   label?: string | null
+  status?: EntityStatusEnum | null
   description?: string | null
+  notice?: string | null
+  header?: string | null
 }
 
 export interface ForumUpdateDTO {
   id?: number | null
-  pid?: number | null
   label?: string | null
+  status?: EntityStatusEnum | null
   description?: string | null
+  notice?: string | null
+  header?: string | null
 }
 
 export interface LocationSaveDTO {
@@ -198,6 +202,16 @@ export interface UserQuery {
 export type AnimalStatusEnum = 'NORMAL' | 'MISSING' | 'ADOPTED' | 'DECEASED'
 
 export type AnimalSexEnum = 'MALE' | 'FEMALE' | 'OTHER' | 'UNKNOWN'
+
+export type EntityStatusEnum =
+  | 'DRAFT'
+  | 'PENDING'
+  | 'LOCKED'
+  | 'APPROVED'
+  | 'REJECTED'
+  | 'HIDDEN'
+  | 'ARCHIVED'
+  | 'DELETED'
 
 export type MenuTypeEnum = 'PARENT' | 'ROUTE' | 'LINK'
 

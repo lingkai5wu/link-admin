@@ -1,11 +1,11 @@
-import type { EntityTree, EntityTreeNode, EntityTreeOption } from '@/types/tree'
+import type { EntityTreeNode, EntityTreeOption, RowEntityTreeNode } from '@/types/tree'
 import { pick } from '@/utils/data'
 
-export function generateEntityTrees<T extends EntityTreeNode>(entities: T[], pid = 0) {
+export function generateEntityTrees<T extends RowEntityTreeNode>(entities: T[], pid = 0) {
   return entities
     .filter((entity) => entity.pid === pid)
     .map((entity) => {
-      const current: EntityTree<T> = { ...entity }
+      const current: EntityTreeNode<T> = { ...entity }
       const children = generateEntityTrees(entities, entity.id)
       if (children.length > 0) {
         current.children = children
@@ -14,7 +14,7 @@ export function generateEntityTrees<T extends EntityTreeNode>(entities: T[], pid
     })
 }
 
-export function generateEntityTreeOptions<T extends EntityTreeNode>(
+export function generateEntityTreeOptions<T extends RowEntityTreeNode>(
   entities: T[],
   keys: Exclude<keyof T, 'children'>[],
   alwaysIncludeChildren: ((node: T) => boolean) | boolean = false,

@@ -1,19 +1,20 @@
 <script lang="ts" setup>
-import { updateMenu } from '@/api/menu'
+import { updateForum } from '@/api/forum'
 import type { ForumUpdateDTO } from '@/types/api/query'
-import type { ForumVO } from '@/types/api/vo'
-import type { EntityTree } from '@/types/tree'
+import type { ForumBasicVO } from '@/types/api/vo'
 import { pick } from '@/utils/data'
 
 const props = defineProps<{
-  row: EntityTree<ForumVO>
+  row: ForumBasicVO
 }>()
 
-const formData = ref<ForumUpdateDTO>(pick(props.row, ['id', 'pid', 'label', 'description']))
+const formData = ref<ForumUpdateDTO>(
+  pick(props.row, ['id', 'label', 'status', 'description', 'notice', 'header'])
+)
 </script>
 
 <template>
-  <DataTableForm v-model="formData" :func="updateMenu">
-    <MenuBase v-model="formData" />
+  <DataTableForm v-model="formData" :func="updateForum">
+    <ForumBase v-model="formData" />
   </DataTableForm>
 </template>

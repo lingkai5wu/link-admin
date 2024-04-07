@@ -1,6 +1,7 @@
 import type {
   AnimalSexEnum,
   AnimalStatusEnum,
+  EntityStatusEnum,
   MenuTypeEnum,
   UserSexEnum,
   UserStatusEnum
@@ -64,6 +65,46 @@ export const animalStatusEnumConfig: EnumConfig<AnimalStatusEnum>[] = [
     value: 'DECEASED',
     label: '退学',
     type: 'error'
+  }
+]
+
+export const entityStatusEnumConfig: EnumConfig<EntityStatusEnum>[] = [
+  {
+    value: 'DRAFT',
+    label: '草稿'
+  },
+  {
+    value: 'PENDING',
+    label: '等待',
+    type: 'info'
+  },
+  {
+    value: 'LOCKED',
+    label: '锁定',
+    type: 'warning'
+  },
+  {
+    value: 'APPROVED',
+    label: '通过',
+    type: 'primary'
+  },
+  {
+    value: 'REJECTED',
+    label: '拒绝',
+    type: 'error'
+  },
+  {
+    value: 'HIDDEN',
+    label: '隐藏',
+    type: 'warning'
+  },
+  {
+    value: 'ARCHIVED',
+    label: '归档'
+  },
+  {
+    value: 'DELETED',
+    label: '删除'
   }
 ]
 

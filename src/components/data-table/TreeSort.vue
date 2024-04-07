@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 import type LoadingButton from '@/components/LoadingButton.vue'
 import type { EntityOrderUpdateDTO } from '@/types/api/query'
-import type { MenuVO } from '@/types/api/vo'
-import type { EntityTreeOption, SortableEntityTreeOption } from '@/types/tree'
+import type { EntityTreeNode } from '@/types/tree'
 import type { TreeDropInfo, TreeOption } from 'naive-ui'
 
 const props = defineProps<{
-  getOptionsFunc: () => Promise<SortableEntityTreeOption[]>
+  getOptionsFunc: () => Promise<SortableEntity[]>
   submitFunc: (dtos: EntityOrderUpdateDTO[]) => Promise<null>
 }>()
 
@@ -16,8 +15,8 @@ const emits = defineEmits<{
 }>()
 
 const isLoading = ref(false)
-let oldOptions: SortableEntityTreeOption[] = []
-const options = ref<EntityTreeOption<MenuVO>[]>()
+let oldOptions: SortableEntity[] = []
+const options = ref<SortableEntity[]>()
 getOptions()
 const loadingButtonRef = ref<InstanceType<typeof LoadingButton> | null>(null)
 
@@ -97,14 +96,14 @@ function handleDrop({ node, dragNode, dropPosition }: TreeDropInfo) {
   }
 }
 
-function generateEntityOrderUpdateDTOs(treeNodes: SortableEntityTreeOption[] | undefined) {
+function generateEntityOrderUpdateDTOs(treeNodes: EntityTreeNode<SortableEntity>[] | undefined) {
   if (!treeNodes) {
     return []
   }
   const result: EntityOrderUpdateDTO[] = []
   let sortOrder = 0
 
-  function traverse(node: SortableEntityTreeOption, pid = 0): void {
+  function traverse(node: EntityTreeNode<SortableEntity>, pid = 0): void {
     sortOrder++
     const dto: EntityOrderUpdateDTO = {
       id: node.id,

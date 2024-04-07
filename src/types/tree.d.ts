@@ -7,17 +7,16 @@ interface MenuVOTree extends MenuVO {
   children?: MenuVOTree[]
 }
 
-interface EntityTreeNode {
+interface RowEntityTreeNode {
   id: number
   pid: number
 }
 
-interface EntityTree<T extends EntityTreeNode> extends T {
-  children?: EntityTree<T>[]
+type EntityTreeNode<T> = T & {
+  children?: EntityTreeNode<T>[]
 }
 
-interface EntityTreeOption<T extends EntityTreeNode> extends T, TreeOption {
-  children?: EntityTreeOption<T>[]
-}
-
-type SortableEntityTreeOption = EntityTreeOption<SortableEntity>
+type EntityTreeOption<T> = T &
+  TreeOption & {
+    children?: EntityTreeOption<T>[]
+  }

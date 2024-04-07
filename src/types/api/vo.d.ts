@@ -50,11 +50,22 @@ export interface AreaVO {
   readonly locations: LocationVO[] | null
 }
 
+export interface ForumBasicVO {
+  readonly id: number
+  readonly label: string
+  readonly status: EntityStatusEnum
+  readonly description: string | null
+  readonly sortOrder: number | null
+  readonly createTime: number
+}
+
 export interface ForumVO {
   readonly id: number
-  readonly pid: number
   readonly label: string
+  readonly status: EntityStatusEnum
   readonly description: string | null
+  readonly notice: string | null
+  readonly header: string | null
   readonly sortOrder: number | null
   readonly createTime: number
 }
@@ -171,6 +182,16 @@ export interface MethodArgumentNotValidExceptionVO {
 export type AnimalStatusEnum = 'NORMAL' | 'MISSING' | 'ADOPTED' | 'DECEASED'
 
 export type AnimalSexEnum = 'MALE' | 'FEMALE' | 'OTHER' | 'UNKNOWN'
+
+export type EntityStatusEnum =
+  | 'DRAFT'
+  | 'PENDING'
+  | 'LOCKED'
+  | 'APPROVED'
+  | 'REJECTED'
+  | 'HIDDEN'
+  | 'ARCHIVED'
+  | 'DELETED'
 
 export type MenuTypeEnum = 'PARENT' | 'ROUTE' | 'LINK'
 
