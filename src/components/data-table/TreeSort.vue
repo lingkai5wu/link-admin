@@ -107,7 +107,7 @@ function generateEntityOrderUpdateDTOs(treeNodes: EntityTreeNode<SortableEntity>
     sortOrder++
     const dto: EntityOrderUpdateDTO = {
       id: node.id,
-      ...(pid !== node.pid && { pid }),
+      ...(node.pid !== undefined && pid !== node.pid && { pid }),
       ...(sortOrder !== node.sortOrder && { sortOrder })
     }
     if (Object.keys(dto).length > 1) {
