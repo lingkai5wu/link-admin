@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useOssStore } from '@/stores/oss'
+import { useUserStore } from '@/stores/user'
 import type { OssDirectPostObjectInfoVO } from '@/types/api/vo'
 import { pick } from '@/utils/data'
 import { generateOssObjectName } from '@/utils/upload'
@@ -9,6 +10,7 @@ import { NUpload } from 'naive-ui'
 const ossDirectPostObjectInfo = ref<OssDirectPostObjectInfoVO>()
 const uploadRef = ref<InstanceType<typeof NUpload> | null>(null)
 const ossStore = useOssStore()
+const userStore = useUserStore()
 
 async function handleBeforeUpload({ file }: { file: UploadFileInfo }) {
   ossDirectPostObjectInfo.value = await ossStore.getValidOssDirectPostObjectInfo()
@@ -22,7 +24,7 @@ async function handleBeforeUpload({ file }: { file: UploadFileInfo }) {
   if (accept) {
     const pattern = accept.endsWith('*') ? accept.substring(0, accept.length - 1) : accept
     if (!file.type!.startsWith(pattern)) {
-      window.$message.error(`不支持该文件类型`)
+      window.$message.error('不支持该文件类型')
       return false
     }
   }
@@ -34,7 +36,8 @@ const generateData = ({ file }: { file: UploadFileInfo }) => {
   return {
     ...pick(ossDirectPostObjectInfo.value!, ['ossAccessKeyId', 'policy', 'signature']),
     key: file.name,
-    'content-disposition': file.file!.name
+    'content-disposition': file.file!.name,
+    'x-oss-meta-userId': userStore.userVO!.id.toString()
   }
 }
 </script>
