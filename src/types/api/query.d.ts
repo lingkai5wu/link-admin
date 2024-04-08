@@ -114,6 +114,11 @@ export interface MenuUpdateDTO {
   path?: string | null
 }
 
+export interface OssGetObjectUrlGenerateDTO {
+  objectName?: string | null
+  imageProcessStyle?: OssImageProcessStyleEnum | null
+}
+
 export interface PermissionUpdateDTO {
   id?: number | null
   description?: string | null
@@ -204,6 +209,8 @@ export type EntityStatusEnum =
   | 'DELETED'
 
 export type MenuTypeEnum = 'PARENT' | 'ROUTE' | 'LINK'
+
+export type OssImageProcessStyleEnum = 'NONE' | 'NORMAL' | 'AVATAR'
 
 export type UserStatusEnum = 'UNCONFIRMED' | 'CONFIRMED' | 'BANNED' | 'DELETED'
 

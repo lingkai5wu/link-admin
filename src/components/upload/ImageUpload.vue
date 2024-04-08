@@ -13,7 +13,7 @@ function initFileUrl() {
     return
   }
   fileList.value.forEach((file) => {
-    generateOssGetObjectUrl(file.name).then((url) => {
+    generateOssGetObjectUrl({ objectName: file.name }).then((url) => {
       file.url = url
     })
   })
