@@ -29,6 +29,9 @@ if (avatarObjectName) {
     <template #extra>
       <n-flex>
         <n-avatar :src="avatarUrl" />
+        <n-ellipsis :tooltip="false" style="max-width: 100px; line-height: 34px">
+          {{ userStore.userVO?.nickname || userStore.userVO?.phone }}
+        </n-ellipsis>
         <n-popover :show-arrow="false" style="padding: 0" trigger="click">
           <template #trigger>
             <n-button quaternary>
