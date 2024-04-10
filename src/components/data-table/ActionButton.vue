@@ -58,7 +58,7 @@ function handleActionNegative() {
   <n-button
     v-if="action.component"
     :disabled="isDisabled"
-    :secondary="!(props.action.needTwoStep && isWaitConfirm)"
+    :tertiary="!(props.action.needTwoStep && isWaitConfirm)"
     :type="action.type"
     @click="emits('actionTrigger')"
   >
@@ -68,7 +68,7 @@ function handleActionNegative() {
     v-else
     :disabled="isDisabled"
     :loading="isLoading"
-    :secondary="!(props.action.needTwoStep && isWaitConfirm)"
+    :tertiary="!(props.action.needTwoStep && isWaitConfirm)"
     :type="action.type"
     @blur="handleActionNegative"
     @click="handleActionPositive"
