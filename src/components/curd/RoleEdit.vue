@@ -2,12 +2,13 @@
 import { updateRole } from '@/api/role'
 import type { RoleUpdateDTO } from '@/types/api/query'
 import type { RoleVO } from '@/types/api/vo'
+import { clone } from '@/utils/common'
 
 const props = defineProps<{
   row: RoleVO
 }>()
 
-const formData = ref<RoleUpdateDTO>(props.row)
+const formData = ref<RoleUpdateDTO>(clone(props.row))
 </script>
 
 <template>
