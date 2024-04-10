@@ -16,8 +16,8 @@ import type { Component, ComputedRef } from 'vue'
 
 const props = defineProps<{
   func: (
-    pageDTO?: PageDTO,
-    query?: DataTableFilterState
+    query?: DataTableFilterState,
+    pageDTO?: PageDTO
   ) => Promise<DataWithId[] | PageVO<DataWithId>>
   columns: DataTableColumns<any>
   rowActions?: RowActions

@@ -11,10 +11,10 @@ export async function listAnimalBasicVOs(query?: AnimalQuery): Promise<AnimalBas
 }
 
 export async function listAnimalBasicVOsWithPage(
-  pageDTO?: PageDTO,
-  query?: AnimalQuery
+  query?: AnimalQuery,
+  pageDTO?: PageDTO
 ): Promise<AnimalBasicVO[]> {
-  return await request.get('/animals/page', { params: { ...pageDTO, ...query } })
+  return await request.get('/animals/page', { params: { ...query, ...pageDTO } })
 }
 
 export async function saveAnimal(dto: AnimalSaveDTO): Promise<null> {

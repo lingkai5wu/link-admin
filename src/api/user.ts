@@ -1,11 +1,5 @@
-import type {
-  BatchUpdateManyToManyDTO,
-  PageDTO,
-  UserQuery,
-  UserSaveDTO,
-  UserUpdateDTO
-} from '@/types/api/query'
-import type { PageVO, PermissionVO, RoleVO, UserVO } from '@/types/api/vo'
+import type { BatchUpdateManyToManyDTO, PageDTO, UserQuery, UserSaveDTO, UserUpdateDTO } from '@/types/api/query'
+import type { PageVO, PermissionVO, RoleVO, UserBasicVO, UserVO } from '@/types/api/vo'
 import { comparePermissionVO } from '@/utils/compare'
 import request from '@/utils/request.js'
 
@@ -31,11 +25,15 @@ export async function listUserVOs(query?: UserQuery): Promise<UserVO[]> {
   return await request.get('/users', { params: query })
 }
 
+export async function listUserBasicVOs(query?: UserQuery): Promise<UserBasicVO[]> {
+  return await request.get('/users/basic', { params: query })
+}
+
 export async function listUserVOsWithPage(
-  pageDTO?: PageDTO,
-  query?: UserQuery
+  query?: UserQuery,
+  pageDTO?: PageDTO
 ): Promise<PageVO<UserVO>> {
-  return await request.get('/users/page', { params: { ...pageDTO, ...query } })
+  return await request.get('/users/page', { params: { ...query, ...pageDTO } })
 }
 
 export async function saveUser(dto: UserSaveDTO): Promise<null> {
