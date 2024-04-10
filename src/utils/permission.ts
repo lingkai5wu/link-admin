@@ -48,7 +48,9 @@ export function getAuthorizedActions(actions: Actions | undefined) {
           }
         }
       }
-      return dp[m][n]
+      if (dp[m][n]) {
+        return true
+      }
     }
     return false
   }
