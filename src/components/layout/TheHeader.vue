@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { generateOssGetObjectUrl } from '@/api/oss'
 import { useUserStore } from '@/stores/user'
 import { MenuOutline } from '@vicons/ionicons5'
 import { useRoute } from 'vue-router'
@@ -8,17 +7,6 @@ const route = useRoute()
 const title = computed(() => route.meta.title)
 
 const userStore = useUserStore()
-
-const avatarUrl = ref<string>()
-const avatarObjectName = userStore.userVO?.avatar
-if (avatarObjectName) {
-  generateOssGetObjectUrl({
-    objectName: avatarObjectName,
-    imageProcessStyle: 'AVATAR'
-  }).then((url) => {
-    avatarUrl.value = url
-  })
-}
 </script>
 
 <template>
@@ -28,10 +16,7 @@ if (avatarObjectName) {
     </template>
     <template #extra>
       <n-flex>
-        <n-avatar :src="avatarUrl" />
-        <n-ellipsis :tooltip="false" style="max-width: 100px; line-height: 34px">
-          {{ userStore.userVO?.nickname || userStore.userVO?.phone }}
-        </n-ellipsis>
+        <UserBasicInfo :user-basic="userStore.userVO" />
         <n-popover :show-arrow="false" style="padding: 0" trigger="click">
           <template #trigger>
             <n-button quaternary>

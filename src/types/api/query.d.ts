@@ -110,6 +110,23 @@ export interface LocationSaveOrUpdateDTO {
   lat?: number | null
 }
 
+export interface MaterialWarehouseSaveDTO {
+  locationId?: number | null
+  label?: string | null
+  description?: string | null
+  keeperUserId?: number | null
+  contact?: string | null
+}
+
+export interface MaterialWarehouseUpdateDTO {
+  id?: number | null
+  locationId?: number | null
+  label?: string | null
+  description?: string | null
+  keeperUserId?: number | null
+  contact?: string | null
+}
+
 export interface MenuSaveDTO {
   pid?: number | null
   type?: MenuTypeEnum | null

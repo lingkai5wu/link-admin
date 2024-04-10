@@ -51,7 +51,7 @@ async function getTableData(query?: DataTableFilterState) {
   loading.value = true
   let data
   try {
-    data = await props.func(pageDTO.value, query)
+    data = await props.func(query, pageDTO.value)
   } finally {
     loading.value = false
   }

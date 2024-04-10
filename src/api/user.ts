@@ -1,4 +1,10 @@
-import type { BatchUpdateManyToManyDTO, PageDTO, UserQuery, UserSaveDTO, UserUpdateDTO } from '@/types/api/query'
+import type {
+  BatchUpdateManyToManyDTO,
+  PageDTO,
+  UserQuery,
+  UserSaveDTO,
+  UserUpdateDTO
+} from '@/types/api/query'
 import type { PageVO, PermissionVO, RoleVO, UserBasicVO, UserVO } from '@/types/api/vo'
 import { comparePermissionVO } from '@/utils/compare'
 import request from '@/utils/request.js'

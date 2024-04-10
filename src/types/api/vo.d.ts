@@ -86,6 +86,23 @@ export interface LocationVO {
   readonly lat: number
 }
 
+export interface MaterialWarehouseBasicVO {
+  readonly id: number
+  readonly label: string
+  readonly description: string | null
+  readonly keeperUser: UserBasicVO | null
+  readonly contact: string | null
+}
+
+export interface MaterialWarehouseVO {
+  readonly id: number
+  readonly locationId: number | null
+  readonly label: string
+  readonly description: string | null
+  readonly keeperUserId: number | null
+  readonly contact: string | null
+}
+
 export interface MenuVO {
   readonly id: number
   readonly pid: number
@@ -120,6 +137,13 @@ export interface RoleVO {
 export interface TokenInfoVO {
   readonly tokenName: string
   readonly tokenValue: string
+}
+
+export interface UserBasicVO {
+  readonly id: number
+  readonly phone: string
+  readonly nickname: string | null
+  readonly avatar: string | null
 }
 
 export interface UserVO {
