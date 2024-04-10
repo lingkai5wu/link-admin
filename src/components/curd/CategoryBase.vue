@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { SpeciesUpdateDTO } from '@/types/api/query'
+import type { CategoryUpdateDTO } from '@/types/api/query'
 
-const formData = defineModel<SpeciesUpdateDTO>({ required: true })
+const formData = defineModel<CategoryUpdateDTO>({ required: true })
 </script>
 
 <template>

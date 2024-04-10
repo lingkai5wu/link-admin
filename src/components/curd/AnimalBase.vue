@@ -1,17 +1,17 @@
 <script lang="ts" setup>
+import { listAnimalCategoryVOs } from '@/api/animal-category'
 import { listAreaVOs } from '@/api/area'
-import { listSpeciesVOs } from '@/api/species'
 import type { AnimalUpdateDTO } from '@/types/api/query'
-import type { AreaVO, SpeciesVO } from '@/types/api/vo'
+import type { AreaVO, CategoryVO } from '@/types/api/vo'
 import { animalSexEnumConfig, animalStatusEnumConfig } from '@/utils/enum'
 import { renderOption } from '@/utils/form'
 import { NFormItem } from 'naive-ui'
 
 const formData = defineModel<AnimalUpdateDTO>({ default: {} })
 
-const speciesOptions = ref<SpeciesVO[]>([])
-listSpeciesVOs().then((data) => {
-  speciesOptions.value = data
+const categoryOptions = ref<CategoryVO[]>([])
+listAnimalCategoryVOs().then((data) => {
+  categoryOptions.value = data
 })
 const areaOptions = ref<AreaVO[]>([])
 listAreaVOs().then((data) => {
@@ -46,13 +46,13 @@ listAreaVOs().then((data) => {
       required: true,
       trigger: ['blur']
     }"
-    label="物种"
-    path="speciesId"
+    label="动物分类"
+    path="categoryId"
   >
     <n-select
-      v-model:value="formData.speciesId"
-      :loading="speciesOptions.length === 0"
-      :options="speciesOptions"
+      v-model:value="formData.categoryId"
+      :loading="categoryOptions.length === 0"
+      :options="categoryOptions"
       :render-option="renderOption"
       filterable
       value-field="id"
@@ -61,7 +61,7 @@ listAreaVOs().then((data) => {
   <n-form-item label="品种" path="breed">
     <n-input v-model:value="formData.breed" />
   </n-form-item>
-  <n-form-item label="区域" path="speciesId">
+  <n-form-item label="区域" path="categoryId">
     <n-select
       v-model:value="formData.areaId"
       :loading="areaOptions.length === 0"

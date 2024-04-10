@@ -8,7 +8,7 @@ export interface PageDTO {
 export interface AnimalSaveDTO {
   name?: string | null
   status?: AnimalStatusEnum | null
-  speciesId?: number | null
+  categoryId?: number | null
   breed?: string | null
   areaId?: number | null
   sex?: AnimalSexEnum | null
@@ -27,7 +27,7 @@ export interface AnimalUpdateDTO {
   id?: number | null
   name?: string | null
   status?: AnimalStatusEnum | null
-  speciesId?: number | null
+  categoryId?: number | null
   breed?: string | null
   areaId?: number | null
   sex?: AnimalSexEnum | null
@@ -63,6 +63,17 @@ export interface AuthOtpLoginDTO {
 export interface BatchUpdateManyToManyDTO<T> {
   targetIdsToInsert?: T[] | null
   targetIdsToDelete?: T[] | null
+}
+
+export interface CategorySaveDTO {
+  label?: string | null
+  description?: string | null
+}
+
+export interface CategoryUpdateDTO {
+  id?: number | null
+  label?: string | null
+  description?: string | null
 }
 
 export interface EntityOrderUpdateDTO {
@@ -114,11 +125,6 @@ export interface MenuUpdateDTO {
   path?: string | null
 }
 
-export interface OssGetObjectUrlGenerateDTO {
-  objectName?: string | null
-  imageProcessStyle?: OssImageProcessStyleEnum | null
-}
-
 export interface PermissionUpdateDTO {
   id?: number | null
   description?: string | null
@@ -134,17 +140,6 @@ export interface RoleUpdateDTO {
   id?: number | null
   code?: string | null
   name?: string | null
-  description?: string | null
-}
-
-export interface SpeciesSaveDTO {
-  label?: string | null
-  description?: string | null
-}
-
-export interface SpeciesUpdateDTO {
-  id?: number | null
-  label?: string | null
   description?: string | null
 }
 
@@ -169,7 +164,7 @@ export interface UserUpdateDTO {
 export interface AnimalQuery {
   name?: string | null
   status?: AnimalStatusEnum | null
-  speciesId?: number | null
+  categoryId?: number | null
   breed?: string | null
   areaId?: number | null
   sex?: AnimalSexEnum | null
@@ -209,8 +204,6 @@ export type EntityStatusEnum =
   | 'DELETED'
 
 export type MenuTypeEnum = 'PARENT' | 'ROUTE' | 'LINK'
-
-export type OssImageProcessStyleEnum = 'NONE' | 'NORMAL' | 'AVATAR'
 
 export type UserStatusEnum = 'UNCONFIRMED' | 'CONFIRMED' | 'BANNED' | 'DELETED'
 

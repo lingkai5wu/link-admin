@@ -17,7 +17,7 @@ export interface AnimalBasicVO {
   readonly id: number
   readonly name: string | null
   readonly status: AnimalStatusEnum
-  readonly speciesId: string
+  readonly categoryId: string
   readonly breed: string | null
   readonly areaId: string | null
   readonly sex: AnimalSexEnum
@@ -30,7 +30,7 @@ export interface AnimalVO {
   readonly id: number
   readonly name: string | null
   readonly status: AnimalStatusEnum
-  readonly speciesId: number
+  readonly categoryId: number
   readonly breed: string | null
   readonly areaId: number | null
   readonly sex: AnimalSexEnum
@@ -52,6 +52,12 @@ export interface AreaVO {
   readonly label: string
   readonly description: string | null
   readonly locations: LocationVO[] | null
+}
+
+export interface CategoryVO {
+  readonly id: number
+  readonly label: string
+  readonly description: string | null
 }
 
 export interface ForumBasicVO {
@@ -108,12 +114,6 @@ export interface RoleVO {
   readonly id: number
   readonly code: string
   readonly name: string
-  readonly description: string | null
-}
-
-export interface SpeciesVO {
-  readonly id: number
-  readonly label: string
   readonly description: string | null
 }
 
