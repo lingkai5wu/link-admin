@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { listAnimalBasicVOsWithPage } from '@/api/animal'
+import { listAnimalBasicVOsWithPage, removeAnimal } from '@/api/animal'
 import AnimalAdd from '@/components/curd/AnimalAdd.vue'
 import AnimalEdit from '@/components/curd/AnimalEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'
@@ -46,6 +46,13 @@ const rowActions: RowActions<AnimalBasicVO> = {
     type: 'warning',
     permission: 'animal:update',
     component: AnimalEdit
+  },
+  delete: {
+    title: '删除',
+    type: 'error',
+    permission: 'animal:remove',
+    needTwoStep: true,
+    func: (row) => removeAnimal(row.id)
   }
 }
 const topActions: TopActions = {
