@@ -1,7 +1,10 @@
 <script lang="ts" setup>
-import { listAnimalCategoryVOs, removeAnimalCategory } from '@/api/animal-category'
-import AnimalCategoryAdd from '@/components/curd/AnimalCategoryAdd.vue'
-import AnimalCategoryEdit from '@/components/curd/AnimalCategoryEdit.vue'
+import {
+  listFinancialTransactionCategoryVOs,
+  removeFinancialTransactionCategory
+} from '@/api/financial-transaction-category'
+import FinancialTransactionCategoryAdd from '@/components/curd/FinancialTransactionCategoryAdd.vue'
+import FinancialTransactionCategoryEdit from '@/components/curd/FinancialTransactionCategoryEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { CategoryVO } from '@/types/api/vo'
 import { type DataTableColumns } from 'naive-ui'
@@ -21,14 +24,14 @@ const rowActions: RowActions<CategoryVO> = {
     title: '修改',
     type: 'warning',
     permission: 'animal:category:update',
-    component: AnimalCategoryEdit
+    component: FinancialTransactionCategoryEdit
   },
   delete: {
     title: '删除',
     type: 'error',
     permission: 'animal:category:remove',
     needTwoStep: true,
-    func: (row) => removeAnimalCategory(row.id)
+    func: (row) => removeFinancialTransactionCategory(row.id)
   }
 }
 const topActions: TopActions = {
@@ -36,7 +39,7 @@ const topActions: TopActions = {
     title: '新增',
     type: 'primary',
     permission: 'animal:category:save',
-    component: AnimalCategoryAdd
+    component: FinancialTransactionCategoryAdd
   }
 }
 </script>
@@ -44,7 +47,7 @@ const topActions: TopActions = {
 <template>
   <DataTable
     :columns="columns"
-    :func="listAnimalCategoryVOs"
+    :func="listFinancialTransactionCategoryVOs"
     :row-actions="rowActions"
     :top-actions="topActions"
   />

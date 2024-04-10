@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { listAnimalCategoryVOs, removeAnimalCategory } from '@/api/animal-category'
-import AnimalCategoryAdd from '@/components/curd/AnimalCategoryAdd.vue'
-import AnimalCategoryEdit from '@/components/curd/AnimalCategoryEdit.vue'
+import { listMaterialCategoryVOs, removeMaterialCategory } from '@/api/material-category'
+import MaterialCategoryAdd from '@/components/curd/MaterialCategoryAdd.vue'
+import MaterialCategoryEdit from '@/components/curd/MaterialCategoryEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { CategoryVO } from '@/types/api/vo'
 import { type DataTableColumns } from 'naive-ui'
@@ -20,23 +20,23 @@ const rowActions: RowActions<CategoryVO> = {
   edit: {
     title: '修改',
     type: 'warning',
-    permission: 'animal:category:update',
-    component: AnimalCategoryEdit
+    permission: 'material:category:update',
+    component: MaterialCategoryEdit
   },
   delete: {
     title: '删除',
     type: 'error',
-    permission: 'animal:category:remove',
+    permission: 'material:category:remove',
     needTwoStep: true,
-    func: (row) => removeAnimalCategory(row.id)
+    func: (row) => removeMaterialCategory(row.id)
   }
 }
 const topActions: TopActions = {
   add: {
     title: '新增',
     type: 'primary',
-    permission: 'animal:category:save',
-    component: AnimalCategoryAdd
+    permission: 'material:category:save',
+    component: MaterialCategoryAdd
   }
 }
 </script>
@@ -44,7 +44,7 @@ const topActions: TopActions = {
 <template>
   <DataTable
     :columns="columns"
-    :func="listAnimalCategoryVOs"
+    :func="listMaterialCategoryVOs"
     :row-actions="rowActions"
     :top-actions="topActions"
   />
