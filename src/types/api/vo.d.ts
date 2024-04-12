@@ -203,20 +203,20 @@ export interface MaterialPurchaseVO {
 }
 
 export interface MaterialStockBasicVO {
-  readonly id: number | null
-  readonly material: MaterialBasicVO | null
-  readonly warehouse: string | null
+  readonly id: number
+  readonly material: MaterialBasicVO
+  readonly warehouse: string
   readonly contact: string | null
-  readonly current: number | null
+  readonly current: number
   readonly min: number | null
   readonly max: number | null
 }
 
 export interface MaterialStockVO {
-  readonly id: number | null
-  readonly materialId: number | null
-  readonly warehouseId: number | null
-  readonly current: number | null
+  readonly id: number
+  readonly materialId: number
+  readonly warehouseId: number
+  readonly current: number
   readonly min: number | null
   readonly max: number | null
 }

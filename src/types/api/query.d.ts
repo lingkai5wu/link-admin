@@ -229,15 +229,6 @@ export interface MaterialSaveDTO {
   attachment?: string[] | null
 }
 
-export interface MaterialStockSaveOrUpdateDTO {
-  id?: number | null
-  materialId?: number | null
-  warehouseId?: number | null
-  current?: number | null
-  min?: number | null
-  max?: number | null
-}
-
 export interface MaterialUpdateDTO {
   id?: number | null
   categoryId?: number | null

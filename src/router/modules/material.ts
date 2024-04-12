@@ -26,6 +26,14 @@ export default {
         title: '物资仓库'
       },
       component: () => import('@/views/MaterialWarehouseView.vue')
+    },
+    {
+      path: 'stock',
+      name: 'material-stock',
+      meta: {
+        title: '物资库存'
+      },
+      component: () => import('@/views/MaterialStockView.vue')
     }
   ]
 } as RouteRecordRaw
