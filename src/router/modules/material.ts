@@ -4,6 +4,14 @@ export default {
   path: 'material',
   children: [
     {
+      path: '',
+      name: 'category',
+      meta: {
+        title: '物资项'
+      },
+      component: () => import('@/views/MaterialView.vue')
+    },
+    {
       path: 'category',
       name: 'material-category',
       meta: {
