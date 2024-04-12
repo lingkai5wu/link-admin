@@ -76,10 +76,71 @@ export interface CategoryUpdateDTO {
   description?: string | null
 }
 
+export interface DonationSaveDTO {
+  donorName?: string | null
+  donorUserId?: number | null
+  contact?: string | null
+  date?: number | null
+  description?: string | null
+  financialTransactionId?: number | null
+  materialMovementId?: number | null
+}
+
+export interface DonationUpdateDTO {
+  id?: number | null
+  donorName?: string | null
+  donorUserId?: number | null
+  contact?: string | null
+  date?: number | null
+  description?: string | null
+  financialTransactionId?: number | null
+  materialMovementId?: number | null
+}
+
 export interface EntityOrderUpdateDTO {
   id?: number | null
   pid?: number | null
   sortOrder?: number | null
+}
+
+export interface FinancialAccountSaveDTO {
+  name?: string | null
+  status?: EntityStatusEnum | null
+  userId?: number | null
+  balance?: number | null
+  description?: string | null
+}
+
+export interface FinancialAccountUpdateDTO {
+  id?: number | null
+  name?: string | null
+  status?: EntityStatusEnum | null
+  userId?: number | null
+  balance?: number | null
+  description?: string | null
+}
+
+export interface FinancialTransactionSaveDTO {
+  date?: number | null
+  operatorUserId?: number | null
+  accountId?: number | null
+  categoryId?: number | null
+  amount?: number | null
+  status?: EntityStatusEnum | null
+  description?: string | null
+  attachment?: string[] | null
+}
+
+export interface FinancialTransactionUpdateDTO {
+  id?: number | null
+  date?: number | null
+  operatorUserId?: number | null
+  accountId?: number | null
+  categoryId?: number | null
+  amount?: number | null
+  status?: EntityStatusEnum | null
+  description?: string | null
+  attachment?: string[] | null
 }
 
 export interface ForumSaveDTO {
@@ -108,6 +169,84 @@ export interface LocationSaveOrUpdateDTO {
   id?: number | null
   lng?: number | null
   lat?: number | null
+}
+
+export interface MaterialMovementSaveDTO {
+  stockId?: number | null
+  movementType?: MaterialMovementTypeEnum | null
+  status?: EntityStatusEnum | null
+  operatorUserId?: number | null
+  referenceUserId?: number | null
+  quantity?: number | null
+  description?: string | null
+  attachment?: string[] | null
+}
+
+export interface MaterialMovementUpdateDTO {
+  id?: number | null
+  stockId?: number | null
+  movementType?: MaterialMovementTypeEnum | null
+  status?: EntityStatusEnum | null
+  operatorUserId?: number | null
+  referenceUserId?: number | null
+  quantity?: number | null
+  description?: string | null
+  attachment?: string[] | null
+}
+
+export interface MaterialPurchaseSaveDTO {
+  movementId?: number | null
+  financialTransactionId?: number | null
+  procurementUserId?: number | null
+  status?: EntityStatusEnum | null
+  totalAmount?: number | null
+  supplier?: string | null
+  orderNumber?: string | null
+  description?: string | null
+  attachment?: string[] | null
+}
+
+export interface MaterialPurchaseUpdateDTO {
+  id?: number | null
+  movementId?: number | null
+  financialTransactionId?: number | null
+  procurementUserId?: number | null
+  status?: EntityStatusEnum | null
+  totalAmount?: number | null
+  supplier?: string | null
+  orderNumber?: string | null
+  description?: string | null
+  attachment?: string[] | null
+}
+
+export interface MaterialSaveDTO {
+  categoryId?: number | null
+  status?: EntityStatusEnum | null
+  name?: string | null
+  specification?: string | null
+  unit?: string | null
+  content?: string | null
+  attachment?: string[] | null
+}
+
+export interface MaterialStockSaveOrUpdateDTO {
+  id?: number | null
+  materialId?: number | null
+  warehouseId?: number | null
+  current?: number | null
+  min?: number | null
+  max?: number | null
+}
+
+export interface MaterialUpdateDTO {
+  id?: number | null
+  categoryId?: number | null
+  status?: EntityStatusEnum | null
+  name?: string | null
+  specification?: string | null
+  unit?: string | null
+  content?: string | null
+  attachment?: string[] | null
 }
 
 export interface MaterialWarehouseSaveDTO {
@@ -224,6 +363,16 @@ export type EntityStatusEnum =
   | 'HIDDEN'
   | 'ARCHIVED'
   | 'DELETED'
+
+export type MaterialMovementTypeEnum =
+  | 'PROCUREMENT'
+  | 'BORROWING'
+  | 'DONATION'
+  | 'LENDING'
+  | 'USAGE'
+  | 'LOST'
+  | 'TRANSFER'
+  | 'SCRAP'
 
 export type MenuTypeEnum = 'PARENT' | 'ROUTE' | 'LINK'
 

@@ -60,6 +60,67 @@ export interface CategoryVO {
   readonly description: string | null
 }
 
+export interface DonationBasicVO {
+  readonly id: number
+  readonly donorName: string
+  readonly donorUser: UserBasicVO | null
+  readonly contact: string | null
+  readonly date: number
+  readonly description: string | null
+}
+
+export interface DonationVO {
+  readonly id: number
+  readonly donorName: string
+  readonly donorUserId: number | null
+  readonly contact: string | null
+  readonly date: number
+  readonly description: string | null
+  readonly financialTransactionId: number | null
+  readonly materialMovementId: number | null
+}
+
+export interface FinancialAccountBasicVO {
+  readonly id: number
+  readonly name: string
+  readonly status: EntityStatusEnum
+  readonly user: UserBasicVO
+  readonly balance: number
+  readonly description: string | null
+}
+
+export interface FinancialAccountVO {
+  readonly id: number
+  readonly name: string
+  readonly status: EntityStatusEnum
+  readonly userId: number
+  readonly balance: number
+  readonly description: string | null
+}
+
+export interface FinancialTransactionBasicVO {
+  readonly id: number
+  readonly date: number
+  readonly operatorUser: UserBasicVO
+  readonly category: string
+  readonly amount: number
+  readonly status: EntityStatusEnum
+  readonly description: string | null
+  readonly attachment: string[] | null
+}
+
+export interface FinancialTransactionVO {
+  readonly id: number
+  readonly date: number
+  readonly operatorUserId: number
+  readonly accountId: number
+  readonly categoryId: number
+  readonly amount: number
+  readonly status: EntityStatusEnum
+  readonly description: string | null
+  readonly attachment: string[] | null
+}
+
 export interface ForumBasicVO {
   readonly id: number
   readonly label: string
@@ -84,6 +145,91 @@ export interface LocationVO {
   readonly id: number
   readonly lng: number
   readonly lat: number
+}
+
+export interface MaterialBasicVO {
+  readonly id: number
+  readonly category: string
+  readonly status: EntityStatusEnum
+  readonly name: string
+  readonly specification: string | null
+  readonly unit: string
+}
+
+export interface MaterialMovementBasicVO {
+  readonly id: number
+  readonly stockId: number
+  readonly materialId: number
+  readonly materialName: string
+  readonly materialUnit: string
+  readonly movementType: MaterialMovementTypeEnum
+  readonly status: EntityStatusEnum
+  readonly quantity: number
+  readonly description: string | null
+}
+
+export interface MaterialMovementVO {
+  readonly id: number
+  readonly stockId: number
+  readonly movementType: MaterialMovementTypeEnum
+  readonly status: EntityStatusEnum
+  readonly operatorUserId: number
+  readonly referenceUserId: number | null
+  readonly quantity: number
+  readonly description: string | null
+  readonly attachment: string[] | null
+}
+
+export interface MaterialPurchaseBasicVO {
+  readonly id: number
+  readonly movementId: number
+  readonly financialTransactionId: number | null
+  readonly status: EntityStatusEnum
+  readonly totalAmount: number
+  readonly description: string | null
+}
+
+export interface MaterialPurchaseVO {
+  readonly id: number
+  readonly movementId: number
+  readonly financialTransactionId: number | null
+  readonly procurementUserId: number
+  readonly status: EntityStatusEnum
+  readonly totalAmount: number
+  readonly supplier: string | null
+  readonly orderNumber: string | null
+  readonly description: string | null
+  readonly attachment: string[] | null
+}
+
+export interface MaterialStockBasicVO {
+  readonly id: number | null
+  readonly material: MaterialBasicVO | null
+  readonly warehouse: string | null
+  readonly contact: string | null
+  readonly current: number | null
+  readonly min: number | null
+  readonly max: number | null
+}
+
+export interface MaterialStockVO {
+  readonly id: number | null
+  readonly materialId: number | null
+  readonly warehouseId: number | null
+  readonly current: number | null
+  readonly min: number | null
+  readonly max: number | null
+}
+
+export interface MaterialVO {
+  readonly id: number
+  readonly categoryId: number
+  readonly status: EntityStatusEnum
+  readonly name: string
+  readonly specification: string | null
+  readonly unit: string
+  readonly content: string | null
+  readonly attachment: string[] | null
 }
 
 export interface MaterialWarehouseBasicVO {
@@ -191,6 +337,16 @@ export type EntityStatusEnum =
   | 'HIDDEN'
   | 'ARCHIVED'
   | 'DELETED'
+
+export type MaterialMovementTypeEnum =
+  | 'PROCUREMENT'
+  | 'BORROWING'
+  | 'DONATION'
+  | 'LENDING'
+  | 'USAGE'
+  | 'LOST'
+  | 'TRANSFER'
+  | 'SCRAP'
 
 export type MenuTypeEnum = 'PARENT' | 'ROUTE' | 'LINK'
 
