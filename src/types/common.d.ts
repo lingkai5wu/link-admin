@@ -12,5 +12,5 @@ type SortableEntity = {
 type OptionalEntity = {
   id: number
   label: string
-  description: string | null
+  description?: string | null
 }

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { listMaterialCategoryVOs } from '@/api/material-category'
-import SelectCategory from '@/components/data-table/SelectCategory.vue'
+import SelectEntity from '@/components/data-table/SelectEntity.vue'
 import type { MaterialUpdateDTO } from '@/types/api/query'
 import { entityStatusEnumConfig } from '@/utils/enum'
 import { NFormItem } from 'naive-ui'
@@ -18,7 +18,7 @@ const formData = defineModel<MaterialUpdateDTO>({ default: {} })
     label="分类"
     path="categoryId"
   >
-    <SelectCategory v-model="formData.categoryId" :func="listMaterialCategoryVOs" />
+    <SelectEntity v-model="formData.categoryId" :func="listMaterialCategoryVOs" />
   </n-form-item>
   <n-form-item
     :rule="{

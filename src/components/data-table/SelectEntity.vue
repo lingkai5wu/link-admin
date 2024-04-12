@@ -1,22 +1,21 @@
 <script lang="ts" setup>
-import type { CategoryVO } from '@/types/api/vo'
 import { renderOption } from '@/utils/form'
 
 const props = defineProps<{
-  func: () => Promise<CategoryVO[]>
+  func: () => Promise<DataWithId[]>
 }>()
 const model = defineModel<number | null>()
-const categoryOptions = ref<CategoryVO[]>([])
+const selectOptions = ref<DataWithId[]>([])
 props.func().then((data) => {
-  categoryOptions.value = data
+  selectOptions.value = data
 })
 </script>
 
 <template>
   <n-select
     v-model:value="model"
-    :loading="categoryOptions.length === 0"
-    :options="categoryOptions"
+    :loading="selectOptions.length === 0"
+    :options="selectOptions"
     :render-option="renderOption"
     filterable
     value-field="id"
