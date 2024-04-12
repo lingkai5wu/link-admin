@@ -4,8 +4,8 @@ import MaterialMovementAdd from '@/components/curd/MaterialMovementAdd.vue'
 import MaterialMovementEdit from '@/components/curd/MaterialMovementEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { MaterialMovementBasicVO } from '@/types/api/vo'
-import { entityStatusEnumConfig, enum2Tag, materialMovementTypeEnumConfig } from '@/utils/enum'
-import { type DataTableColumns } from 'naive-ui'
+import { enum2Tag, materialMovementTypeEnumConfig } from '@/utils/enum'
+import { type DataTableColumns, NTime } from 'naive-ui'
 
 const columns: DataTableColumns<MaterialMovementBasicVO> = [
   {
@@ -13,21 +13,15 @@ const columns: DataTableColumns<MaterialMovementBasicVO> = [
     key: 'materialName'
   },
   {
+    title: '仓库',
+    key: 'warehouseLabel'
+  },
+  {
     title: '变动类型',
     key: 'movementType',
     render(row) {
       return enum2Tag(materialMovementTypeEnumConfig, row.movementType)
     }
-  },
-  {
-    title: '状态',
-    key: 'status',
-    render(row) {
-      return enum2Tag(entityStatusEnumConfig, row.status)
-    },
-    filter: true,
-    filterMultiple: false,
-    filterOptions: entityStatusEnumConfig
   },
   {
     title: '变动数量',
@@ -39,6 +33,13 @@ const columns: DataTableColumns<MaterialMovementBasicVO> = [
   {
     title: '描述',
     key: 'description'
+  },
+  {
+    title: '时间',
+    key: 'createTime',
+    render(row) {
+      return h(NTime, { time: row.createTime, type: 'datetime' })
+    }
   }
 ]
 const rowActions: RowActions<MaterialMovementBasicVO> = {
@@ -53,6 +54,9 @@ const rowActions: RowActions<MaterialMovementBasicVO> = {
     type: 'error',
     permission: 'material:movement:remove',
     needTwoStep: true,
+    disabled(row) {
+      return row.quantity !== 0
+    },
     func: (row) => removeMaterialMovement(row.id)
   }
 }

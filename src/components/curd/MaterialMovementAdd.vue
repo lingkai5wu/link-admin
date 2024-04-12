@@ -4,7 +4,6 @@ import { useUserStore } from '@/stores/user'
 import type { MaterialMovementSaveDTO } from '@/types/api/query'
 
 const formData = ref<MaterialMovementSaveDTO>({
-  status: 'APPROVED',
   operatorUserId: useUserStore().userVO?.id,
   quantity: 0
 })

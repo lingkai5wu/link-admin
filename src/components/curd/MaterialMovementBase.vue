@@ -2,7 +2,7 @@
 import { listMaterialStockBasicVOs } from '@/api/material-stock'
 import { listUserBasicVOs } from '@/api/user'
 import type { MaterialMovementUpdateDTO } from '@/types/api/query'
-import { entityStatusEnumConfig, materialMovementTypeEnumConfig } from '@/utils/enum'
+import { materialMovementTypeEnumConfig } from '@/utils/enum'
 import { NFormItem } from 'naive-ui'
 
 const formData = defineModel<MaterialMovementUpdateDTO>({ default: {} })
@@ -38,16 +38,6 @@ async function getStockOptions() {
     path="movementType"
   >
     <n-select v-model:value="formData.movementType" :options="materialMovementTypeEnumConfig" />
-  </n-form-item>
-  <n-form-item
-    :rule="{
-      required: true,
-      trigger: ['blur']
-    }"
-    label="状态"
-    path="status"
-  >
-    <n-select v-model:value="formData.status" :options="entityStatusEnumConfig" />
   </n-form-item>
   <n-form-item
     :rule="{

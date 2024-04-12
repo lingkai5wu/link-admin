@@ -19,9 +19,9 @@ const columns: DataTableColumns<MaterialStockBasicVO> = [
   },
   {
     title: '数量',
-    key: 'current',
+    key: 'quantity',
     render(row) {
-      return h('span', `${row.current} ${row.material.unit}`)
+      return h('span', `${row.quantity} ${row.material.unit}`)
     }
   },
   {
@@ -38,6 +38,9 @@ const rowActions: RowActions<MaterialStockBasicVO> = {
     type: 'error',
     permission: 'material:stock:remove',
     needTwoStep: true,
+    disabled(row) {
+      return row.quantity !== 0
+    },
     func: (row) => removeMaterialStock(row.id)
   }
 }

@@ -104,7 +104,6 @@ export interface FinancialTransactionBasicVO {
   readonly operatorUser: UserBasicVO
   readonly category: string
   readonly amount: number
-  readonly status: EntityStatusEnum
   readonly description: string | null
   readonly attachment: string[] | null
 }
@@ -116,7 +115,6 @@ export interface FinancialTransactionVO {
   readonly accountId: number
   readonly categoryId: number
   readonly amount: number
-  readonly status: EntityStatusEnum
   readonly description: string | null
   readonly attachment: string[] | null
 }
@@ -162,22 +160,24 @@ export interface MaterialMovementBasicVO {
   readonly materialId: number
   readonly materialName: string
   readonly materialUnit: string
+  readonly warehouseId: number
+  readonly warehouseLabel: string
   readonly movementType: MaterialMovementTypeEnum
-  readonly status: EntityStatusEnum
   readonly quantity: number
   readonly description: string | null
+  readonly createTime: number
 }
 
 export interface MaterialMovementVO {
   readonly id: number
   readonly stockId: number
   readonly movementType: MaterialMovementTypeEnum
-  readonly status: EntityStatusEnum
   readonly operatorUserId: number
   readonly referenceUserId: number | null
   readonly quantity: number
   readonly description: string | null
   readonly attachment: string[] | null
+  readonly createTime: number
 }
 
 export interface MaterialPurchaseBasicVO {
@@ -207,7 +207,7 @@ export interface MaterialStockBasicVO {
   readonly material: MaterialBasicVO
   readonly warehouse: string
   readonly contact: string | null
-  readonly current: number
+  readonly quantity: number
   readonly min: number | null
   readonly max: number | null
 }
@@ -216,7 +216,7 @@ export interface MaterialStockVO {
   readonly id: number
   readonly materialId: number
   readonly warehouseId: number
-  readonly current: number
+  readonly quantity: number
   readonly min: number | null
   readonly max: number | null
 }

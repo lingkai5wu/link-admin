@@ -126,7 +126,6 @@ export interface FinancialTransactionSaveDTO {
   accountId?: number | null
   categoryId?: number | null
   amount?: number | null
-  status?: EntityStatusEnum | null
   description?: string | null
   attachment?: string[] | null
 }
@@ -138,7 +137,6 @@ export interface FinancialTransactionUpdateDTO {
   accountId?: number | null
   categoryId?: number | null
   amount?: number | null
-  status?: EntityStatusEnum | null
   description?: string | null
   attachment?: string[] | null
 }
@@ -174,7 +172,6 @@ export interface LocationSaveOrUpdateDTO {
 export interface MaterialMovementSaveDTO {
   stockId?: number | null
   movementType?: MaterialMovementTypeEnum | null
-  status?: EntityStatusEnum | null
   operatorUserId?: number | null
   referenceUserId?: number | null
   quantity?: number | null
@@ -186,7 +183,6 @@ export interface MaterialMovementUpdateDTO {
   id?: number | null
   stockId?: number | null
   movementType?: MaterialMovementTypeEnum | null
-  status?: EntityStatusEnum | null
   operatorUserId?: number | null
   referenceUserId?: number | null
   quantity?: number | null
