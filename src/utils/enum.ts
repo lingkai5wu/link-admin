@@ -2,6 +2,7 @@ import type {
   AnimalSexEnum,
   AnimalStatusEnum,
   EntityStatusEnum,
+  MaterialMovementTypeEnum,
   MenuTypeEnum,
   UserSexEnum,
   UserStatusEnum
@@ -105,6 +106,47 @@ export const entityStatusEnumConfig: EnumConfig<EntityStatusEnum>[] = [
   {
     value: 'DELETED',
     label: '删除'
+  }
+]
+
+export const materialMovementTypeEnumConfig: EnumConfig<MaterialMovementTypeEnum>[] = [
+  {
+    value: 'PROCUREMENT',
+    label: '采购',
+    type: 'primary'
+  },
+  {
+    value: 'BORROWING',
+    label: '借入',
+    type: 'info'
+  },
+  {
+    value: 'DONATION',
+    label: '捐赠',
+    type: 'primary'
+  },
+  {
+    value: 'LENDING',
+    label: '借出',
+    type: 'info'
+  },
+  {
+    value: 'USAGE',
+    label: '使用'
+  },
+  {
+    value: 'LOST',
+    label: '丢失',
+    type: 'error'
+  },
+  {
+    value: 'TRANSFER',
+    label: '调拨'
+  },
+  {
+    value: 'SCRAP',
+    label: '报废',
+    type: 'warning'
   }
 ]
 

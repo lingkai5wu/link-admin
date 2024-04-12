@@ -34,6 +34,14 @@ export default {
         title: '物资库存'
       },
       component: () => import('@/views/MaterialStockView.vue')
+    },
+    {
+      path: 'movement',
+      name: 'material-movement',
+      meta: {
+        title: '出入库记录'
+      },
+      component: () => import('@/views/MaterialMovementView.vue')
     }
   ]
 } as RouteRecordRaw
