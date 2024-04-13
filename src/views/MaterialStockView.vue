@@ -4,7 +4,7 @@ import MaterialStockAdd from '@/components/curd/MaterialStockAdd.vue'
 import MaterialStockEdit from '@/components/curd/MaterialStockEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { MaterialStockBasicVO } from '@/types/api/vo'
-import { type DataTableColumns } from 'naive-ui'
+import { type DataTableColumns, NText } from 'naive-ui'
 
 const columns: DataTableColumns<MaterialStockBasicVO> = [
   {
@@ -22,9 +22,7 @@ const columns: DataTableColumns<MaterialStockBasicVO> = [
   {
     title: '数量',
     key: 'quantity',
-    render(row) {
-      return h('span', `${row.quantity} ${row.material.unit}`)
-    }
+    render: renderQuantity
   },
   {
     title: '理想库存范围',
@@ -59,6 +57,27 @@ const topActions: TopActions = {
     permission: 'material:stock:save',
     component: MaterialStockAdd
   }
+}
+
+function renderQuantity(row: MaterialStockBasicVO) {
+  let type = 'default'
+  if (row.min) {
+    if (row.quantity < row.min / 2) {
+      type = 'error'
+    } else if (row.quantity < row.min) {
+      type = 'warning'
+    }
+  }
+  if (row.max && row.quantity > row.max) {
+    type = 'info'
+  }
+  return h(
+    NText,
+    { type },
+    {
+      default: () => `${row.quantity} ${row.material.unit}`
+    }
+  )
 }
 </script>
 
