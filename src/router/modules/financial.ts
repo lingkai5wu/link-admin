@@ -13,6 +13,14 @@ export default {
     },
     {
       path: 'transaction',
+      name: 'financial-transaction',
+      meta: {
+        title: '收支明细'
+      },
+      component: () => import('@/views/FinancialTransactionView.vue')
+    },
+    {
+      path: 'transaction',
       children: [
         {
           path: 'category',

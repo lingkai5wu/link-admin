@@ -105,7 +105,6 @@ export interface FinancialTransactionBasicVO {
   readonly category: string
   readonly amount: number
   readonly description: string | null
-  readonly attachment: string[] | null
 }
 
 export interface FinancialTransactionVO {
@@ -313,11 +312,6 @@ export interface DisableServiceExceptionVO {
   readonly service: string
   readonly level: number
   readonly disableTime: number
-}
-
-export interface ExceptionVO {
-  readonly className: string
-  readonly message: string
 }
 
 export interface MethodArgumentNotValidExceptionVO {

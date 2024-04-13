@@ -48,7 +48,7 @@ const formData = defineModel<FinancialAccountUpdateDTO>({ default: {} })
     label="当前余额"
     path="balance"
   >
-    <InputBalance v-model="formData.balance" />
+    <InputMoney v-model="formData.balance" />
   </n-form-item>
   <n-form-item label="描述" path="description">
     <n-input v-model:value="formData.description" :autosize="{ minRows: 2 }" type="textarea" />
