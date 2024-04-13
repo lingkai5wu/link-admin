@@ -225,6 +225,21 @@ export interface MaterialSaveDTO {
   attachment?: string[] | null
 }
 
+export interface MaterialStockSaveDTO {
+  materialId?: number | null
+  warehouseId?: number | null
+  min?: number | null
+  max?: number | null
+}
+
+export interface MaterialStockUpdateDTO {
+  id?: number | null
+  materialId?: number | null
+  warehouseId?: number | null
+  min?: number | null
+  max?: number | null
+}
+
 export interface MaterialUpdateDTO {
   id?: number | null
   categoryId?: number | null
