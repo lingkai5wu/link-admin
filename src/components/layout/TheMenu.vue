@@ -43,6 +43,7 @@ function renderMenuExtra(menuOption: MenuOption): VNodeChild {
     :render-extra="renderMenuExtra"
     :render-label="renderMenuLabel"
     :value="menuValue"
+    accordion
     key-field="id"
   />
 </template>
