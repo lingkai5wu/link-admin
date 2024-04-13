@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { generateOssGetObjectUrl } from '@/api/oss'
 import type { UserBasicVO } from '@/types/api/vo'
+import { PersonCircleOutline } from '@vicons/ionicons5'
 
 const props = defineProps<{
   userBasic: UserBasicVO | null | undefined
@@ -29,7 +30,11 @@ initAvatarUrl()
 
 <template>
   <n-flex>
-    <n-avatar :src="avatarUrl" />
+    <n-avatar :src="avatarUrl">
+      <n-icon v-if="!avatarUrl">
+        <PersonCircleOutline />
+      </n-icon>
+    </n-avatar>
     <n-ellipsis :tooltip="false" style="max-width: 100px; line-height: 34px">
       {{ userBasic?.nickname || userBasic?.phone }}
     </n-ellipsis>
