@@ -293,6 +293,25 @@ export interface PermissionUpdateDTO {
   description?: string | null
 }
 
+export interface PostSaveDTO {
+  forumId?: number | null
+  title?: string | null
+  status?: EntityStatusEnum | null
+  contact?: string | null
+  content?: string | null
+  attachment?: string[] | null
+}
+
+export interface PostUpdateDTO {
+  id?: number | null
+  forumId?: number | null
+  title?: string | null
+  status?: EntityStatusEnum | null
+  contact?: string | null
+  content?: string | null
+  attachment?: string[] | null
+}
+
 export interface RoleSaveDTO {
   code?: string | null
   name?: string | null
@@ -342,6 +361,14 @@ export interface MenuQuery {
   type?: MenuTypeEnum | null
   label?: string | null
   path?: string | null
+}
+
+export interface PostQuery {
+  forumId?: number | null
+  title?: string | null
+  status?: EntityStatusEnum | null
+  userId?: number | null
+  content?: string | null
 }
 
 export interface UserQuery {

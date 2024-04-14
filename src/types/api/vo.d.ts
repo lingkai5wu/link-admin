@@ -272,6 +272,27 @@ export interface PermissionVO {
   readonly description: string | null
 }
 
+export interface PostBasicVO {
+  readonly id: number
+  readonly title: string
+  readonly status: EntityStatusEnum
+  readonly createTime: number
+  readonly updateTime: number | null
+}
+
+export interface PostVO {
+  readonly id: number
+  readonly forumId: number
+  readonly title: string
+  readonly status: EntityStatusEnum
+  readonly userId: number
+  readonly contact: string | null
+  readonly content: string
+  readonly attachment: string[] | null
+  readonly createTime: number
+  readonly updateTime: number | null
+}
+
 export interface RoleVO {
   readonly id: number
   readonly code: string
