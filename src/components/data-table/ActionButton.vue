@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Action } from '@/components/data-table/types'
+import { isActionAuthorized } from '@/utils/permission'
 
 const props = defineProps<{
   action: Action
@@ -29,6 +30,7 @@ const isDisabled = computed(() => {
   }
   return false
 })
+const isShow = computed(() => isActionAuthorized(props.action, props.row))
 
 watchEffect(() => {
   if (!props.isGroupLoading) {
@@ -55,24 +57,26 @@ function handleActionNegative() {
 </script>
 
 <template>
-  <n-button
-    v-if="action.component"
-    :disabled="isDisabled"
-    :tertiary="!(props.action.needTwoStep && isWaitConfirm)"
-    :type="action.type"
-    @click="emits('actionTrigger')"
-  >
-    {{ buttonText }}
-  </n-button>
-  <n-button
-    v-else
-    :disabled="isDisabled"
-    :loading="isLoading"
-    :tertiary="!(props.action.needTwoStep && isWaitConfirm)"
-    :type="action.type"
-    @blur="handleActionNegative"
-    @click="handleActionPositive"
-  >
-    {{ buttonText }}
-  </n-button>
+  <div v-if="isShow">
+    <n-button
+      v-if="action.component"
+      :disabled="isDisabled"
+      :tertiary="!(props.action.needTwoStep && isWaitConfirm)"
+      :type="action.type"
+      @click="emits('actionTrigger')"
+    >
+      {{ buttonText }}
+    </n-button>
+    <n-button
+      v-else
+      :disabled="isDisabled"
+      :loading="isLoading"
+      :tertiary="!(props.action.needTwoStep && isWaitConfirm)"
+      :type="action.type"
+      @blur="handleActionNegative"
+      @click="handleActionPositive"
+    >
+      {{ buttonText }}
+    </n-button>
+  </div>
 </template>

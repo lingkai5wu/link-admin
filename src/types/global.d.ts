@@ -1,9 +1,4 @@
-import type {
-  DialogApiInjection,
-  LoadingBarInst,
-  MessageApiInjection,
-  NotificationApiInjection
-} from 'naive-ui'
+import type { DialogApiInjection, LoadingBarInst, MessageApiInjection, NotificationApiInjection } from 'naive-ui'
 
 declare global {
   interface Window {

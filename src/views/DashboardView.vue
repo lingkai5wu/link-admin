@@ -5,7 +5,7 @@ import { useUserStore } from '@/stores/user'
 
 const userCount = ref<number>()
 const userStore = useUserStore()
-countUsers().then(data => {
+countUsers().then((data) => {
   userCount.value = data
 })
 </script>
@@ -29,6 +29,4 @@ countUsers().then(data => {
   <n-calendar />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

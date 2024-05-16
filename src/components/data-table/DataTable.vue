@@ -9,7 +9,6 @@ import type {
 } from '@/components/data-table/types'
 import type { PageDTO } from '@/types/api/query'
 import type { PageVO } from '@/types/api/vo'
-import { getAuthorizedActions } from '@/utils/permission'
 import { RefreshOutline } from '@vicons/ionicons5'
 import type { DataTableColumns, DataTableFilterState } from 'naive-ui'
 import type { Component, ComputedRef } from 'vue'
@@ -71,7 +70,7 @@ function setActionColumn() {
   if (!props.rowActions) {
     return
   }
-  const actions = getAuthorizedActions(props.rowActions)
+  const actions = props.rowActions
   if (!actions || Object.keys(actions).length === 0) {
     return
   }
@@ -136,7 +135,7 @@ function handleActionSubmit(isNeedRefresh: boolean) {
         </template>
       </LoadingButton>
       <ActionButtonGroup
-        :actions="getAuthorizedActions(topActions)"
+        :actions="topActions"
         :flex-props="{}"
         @action-trigger="handleActionTrigger"
         @action-submit="handleActionSubmit"

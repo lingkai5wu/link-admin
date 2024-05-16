@@ -6,6 +6,7 @@ import type { RowActions, TopActions } from '@/components/data-table/types'
 import type { PostBasicVO } from '@/types/api/vo'
 import { entityStatusEnumConfig, enum2Tag } from '@/utils/enum'
 import { type DataTableColumns, NTime } from 'naive-ui'
+import { useUserStore } from '@/stores/user'
 
 const columns: DataTableColumns<PostBasicVO> = [
   {
@@ -39,6 +40,9 @@ const rowActions: RowActions<PostBasicVO> = {
     title: '修改',
     type: 'warning',
     permission: 'post:update',
+    permissionFunc(row) {
+      return row.userId === useUserStore().userVO!.id
+    },
     component: PostEdit
   },
   delete: {

@@ -16,6 +16,7 @@ interface RowActionWithComponent<T = Data> {
   title: string
   type?: Type
   permission: string | string[] | null
+  permissionFunc?: (row: T) => boolean
   disabled?: ((row: T) => boolean) | boolean
   needTwoStep?: boolean
   component: Component<ActionComponentProps<T>>

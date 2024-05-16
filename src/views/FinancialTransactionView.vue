@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import {
-  listFinancialTransactionBasicVOs,
-  removeFinancialTransaction
-} from '@/api/financial-transaction'
+import { listFinancialTransactionBasicVOs, removeFinancialTransaction } from '@/api/financial-transaction'
 import FinancialTransactionAdd from '@/components/curd/FinancialTransactionAdd.vue'
 import FinancialTransactionEdit from '@/components/curd/FinancialTransactionEdit.vue'
 import type { RowActions, TopActions } from '@/components/data-table/types'

@@ -276,6 +276,7 @@ export interface PostBasicVO {
   readonly id: number
   readonly title: string
   readonly status: EntityStatusEnum
+  readonly userId: number
   readonly createTime: number
   readonly updateTime: number | null
 }
