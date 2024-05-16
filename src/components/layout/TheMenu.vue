@@ -38,6 +38,9 @@ function renderMenuExtra(menuOption: MenuOption): VNodeChild {
 </script>
 
 <template>
+  <n-h3 style="margin: 18px auto 10px">
+    社区养宠服务平台
+  </n-h3>
   <n-menu
     :options="menuStore.menuVOTrees"
     :render-extra="renderMenuExtra"
