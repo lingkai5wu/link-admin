@@ -1,10 +1,4 @@
-import type {
-  BatchUpdateManyToManyDTO,
-  PageDTO,
-  UserQuery,
-  UserSaveDTO,
-  UserUpdateDTO
-} from '@/types/api/query'
+import type { BatchUpdateManyToManyDTO, PageDTO, UserQuery, UserSaveDTO, UserUpdateDTO } from '@/types/api/query'
 import type { PageVO, PermissionVO, RoleVO, UserBasicVO, UserVO } from '@/types/api/vo'
 import { comparePermissionVO } from '@/utils/compare'
 import request from '@/utils/request.js'
@@ -25,6 +19,10 @@ export async function listUserPermissionVOs(id: number) {
   const permissionVOs: PermissionVO[] = await request.get(`/users/${id}/permissions`)
   permissionVOs.sort(comparePermissionVO)
   return permissionVOs
+}
+
+export async function countUsers(): Promise<number> {
+  return await request.get('/users/count')
 }
 
 export async function listUserVOs(query?: UserQuery): Promise<UserVO[]> {
