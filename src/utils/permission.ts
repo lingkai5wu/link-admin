@@ -1,7 +1,7 @@
 import type { Action } from '@/components/data-table/types'
 import { usePermissionStore } from '@/stores/permission'
 
-function checkPermission(code: string): boolean {
+export function checkPermission(code: string): boolean {
   const storeCodes = usePermissionStore().permissionCodes!
   if (storeCodes.includes(code)) {
     return true

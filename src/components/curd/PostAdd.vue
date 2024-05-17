@@ -2,7 +2,9 @@
 import { savePost } from '@/api/post'
 import type { PostSaveDTO } from '@/types/api/query'
 
-const formData = ref<PostSaveDTO>({})
+const formData = ref<PostSaveDTO>({
+  status: 'PENDING'
+})
 </script>
 
 <template>

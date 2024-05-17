@@ -109,6 +109,22 @@ export const entityStatusEnumConfig: EnumConfig<EntityStatusEnum>[] = [
   }
 ]
 
+export const postStatusEnumConfig: EnumConfig<EntityStatusEnum>[] = [
+  {
+    value: 'DRAFT',
+    label: '草稿'
+  },
+  {
+    value: 'PENDING',
+    label: '发布（等待审核）',
+    type: 'info'
+  },
+  {
+    value: 'DELETED',
+    label: '删除'
+  }
+]
+
 export const materialMovementTypeEnumConfig: EnumConfig<MaterialMovementTypeEnum>[] = [
   {
     value: 'PROCUREMENT',
