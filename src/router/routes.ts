@@ -11,6 +11,7 @@ export default [
     path: '/',
     name: 'layout',
     component: BaseLayout,
+    redirect: '/dashboard',
     children: Object.values(modules)
   },
   {
