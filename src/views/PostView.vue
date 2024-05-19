@@ -7,6 +7,7 @@ import type { PostBasicVO } from '@/types/api/vo'
 import { entityStatusEnumConfig, enum2Tag } from '@/utils/enum'
 import { type DataTableColumns, NTime } from 'naive-ui'
 import { useUserStore } from '@/stores/user'
+import PostGet from '@/components/curd/PostGet.vue'
 
 const columns: DataTableColumns<PostBasicVO> = [
   {
@@ -36,6 +37,12 @@ const columns: DataTableColumns<PostBasicVO> = [
   }
 ]
 const rowActions: RowActions<PostBasicVO> = {
+  get: {
+    title: '查看',
+    type: 'primary',
+    permission: 'post:get',
+    component: PostGet
+  },
   edit: {
     title: '修改',
     type: 'warning',
